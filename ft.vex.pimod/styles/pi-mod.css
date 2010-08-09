@@ -756,7 +756,7 @@ item>paragraph\paragraph {
 /* XHTML headings styles */
 /* Tables headings styles */
 tbody {
-   display: block;
+   display: table-row-group;
 }
 /* Lists headings styles */
 /* Address elements styles */
@@ -812,7 +812,7 @@ errordescription>cause:before {
    color: #8080FF;
 }
 colspec {
-   display: inline;
+   display: table-column;
 }
 condition {
    display: block;
@@ -859,11 +859,12 @@ diagnosis_body {
    display: block;
 }
 entry {
-   display: block;
+   display: table-cell;
 	background-color: rgb(233,235,245);
+	border: thin solid black;
 }
 thead>row>entry {
-   display: block;
+   display: table-cell;
    font-weight: bold;
    background-color: rgb(153,185,216);
    color: white;
@@ -1077,7 +1078,7 @@ actionsequenceend>result>paragraph:before {
    content: "\25B6" " ";
 }
 row {
-   display: block;
+   display: table-row;
 }
 safetyadvice {
    display: block;
@@ -1668,13 +1669,13 @@ textlink {
    display: inline;
 }
 tfoot {
-   display: block;
+   display: table-footer-group;
 }
 tgroup {
-   display: block;
+   display: table;
 }
 thead {
-   display: block;
+   display: table-header-group;
 }
 tolerance-asymmetric-value {
 	/* font-size : 66%;
