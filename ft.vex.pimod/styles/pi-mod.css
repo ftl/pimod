@@ -1,4 +1,3 @@
-/* Created by XMetaL style generator. Â©2006 Justsystems Canada Inc. All rights reserved. */
 /* XMetaL styles */
 $DOCUMENT {
    font-family: Arial Unicode MS, sans-serif;
@@ -35,7 +34,7 @@ $PROCINS {
 /* // Types of modules */
 mod>task:before {
    display: block;
-   content: 'Modul: task\0D Abgeschlossener Handlungsblock pro Arbeitsziel/auszufÃ¼hrende Arbeit';
+   content: 'Modul: task\0D Abgeschlossener Handlungsblock pro Arbeitsziel/auszuführende Arbeit';
    font-size: 9pt;
    text-align: left;
    font-weight: normal;
@@ -63,7 +62,7 @@ mod>descriptive:before {
 }
 mod>taskinterval:before {
    display: block;
-   content: 'Modul: taskinterval\0D Zeitintervall fÃ¼r WartungstÃ¤tigkeiten der im Element task beschriebenen TÃ¤tigkeit/Wartungsplan';
+   content: 'Modul: taskinterval\0D Zeitintervall für Wartungstätigkeiten der im Element task beschriebenen Tätigkeit/Wartungsplan';
    font-size: 9pt;
    text-align: left;
    font-weight: normal;
@@ -119,7 +118,7 @@ mod>diagnosis:before {
 }
 mod>glossary:before {
    display: block;
-   content: 'Modul: glossary\0D Glossar zur ErlÃ¤uterung von Fachbegriffen';
+   content: 'Modul: glossary\0D Glossar zur Erläuterung von Fachbegriffen';
    font-size: 9pt;
    text-align: left;
    font-weight: normal;
@@ -149,7 +148,7 @@ mod>glossary:before {
    content: 'Informationsklasse 1: Abnahmeprotokoll';
 }
 *[infoclass-1="EinfÃ¼hrung"]>heading:after {
-   content: 'Informationsklasse 1: EinfÃ¼hrung';
+   content: 'Informationsklasse 1: Einführung';
 }
 *[infoclass-1="Betrieb"]>heading:after {
    content: 'Informationsklasse 1: Betrieb';
@@ -215,8 +214,8 @@ heading:before {
 *[matclass-1="Gesamte-Maschine"]>heading:before {
    content: 'Aggregat: Gesamte Maschine';
 }
-*[matclass-1="KÃ¼hlwalzenstÃ¤nder"]>heading:before {
-   content: 'Aggregat: KÃ¼hlwalzenstÃ¤nder';
+*[matclass-1="Kühlwalzenständer"]>heading:before {
+   content: 'Aggregat: Kühlwalzenständer';
 }
 *[matclass-1="Leitstand"]>heading:before {
    content: 'Aggregat: Leitstand';
