@@ -34,7 +34,7 @@ $PROCINS {
 /* // Types of modules */
 mod>task:before {
    display: block;
-   content: 'Modul: task\0D Abgeschlossener Handlungsblock pro Arbeitsziel/auszuführende Arbeit';
+   content: 'Modul: task\0D Abgeschlossener Handlungsblock pro Arbeitsziel/auszufÃ¼hrende Arbeit';
    font-size: 9pt;
    text-align: left;
    font-weight: normal;
@@ -62,7 +62,7 @@ mod>descriptive:before {
 }
 mod>taskinterval:before {
    display: block;
-   content: 'Modul: taskinterval\0D Zeitintervall für Wartungstätigkeiten der im Element task beschriebenen Tätigkeit/Wartungsplan';
+   content: 'Modul: taskinterval\0D Zeitintervall fÃ¼r WartungstÃ¤igkeiten der im Element task beschriebenen TÃ¤tigkeit/Wartungsplan';
    font-size: 9pt;
    text-align: left;
    font-weight: normal;
@@ -118,7 +118,7 @@ mod>diagnosis:before {
 }
 mod>glossary:before {
    display: block;
-   content: 'Modul: glossary\0D Glossar zur Erläuterung von Fachbegriffen';
+   content: 'Modul: glossary\0D Glossar zur ErlÃ¤uterung von Fachbegriffen';
    font-size: 9pt;
    text-align: left;
    font-weight: normal;
@@ -147,8 +147,8 @@ mod>glossary:before {
 *[infoclass-1="Abnahmeprotokoll"]>heading:after {
    content: 'Informationsklasse 1: Abnahmeprotokoll';
 }
-*[infoclass-1="EinfÃ¼hrung"]>heading:after {
-   content: 'Informationsklasse 1: Einführung';
+*[infoclass-1="EinfÃƒÂ¼hrung"]>heading:after {
+   content: 'Informationsklasse 1: EinfÃ¼hrung';
 }
 *[infoclass-1="Betrieb"]>heading:after {
    content: 'Informationsklasse 1: Betrieb';
@@ -214,8 +214,8 @@ heading:before {
 *[matclass-1="Gesamte-Maschine"]>heading:before {
    content: 'Aggregat: Gesamte Maschine';
 }
-*[matclass-1="Kühlwalzenständer"]>heading:before {
-   content: 'Aggregat: Kühlwalzenständer';
+*[matclass-1="KÃ¼hlwalzenstÃ¤nder"]>heading:before {
+   content: 'Aggregat: KÃ¼hlwalzenstÃ¤nder';
 }
 *[matclass-1="Leitstand"]>heading:before {
    content: 'Aggregat: Leitstand';
@@ -980,7 +980,7 @@ lubrclass {
    margin: 3pt 0pt 3pt 5pt;
 }
 lubricant>lubrclass:before {
-	content: "Klasse/Viskosität:\0B ";
+	content: "Klasse/ViskositÃ¤t:\0B ";
 	color: #336699;
 	font-weight: bold;
 }
@@ -1162,7 +1162,7 @@ symbol {
    margin: 3pt 0pt 3pt 5pt;
 }
 lubricant>symbol:before {
-	content: "Füllmengensymbol:\0B ";
+	content: "FÃ¼llmengensymbol:\0B ";
 	color: #336699;
 	font-weight: bold;
 }
@@ -1170,11 +1170,11 @@ symptom {
    display: block;
 }
 errordescription>symptom>error-code:before {
-   content: url(icons\symptom.png) " Störung: ";
+   content: url(icons\symptom.png) " StÃ¶rung: ";
    color: #8080FF;
 }
 errordescription>symptom>description:before {
-   content: url(icons\symptom.png) " Störung: ";
+   content: url(icons\symptom.png) " StÃ¶rung: ";
    color: #8080FF;
 }
 table {
@@ -1613,7 +1613,7 @@ taskinterval[customer-once='customer-once-50h']:before {
 	font-weight: bold;
 }
 taskinterval[hand-over='service-hand-over']:before {
-	content: "Wartungsintervall (bei Übergabe): " '\2028';
+	content: "Wartungsintervall (bei Ãœbergabe): " '\2028';
 	color: #8080FF;
 	font-weight: bold;
 }
