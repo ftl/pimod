@@ -1,0 +1,610 @@
+<?xml encoding="iso-8859-1"?>
+<!-- *********************************************************************** 
+
+PI-Mod 1.0
+
+Copyright (c) 2009, The PI-Mod Project
+
+Contributors to the The PI-Mod Project (1.0):
+W. Ziegler, T. Rickmann, N. Messaoudi, S. Steurer, F. Ully, K. Schrempp
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in
+all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+THE SOFTWARE.
+
+Name: 	finestruct.ent
+Public Identifier: "-//PI-MOD//DTD FineStruct//EN"                               
+
+*********************************************************************    -->
+
+<!ENTITY % attributes PUBLIC "-//PI-MOD//DTD Attributes//EN" "attributes.ent">
+%attributes;
+<!-- content models ****************************************************     -->
+<!ENTITY % graphtext "(paragraph | list | table | graphic | techdata | footnote | keyword | safetyadvice | note)+">
+<!ENTITY % value "si-value | us-value">
+<!ENTITY % plaintext "( #PCDATA | emphasis | inlinegraphic | quoted | user-interface | variable |
+                        graphiclink | subscript | superscript |
+                        textlink | transno | inlinedata)*">
+<!ENTITY % entrycontent "( #PCDATA |emphasis | inlinegraphic | quoted | user-interface | variable |
+                        graphiclink | subscript | superscript |
+                        textlink | transno | inlinedata |  lower-value | upper-value |
+                        tolerance-asymmetric-value | tolerance-symmetric-value | graphic)*">
+<!ENTITY % safetyadvicecontent "(cause , safetysymbol?, consequences* , action+, graphic?)">
+<!ENTITY % titletext "(#PCDATA | keyword | inlinegraphic | user-interface | variable | quoted | subscript |
+                         superscript | transno | inlinedata | graphiclink)*">
+<!ENTITY % numberunit "(#PCDATA | textlink| subscript | superscript)*">
+<!-- *********************************************************               -->
+<!-- elements of fine structure including cals-table model ******* -->
+<!-- attributes for fine structure elements and cals-tables        -->
+<!ELEMENT action (condition?, step)>
+<!ATTLIST action
+	%fix;
+	%nid;
+	%validfor;
+	%translate; 
+>
+<!ELEMENT actiondescription (%graphtext;)+>
+<!ATTLIST actiondescription
+	%nid;
+	%validfor;
+	%translate; 
+>
+<!ELEMENT actionsequenceend (result?, troubleshooting?, note*)>
+<!ATTLIST actionsequenceend
+	%nid;
+	%validfor;
+	%translate; 
+>
+<!ELEMENT caption %plaintext;>
+<!ATTLIST caption
+	%nid;
+%translate; 
+>
+<!ELEMENT cause %plaintext;>
+<!ATTLIST cause
+	%nid;
+	%validfor;
+	%translate; 
+>
+<!ELEMENT safetysymbol EMPTY>
+<!ATTLIST safetysymbol
+	graphicname CDATA #REQUIRED
+	%nid;
+	%translate;
+>
+<!ELEMENT condition %plaintext;>
+<!ATTLIST condition
+	%nid;
+	%translate; 
+>
+<!ELEMENT consequences %plaintext;>
+<!ATTLIST consequences
+	%nid;
+	%translate; 
+>
+<!ELEMENT data (datatype, ((si-value?, us-value?, (tolerance-asymmetric-value | tolerance-symmetric-value)?) | (lower-value, upper-value) | textdata))>
+<!ATTLIST data
+	%dataatt;
+	%nid;
+	%validfor;
+	%translate; 
+>
+<!ELEMENT inlinedata (si-value?, us-value?)>
+<!ATTLIST inlinedata
+	%dataatt;
+	%nid;
+	%validfor;
+	%translate; 
+>
+<!ELEMENT datatype (#PCDATA | %value; | textlink | subscript | superscript | graphiclink)*>
+<!ATTLIST datatype
+	%nid;
+	%translate; 
+>
+<!ELEMENT description %plaintext;>
+<!ATTLIST description
+	%nid;
+	%translate; 
+>
+<!ELEMENT emphasis (#PCDATA | inlinegraphic | quoted | graphiclink | subscript | superscript | textlink | inlinedata)*>
+<!ATTLIST emphasis
+	%nid;
+	%translate; 
+>
+<!ELEMENT key-entry (#PCDATA)>
+<!ATTLIST key-entry
+	%nid; 
+	%translate; 
+>
+<!ELEMENT error-code %plaintext;>
+<!ATTLIST error-code
+	%nid;
+%translate; 
+>
+
+<!ELEMENT errordescription (symptom, (cause, solution)+)>
+<!ATTLIST errordescription
+	%nid; 
+	%translate; 
+>
+<!ELEMENT figure EMPTY>
+<!ATTLIST figure
+	graphicname CDATA #REQUIRED
+	scale CDATA "30"
+	placement CDATA "break"
+	%nid;
+	%translate; 
+>
+<!ELEMENT footnote (#PCDATA | textlink | transno | user-interface | emphasis | subscript | superscript | quoted | inlinedata | variable)*>
+<!ATTLIST footnote
+	%nid;
+					%validfor;
+					%translate; 
+>
+<!ELEMENT glossary-entry (glossterm, glossdef)>
+<!ATTLIST glossary-entry
+	%nid;
+					%translate; 
+>
+<!ELEMENT glossterm %titletext;>
+<!ATTLIST glossterm
+	%nid;
+					%translate; 
+>
+<!ELEMENT glossdef %graphtext;>
+<!ATTLIST glossdef
+	%nid;
+					%translate; 
+>
+<!ELEMENT graphic (figure, caption?, legend?)>
+<!ATTLIST graphic
+	%graphicatt;
+					%nid;
+					%validfor;
+					%translate;>
+<!ELEMENT graphiclink (#PCDATA | transno | subscript | superscript | textlink | inlinedata | variable)*>
+<!ATTLIST graphiclink
+	%nid;
+					%graphlinkatt;
+					%translate; 
+>
+<!ELEMENT heading %titletext;>
+<!ATTLIST heading
+	%nid;
+					%validfor;
+						%translate; 
+>
+<!ELEMENT identification %plaintext;>
+<!ATTLIST identification
+	%nid;
+						%translate; 
+>
+<!ELEMENT inlinegraphic EMPTY>
+<!ATTLIST inlinegraphic
+	graphicname CDATA #REQUIRED
+	scale CDATA "30"
+	placement CDATA "break"
+	%nid;
+						%translate; 
+>
+<!ELEMENT item (paragraph | list)+>
+<!ATTLIST item
+	%nid;
+					%validfor;
+						%translate; 
+>
+<!ELEMENT keyword (key-entry, key-entry?)>
+<!ATTLIST keyword
+	%nid;
+						%translate; 
+>
+<!ELEMENT legend (heading?, legenditem+)>
+<!ATTLIST legend
+	%nid;	
+					%translate; 
+>
+
+<!ELEMENT legenditem %plaintext;>
+<!ATTLIST legenditem
+				%nid;
+				graphicname  CDATA    #IMPLIED
+				hotspot  CDATA    #IMPLIED >
+<!ELEMENT list (keyword*, listintro?, item+, footnote*)>
+<!ATTLIST list
+	listtype (numbered | marked) 'marked'
+	%fix;
+					%nid;
+					%validfor;
+					%translate; 
+>
+<!ELEMENT listintro %plaintext;>
+<!ATTLIST listintro
+	%nid;
+					%validfor;
+					%translate; 
+>
+<!ELEMENT lower-value (%value;)*>
+<!ATTLIST lower-value
+	%nid;
+					%translate; 
+>
+<!ELEMENT lubrclass %entrycontent;>
+<!ATTLIST lubrclass
+	%nid;
+					%translate; 
+>
+<!ELEMENT medium %plaintext;>
+<!ATTLIST medium
+	%nid;
+					%translate; 
+>
+<!ELEMENT note (paragraph | list)+>
+<!ATTLIST note
+	%nid;
+					%translate; 
+>
+<!ELEMENT number %numberunit;>
+<!ATTLIST number
+	%toprint;
+					%nid;
+					%translate; 
+>
+<!ELEMENT or-action ((note | safetyadvice | graphic)*, action, note*)>
+<!ATTLIST or-action
+	%fix;
+					%nid;
+					%validfor;
+					%translate;>
+<!ELEMENT orientation %graphtext;>
+<!ATTLIST orientation
+	%nid;
+					%validfor;
+					%translate; 
+>
+<!ELEMENT outlook (heading?, (%graphtext;)+)>
+<!ATTLIST outlook
+	%nid;
+					%validfor;
+					%translate;
+>
+<!ELEMENT paragraph %plaintext;>
+<!ATTLIST paragraph
+	%fix;
+					%nid;
+					%validfor; 
+					%translate;
+>
+<!ELEMENT lubricant (symbol?, partsname?, medium*, spec*, lubrclass*, data?)>
+<!ATTLIST lubricant
+	%nid; 
+	%translate;
+>
+<!ELEMENT partsname %plaintext;>
+<!ATTLIST partsname
+	%nid; 
+	%translate;
+>
+<!ELEMENT prerequisites (%graphtext;)>
+<!ATTLIST prerequisites
+					%nid;
+					%validfor; 
+					%translate;
+>
+<!ELEMENT problemdescription %plaintext;>
+<!ATTLIST problemdescription
+	%nid;
+					%validfor; 
+					%translate;
+>
+<!ELEMENT quoted (#PCDATA | inlinegraphic | emphasis | graphiclink | subscript | superscript | textlink | inlinedata)*>
+<!ATTLIST quoted
+	%nid; 
+	%translate;
+>
+<!ELEMENT result ((%graphtext;)?)>
+<!ATTLIST result
+	%fix;
+					%nid;
+					%validfor; 
+					%translate;
+>
+<!ELEMENT safetyadvice (%safetyadvicecontent;)>
+<!ATTLIST safetyadvice
+	%nid;
+	%safety;
+	%validfor; 
+	%translate;
+	>
+<!ELEMENT shortinfo (%graphtext;)>
+<!ATTLIST shortinfo
+	%nid; 
+	%translate;
+>
+<!ELEMENT si-value (number, unit)>
+<!ATTLIST si-value
+	%nid; 
+	%translate;
+>
+<!ELEMENT solution %plaintext;>
+<!ATTLIST solution
+	%nid;
+					%validfor; 
+					%translate;
+>
+<!ELEMENT spec %plaintext;>
+<!ATTLIST spec
+	%nid; 
+	%translate;
+>
+<!ELEMENT step %plaintext;>
+<!ATTLIST step
+	%nid; 
+	%translate;
+>
+<!ELEMENT subscript (#PCDATA)>
+<!ATTLIST subscript
+	%nid; 
+	%translate;
+>
+<!ELEMENT superscript (#PCDATA)>
+<!ATTLIST superscript
+	%nid; 
+	%translate;
+>
+<!ELEMENT symbol %plaintext;>
+<!ATTLIST symbol
+	%nid; 
+	%translate;
+>
+<!ELEMENT symptom (error-code?, description?)>
+<!ATTLIST symptom
+	%nid;
+					%validfor; 
+					%translate;
+>
+
+<!ELEMENT taskinterval %plaintext;>
+<!ATTLIST taskinterval
+	hand-over (%handover;) #IMPLIED
+	service-once (%serviceonce;) #IMPLIED
+	service-before (%servicebefore;) #IMPLIED
+	service-interval (%serviceinterval;) #IMPLIED
+	customer-once (%customeronce;) #IMPLIED
+	customer-interval (%customerinterval;) #IMPLIED
+	customer-before (%customerbefore;) #IMPLIED
+	special-interval (%specialintervals;) #IMPLIED
+	%nid; 
+	%translate;
+>
+<!ELEMENT techdata (data+)>
+<!ATTLIST techdata
+	%nid; 
+	%translate;
+>
+<!ELEMENT textdata (#PCDATA | inlinedata | textlink | subscript | superscript)*>
+<!ATTLIST textdata
+	%nid; 
+	%translate;
+>
+<!ELEMENT textlink (#PCDATA | inlinegraphic | transno | subscript | superscript | quoted | inlinedata | variable)*>
+<!ATTLIST textlink
+	%link;
+					%nid;
+					%class; 
+					%translate;
+>
+<!ELEMENT tolerance-asymmetric-value ((tolerance-high-value, tolerance-low-value?) | tolerance-low-value)>
+<!ATTLIST tolerance-asymmetric-value
+	%nid; 
+	%translate;
+>
+<!ELEMENT tolerance-high-value (%value;)>
+<!ATTLIST tolerance-high-value
+	%nid; 
+	%translate;
+>
+<!ELEMENT tolerance-low-value (%value;)>
+<!ATTLIST tolerance-low-value
+	%nid; 
+	%translate;
+>
+<!ELEMENT tolerance-symmetric-value (%value;)>
+<!ATTLIST tolerance-symmetric-value
+	%nid; 
+	%translate;
+>
+
+<!ELEMENT transno (#PCDATA | emphasis | quoted | graphiclink | subscript | superscript)*>
+<!ATTLIST transno
+	%nid; 
+	%translate;
+>
+<!ELEMENT troubleshooting (identification, (problemdescription*, (graphic?, action)+)+)>
+<!ATTLIST troubleshooting
+	%fix;
+					%nid;
+					%validfor; 
+					%translate;
+>
+<!ELEMENT user-interface (#PCDATA | inlinegraphic | graphiclink | subscript | superscript | textlink | transno)*>
+<!ATTLIST user-interface
+	%nid;
+					type (userinput | display | uicontrol | hardware) #REQUIRED 
+					%translate;
+>
+<!ELEMENT variable (#PCDATA | emphasis | inlinegraphic | quoted | user-interface | graphiclink | subscript | superscript |
+                        textlink | transno | inlinedata)*>
+<!ATTLIST variable
+	%nid;
+	name CDATA #REQUIRED 
+	%translate;
+>
+<!ELEMENT unit %numberunit;>
+<!ATTLIST unit
+	%toprint;
+					%nid; 
+					%translate;
+>
+<!ELEMENT upper-value (%value;)*>
+<!ATTLIST upper-value
+	%nid; 
+	%translate;
+>
+<!ELEMENT us-value (number, unit)>
+<!ATTLIST us-value
+	%nid; 
+	%translate;
+>
+<!-- #################################################################### -->
+<!-- cals table definition ********************************************** -->
+<!-- #################################################################### -->
+<!-- this module contains the definitions for the cals table model
+     converted to xml.
+-->
+<!-- these definitions are not directly related to the table model, but are
+     used in the default cals table model and are usually defined elsewhere
+     (and prior to the inclusion of this table module) in a cals dtd. -->
+<!ENTITY % bodyatt "">
+<!ENTITY % secur "">
+<!-- no if zero(s),
+                                yes if any other digits value -->
+<!ENTITY % yesorno 'CDATA'>
+<!ENTITY % titles 'title?'>
+<!-- default for use in entry content -->
+<!ENTITY % paracon '#PCDATA'>
+<!--
+the parameter ENTITIES as defined below provide the cals table model
+as published (as part of the example dtd) in mil-hdbk-28001.
+
+these following declarations provide the cals-compliant default definitions
+for these ENTITIES.  however, these ENTITIES can and should be redefined
+(by giving the appropriate parameter ENTITY declaration(s) prior to the
+reference to this table model declaration set ENTITY) to fit the needs
+of the current application.
+-->
+<!ENTITY % tbl.table.name "(table|chart)">
+<!--
+ENTITY % tbl.table-titles.mdl "%titles;,"-->
+<!ENTITY % tbl.table-main.mdl "(keyword* , tgroup+ , caption? , footnote* )">
+<!ENTITY % tbl.table.mdl "%tbl.table-main.mdl;">
+<!ENTITY % tbl.table.att '
+    tabstyle    CDATA           #IMPLIED
+    orient      (port|land)     #IMPLIED
+    pgwide      %yesorno;       #IMPLIED '>
+<!ENTITY % tbl.tgroup.mdl "colspec*,thead?,tbody">
+<!ENTITY % tbl.tgroup.att '
+    tgroupstyle CDATA           #IMPLIED '>
+<!ENTITY % tbl.hdft.mdl "row+">
+<!ENTITY % tbl.row.mdl "entry+">
+<!ENTITY % tbl.entrytbl.mdl "colspec*,spanspec*,thead?,tbody">
+
+<!ENTITY % tbl.entry.mdl "(para|warning|caution|note|legend)*">
+<!-- =====  ELEMENT and attribute declarations follow. =====  -->
+<!ELEMENT table (%tbl.table.mdl;)>
+<!ATTLIST table
+	tablewidth (textsize | fullpage) #REQUIRED
+	frame (top | bottom | topbot | all | sides | none) #IMPLIED
+	nodeid CDATA #IMPLIED
+	colsep %yesorno; #IMPLIED
+	rowsep %yesorno; #IMPLIED
+	%tbl.table.att;
+	%bodyatt;
+	%secur;
+	%fix;
+	%translate;
+	%validfor;>
+<!ELEMENT tgroup (%tbl.tgroup.mdl;)>
+<!ATTLIST tgroup
+	nodeid CDATA #IMPLIED
+	cols CDATA #REQUIRED
+	%tbl.tgroup.att;
+	colsep %yesorno; #IMPLIED
+	rowsep %yesorno; #IMPLIED
+	align (left | right | center | justify | char) #IMPLIED
+	%secur; 
+	%translate;
+>
+<!ELEMENT colspec EMPTY>
+<!ATTLIST colspec
+	nodeid CDATA #IMPLIED
+	colnum CDATA #IMPLIED
+	colname CDATA #IMPLIED
+	colwidth CDATA #IMPLIED
+	colsep %yesorno; #IMPLIED
+	rowsep %yesorno; #IMPLIED
+	align (left | right | center | justify | char) #IMPLIED
+	char CDATA #IMPLIED
+	charoff CDATA #IMPLIED
+	%translate;
+>
+
+<!ELEMENT thead (%tbl.hdft.mdl;)>
+<!ATTLIST thead
+	nodeid CDATA #IMPLIED
+	valign (top | middle | bottom) #IMPLIED
+	%secur; 
+	%translate;
+>
+<!ELEMENT tbody (row+)>
+<!ATTLIST tbody
+	nodeid CDATA #IMPLIED
+	valign (top | middle | bottom) #IMPLIED
+	%secur; 
+	%translate;
+>
+<!ELEMENT row (%tbl.row.mdl;)>
+<!ATTLIST row
+	nodeid CDATA #IMPLIED
+	rowsep %yesorno; #IMPLIED
+	valign (top | middle | bottom) #IMPLIED
+	%secur; 
+	%translate;
+>
+
+<!ELEMENT entry %entrycontent;>
+<!ATTLIST entry
+	nodeid CDATA #IMPLIED
+	colname CDATA #IMPLIED
+	namest CDATA #IMPLIED
+	nameend CDATA #IMPLIED
+	morerows CDATA #IMPLIED
+	colsep %yesorno; #IMPLIED
+	rowsep %yesorno; #IMPLIED
+	align (left | right | center | justify | char) #IMPLIED
+	char CDATA #IMPLIED
+	charoff CDATA #IMPLIED
+	valign (top | middle | bottom) #IMPLIED
+	%secur; 
+	%translate;
+>
+<!-- end of docbook xml cals table model v4.0 ............................. -->
+<!-- definition of NOTATIONs ********************************************** -->
+<!--##################################################################### -->
+<!NOTATION tif PUBLIC "iso 12083:1993//NOTATION tiff-1//en">
+<!NOTATION TIF PUBLIC "iso 12083:1993//NOTATION tiff-1//en">
+<!NOTATION eps PUBLIC "+//isbn 0-201-18127-4::adobe//NOTATION postscript language reference manual//en">
+<!NOTATION tex PUBLIC "+//isbn 0-201-13448-9::knuth//NOTATION the texbook//en">
+<!NOTATION cgm PUBLIC "-//usa-dod//NOTATION computer graphics metafile//en">
+<!NOTATION iso PUBLIC "-//iso//NOTATION iso draw//en">
+<!NOTATION bmp PUBLIC "+//isbn 0-7923-9432-1::graphic NOTATION//NOTATION microsoft windows metafile//en">
+<!NOTATION gif SYSTEM "">
+<!NOTATION jpg SYSTEM "">
+<!NOTATION pdf SYSTEM "application/pdf">
+<!NOTATION png SYSTEM "http://www.w3.org/TR/REC-png">
+<!-- Entity ist notwendig, damit geschütztes Leerzeichen und andere Entities in den Dokumenten gesetzt werden können und von den Publikationsprogrammen erkannt werden. -->
+<!ENTITY % ISOnum PUBLIC "ISO 8879-1986//ENTITIES Numeric and Special Graphic//EN" "ent/iso-num.ent">
+%ISOnum;

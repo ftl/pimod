@@ -1,0 +1,13 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: PI-Mod Integration for Vex
+Bundle-SymbolicName: ft.vex.pimod;singleton:=true
+Bundle-Version: 1.0.0.qualifier
+Bundle-Activator: ft.vex.pimod.Activator
+Bundle-Vendor: Florian Thienel Softwareentwicklung
+Require-Bundle: org.eclipse.core.runtime,
+ org.eclipse.wst.xml.vex.core;bundle-version="0.5.0",
+ org.eclipse.wst.xml.vex.ui;bundle-version="0.5.0"
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Bundle-ActivationPolicy: lazy
+Bundle-Localization: plugin

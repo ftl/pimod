@@ -1,0 +1,293 @@
+<?xml encoding="iso-8859-1"?>
+<!-- *********************************************************************** 
+
+PI-Mod 1.0
+
+Copyright (c) 2009, The PI-Mod Project
+
+Contributors to the The PI-Mod Project (1.0):
+W. Ziegler, T. Rickmann, N. Messaoudi, S. Steurer, F. Ully, K. Schrempp
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in
+all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+THE SOFTWARE.
+
+Name: 	doc.dtd
+Public Identifier: "-//PI-MOD//DTD DOC//EN"                               
+
+*********************************************************************    -->
+
+<!ENTITY % certificates "conformity (ce | gost)  #IMPLIED">
+<!ENTITY % covgrtype "covergraphictype (other| pictoprodclass | pictodocutype | graphprod) #IMPLIED">
+<!ENTITY % address "(name , shortname? , street? , postcode? , postofficebox?, city? , country? , phone? , fax? , email? , url?)">
+<!ENTITY % pi-mod PUBLIC "-//KOENIGBAUERAG//DTD MOD//EN" "pi-mod.dtd">
+%pi-mod;
+
+<!-- ***************************************CORE-STRUCTURE*****************************  -->
+<!ELEMENT doc (meta-info?, preface?, safety?, all-techdata?, prod-info?, inst-deinst?, operation?, all-diagnosis?, maintenance?, all-glossary?)>
+<!ATTLIST doc
+	%nid;
+		            %classatt;
+		            %docuatt;
+		            %prodtypeatt;
+		            docutypetxt CDATA #IMPLIED
+					lh-shortname CDATA #IMPLIED
+					docuclassno CDATA #IMPLIED
+					docutypeno CDATA #IMPLIED 
+>
+
+
+<!-- ****************************************SUB-ELEMENTS******************************          -->
+<!ENTITY % chapter-info "heading">
+<!ENTITY % modul "descriptive | task | taskintervals | lubrication | diagnosis | glossary">
+
+
+<!-- ************************************** META-INFO ******************************       -->
+<!ELEMENT meta-info (docudata?, covergraphics?, productdata?, distributor?, manufact?, customer?)>
+<!ATTLIST meta-info
+	%nid; 
+>
+<!ELEMENT docudata (docuno | docuvers | docuindex | docuclassno | docuclasstxt | docutypeno | docutypetxt | releasedate | author | langcode | countrycode | translator | docuorderno)*>
+<!ATTLIST docudata
+	%nid; 
+>
+<!ELEMENT productdata (orientation | prodidentno | model | putintooper | prodindication | prodtypetxt | addindication | designno | prodserialno | prodfabno | manufactdate | prodclassno | prodclasstxt | prodsubclassno | prodsubclasstxt | conformity)*>
+<!ATTLIST productdata
+	%nid; 
+>
+<!ELEMENT covergraphics (covergraphic?, serie?)*>
+<!ATTLIST covergraphics
+	%nid; 
+>
+<!ELEMENT distributor ((%address;), cert-no?)>
+<!ATTLIST distributor
+	%nid; 
+>
+<!ELEMENT manufact ((%address;), cert-no?)>
+<!ATTLIST manufact
+	%nid;
+>
+<!ELEMENT customer ((%address;), cert-no?)>
+<!ATTLIST customer
+	%nid;
+>
+<!ELEMENT addindication %plaintext;>
+<!ATTLIST addindication
+	%nid; 
+>
+<!ELEMENT author %plaintext;>
+<!ATTLIST author
+	%nid; 
+>
+<!ELEMENT cert-no %plaintext;>
+<!ATTLIST cert-no
+	%nid; 
+>
+<!ELEMENT postofficebox %plaintext;>
+<!ATTLIST postofficebox
+	%nid; 
+>
+<!ELEMENT city %plaintext;>
+<!ATTLIST city
+	%nid; 
+>
+<!ELEMENT conformity %plaintext;>
+<!ATTLIST conformity
+	%certificates; 
+	%nid; 
+>
+<!ELEMENT country %plaintext;>
+<!ATTLIST country
+	%nid; 
+>
+<!ELEMENT countrycode %plaintext;>
+<!ATTLIST countrycode
+	%nid; 
+>
+<!ELEMENT covergraphic (graphic)>
+<!ATTLIST covergraphic
+	%covgrtype; 
+>
+<!ELEMENT designno %plaintext;>
+<!ATTLIST designno
+	%nid; 
+>
+<!ELEMENT docuno %plaintext;>
+<!ATTLIST docuno
+	%nid; 
+>
+<!ELEMENT docuorderno %plaintext;>
+<!ATTLIST docuorderno
+	%nid; 
+>
+<!ELEMENT docuvers %plaintext;>
+<!ATTLIST docuvers
+	%nid; 
+>
+<!ELEMENT docuindex %plaintext;>
+<!ATTLIST docuindex
+	%nid; 
+>
+<!ELEMENT docuclassno %plaintext;>
+<!ATTLIST docuclassno
+	%nid; 
+>
+<!ELEMENT docuclasstxt %plaintext;>
+<!ATTLIST docuclasstxt
+	%nid; 
+>
+<!ELEMENT docutypeno %plaintext;>
+<!ATTLIST docutypeno
+	%nid; 
+>
+<!ELEMENT docutypetxt %plaintext;>
+<!ATTLIST docutypetxt
+	%nid; 
+>
+<!ELEMENT email %plaintext;>
+<!ATTLIST email
+	%nid; 
+>
+<!ELEMENT fax %plaintext;>
+<!ATTLIST fax
+	%nid; 
+>
+<!ELEMENT langcode %plaintext;>
+<!ATTLIST langcode
+	%nid; 
+>
+<!ELEMENT manufactdate %plaintext;>
+<!ATTLIST manufactdate
+	%nid; 
+>
+<!ELEMENT model %plaintext;>
+<!ATTLIST model
+	%nid; 
+>
+<!ELEMENT name %plaintext;>
+<!ATTLIST name
+	%nid; 
+>
+<!ELEMENT phone %plaintext;>
+<!ATTLIST phone
+	%nid; 
+>
+<!ELEMENT postcode %plaintext;>
+<!ATTLIST postcode
+	%nid; 
+>
+<!ELEMENT prodclassno %plaintext;>
+<!ATTLIST prodclassno
+	%nid; 
+>
+<!ELEMENT prodclasstxt %plaintext;>
+<!ATTLIST prodclasstxt
+	%nid; 
+>
+<!ELEMENT prodfabno %plaintext;>
+<!ATTLIST prodfabno
+	%nid; 
+>
+<!ELEMENT prodidentno %plaintext;>
+<!ATTLIST prodidentno
+	%nid; 
+>
+<!ELEMENT prodindication %plaintext;>
+<!ATTLIST prodindication
+	%nid; 
+>
+<!ELEMENT putintooper %plaintext;>
+<!ATTLIST putintooper
+	%nid; 
+>
+<!ELEMENT prodserialno %plaintext;>
+<!ATTLIST prodserialno
+	%nid; 
+>
+<!ELEMENT prodsubclassno %plaintext;>
+<!ATTLIST prodsubclassno
+	%nid; 
+>
+<!ELEMENT prodsubclasstxt %plaintext;>
+<!ATTLIST prodsubclasstxt
+	%nid; 
+>
+<!ELEMENT prodtypetxt %plaintext;>
+<!ATTLIST prodtypetxt
+	%nid; 
+>
+<!ELEMENT releasedate %plaintext;>
+<!ATTLIST releasedate
+	%nid; 
+>
+<!ELEMENT serie %plaintext;>
+<!ATTLIST serie
+	%nid; 
+>
+<!ELEMENT shortname %plaintext;>
+<!ATTLIST shortname
+	%nid; 
+>
+<!ELEMENT street %plaintext;>
+<!ATTLIST street
+	%nid; 
+>
+<!ELEMENT translator %plaintext;>
+<!ATTLIST translator
+	%nid; 
+>
+<!ELEMENT url %plaintext;>
+<!ATTLIST url
+	%nid; 
+>
+<!-- ************************************** MAIN-CHAPTERS ********************              -->
+<!ELEMENT preface ((%chapter-info;), (%modul; | preface)+)>
+<!ATTLIST preface
+	%nid; 
+>
+<!ELEMENT safety ((%chapter-info;), (%modul; | safety)+)>
+<!ATTLIST safety
+	%nid; 
+>
+<!ELEMENT prod-info ((%chapter-info;), (%modul; | prod-info)+)>
+<!ATTLIST prod-info
+	%nid; 
+>
+<!ELEMENT all-techdata ((%chapter-info;), (%modul; | all-techdata)+)>
+<!ATTLIST all-techdata
+	%nid; 
+>
+<!ELEMENT inst-deinst ((%chapter-info;), (%modul; | inst-deinst)+)>
+<!ATTLIST inst-deinst
+	%nid; 
+>
+<!ELEMENT operation ((%chapter-info;), (%modul; | operation)+)>
+<!ATTLIST operation
+	%nid; 
+>
+<!ELEMENT all-diagnosis ((%chapter-info;), (%modul; | all-diagnosis)+)>
+<!ATTLIST all-diagnosis
+	%nid; 
+>
+<!ELEMENT maintenance ((%chapter-info;), (%modul; | maintenance)+)>
+<!ATTLIST maintenance
+	%nid; 
+>
+<!ELEMENT all-glossary ((%chapter-info;), (%modul; | all-glossary)+)>
+<!ATTLIST all-glossary
+	%nid; 
+>

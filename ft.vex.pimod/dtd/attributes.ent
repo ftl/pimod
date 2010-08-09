@@ -1,0 +1,152 @@
+<?xml encoding="iso-8859-1"?>
+<!-- *********************************************************************** 
+
+PI-Mod 1.0
+
+Copyright (c) 2009, The PI-Mod Project
+
+Contributors to the The PI-Mod Project (1.0):
+W. Ziegler, T. Rickmann, N. Messaoudi, S. Steurer, F. Ully, K. Schrempp
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in
+all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+THE SOFTWARE.
+
+Name: 	attributes.ent
+Public Identifier: "-//PI-MOD//DTD Attributes//EN"                               
+
+*********************************************************************    -->
+
+<!ENTITY % languages "(de | en | fr |  it | es | pt |  nl |  da |  el | sv |  fi |  no | is | ga |
+					mt |cs | pl | ru | hu | ro | br | sk | bg | sl | et | lv | lt | hr | gr | tr)">
+<!ENTITY % countries "(bg | cn | cz| de | dk | es | ee | gb | gr | hu | hr | lt | lv | it | no | nl | pl | ro | ru | se | si | sk | fi | tr | ua | rs | us | ca | fr | br | pt)">
+<!ENTITY % fix "fixing (fixtomargingraphic | fixtofullpagegraphic)   #IMPLIED">
+<!ENTITY % translate "translate (yes | no)   #IMPLIED">
+<!ENTITY % classatt "docuno CDATA #IMPLIED
+                    docuorderno CDATA #IMPLIED
+                    docuvers CDATA #IMPLIED
+                    docuindex CDATA #IMPLIED
+                    classname CDATA #IMPLIED">
+<!ENTITY % docuatt "langcode %languages;  #IMPLIED
+			countrycode     %countries; #IMPLIED">
+<!ENTITY % prodtypeatt 
+              "prodclassno      CDATA         #IMPLIED 
+               prodclasstxt     CDATA         #IMPLIED 
+               prodsubclasstxt  CDATA         #IMPLIED 
+               prodtypetxt      CDATA         #IMPLIED 
+               prodidentno      CDATA         #IMPLIED 
+               prodfabno        CDATA         #IMPLIED 
+               prodserialno     CDATA         #IMPLIED 
+               prodmanufactdate CDATA         #IMPLIED">
+
+<!ENTITY % class "classnode CDATA #IMPLIED">
+<!ENTITY % dataatt "class (none |  dimension | weight | performance) 'none'
+					service (serviceyes | serviceno | unset-service) 'serviceyes' 
+					customer (customeryes | customerno | unset-customer) 'customerno' ">
+
+<!ENTITY % graphicatt "graphwidth (other | textsize | halftextsize | marginsize | fullpage)  #REQUIRED
+                                                orient      (port|land)     #IMPLIED">
+<!ENTITY % function "func (general | installation | deinstallation | climbing | operation | maintenance | dismount | mount | repair) 'general'">
+<!ENTITY % graphlinkatt '  graphicname  CDATA    #REQUIRED
+				hotspot  CDATA    #IMPLIED '>
+
+<!ENTITY % nid "nodeid CDATA #IMPLIED">
+
+<!ENTITY % link "linktotargetid      CDATA     #IMPLIED
+			linkrelease CDATA  #IMPLIED
+			linkversion  CDATA  #IMPLIED
+			type       (preface | safety | prod-info | inst-deinst | operation | maintenance | maintenance-plan | diagnosis | glossary | index)     #IMPLIED">
+
+<!ENTITY %  handover "service-hand-over">
+<!ENTITY %  safety "class (danger | warning | caution | notice) #REQUIRED">
+<!ENTITY %  serviceonce "service-once-500h | 
+				service-once-1000h | 
+				service-once-2000h">
+<!ENTITY %  servicebefore "s-installation | s-put-into-operation">
+<!ENTITY %  serviceinterval "service-10h |
+                                                  service-50h |
+                                                  service-100h |
+                                                  service-250h |
+                                                  service-500h |
+                                                  service-1000h |
+                                                  service-2000h |
+                                                  service-3000h |
+						  service-4000h |
+						  service-6000h |
+                                                  service-10000h|
+						  service-12000h|
+                                                  service-year|
+                        			  service-half-year|
+			 			  service-quarter|
+                         			  service-month|
+                         			  service-week|
+                                                  service-day">
+<!ENTITY %  customeronce "customer-once-10h |
+                                                  customer-once-50h">
+<!ENTITY %  customerinterval "customer-10h |
+                                                   customer-50h |
+                                                   customer-100h |
+                                                   customer-250h |
+                                                   customer-500h |
+                                                   customer-1000h |
+                                                   customer-2000h |
+                                                   customer-3000h |
+						   customer-4000h |
+						   customer-6000h |
+                                                   customer-10000h| 
+						   customer-12000h| 
+                                                   customer-year|
+						   customer-half-year|
+						   customer-quarter|
+                         			   customer-month|
+						   customer-week|
+                                                   customer-day">
+<!ENTITY % customerbefore "c-installation |
+                                                   c-put-into-operation">
+<!ENTITY % specialintervals "10h|
+					50h|
+					200h|
+					250h |
+					500h |
+					1000h | 
+					2000h|
+					3000h|
+					5000h|
+					10000h|
+					year|
+					half-year|
+					quarter|
+					month|
+					week|
+					day|
+					customer-demand |
+					service-demand |
+					winter ">
+	
+<!ENTITY % toprint  "print (yes | no) 'yes'">
+
+ <!ENTITY % validfor " valid      CDATA    #IMPLIED ">
+
+ <!ENTITY  % infoclass1  "infoclass-1   CDATA  #REQUIRED">
+ <!ENTITY % infoclass2  "infoclass-2   CDATA   #REQUIRED">
+ <!ENTITY % prodclass1  "prodclass-1  CDATA  #REQUIRED">
+  <!ENTITY % status  "status  CDATA  #IMPLIED">
+ <!ENTITY % classification 
+                                          "%infoclass1;
+                                          %infoclass2;
+                                          %prodclass1;
+		             %status;">

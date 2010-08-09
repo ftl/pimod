@@ -1,0 +1,1745 @@
+/* Created by XMetaL style generator. ©2006 Justsystems Canada Inc. All rights reserved. */
+/* XMetaL styles */
+$DOCUMENT {
+   font-family: Arial Unicode MS, sans-serif;
+   margin-top: 6px;
+   margin-left: 4px;
+   margin-bottom: 16px;
+   padding-top:6px;
+   padding-left:4px;
+   text-align: left;
+   font-size: 12px;
+}
+$MARKSEC {
+   display: block;
+   color: black;
+   white-space: pre;
+   font-family: monospace;
+   font-weight: normal;
+   font-size: 12px;
+}
+$COMMENT {
+   display: inline;
+   color: #800000;
+   white-space: pre;
+   background-color: #E0E0E0;
+   text-align: left;
+}
+$PROCINS {
+   background-color: #E0E0E0;
+   text-align: left;
+   font-style: italic;
+   color: #00008B;
+}
+/* Modul information */
+/* // Types of modules */
+mod>task:before {
+   display: block;
+   content: 'Modul: task\0D Abgeschlossener Handlungsblock pro Arbeitsziel/auszuführende Arbeit';
+   font-size: 9pt;
+   text-align: left;
+   font-weight: normal;
+   border: #E0E0E0 solid 0.5pt;
+   color: #808080;
+   background-color: #ECECEC;
+   padding: 1.5pt 1.5pt 1.5pt 10pt;
+   margin-left: -10pt;
+   margin-right: -10pt;
+   margin-top: 0pt;
+}
+mod>descriptive:before {
+   display: block;
+   content: 'Modul: descriptive\0D Beschreibende Informationen';
+   font-size: 9pt;
+   text-align: left;
+   font-weight: normal;
+   border: #E0E0E0 solid 0.5pt;
+   color: #808080;
+   background-color: #ECECEC;
+   padding: 1.5pt 1.5pt 1.5pt 10pt;
+   margin-left: -10pt;
+   margin-right: -10pt;
+   margin-top: 0pt;
+}
+mod>taskinterval:before {
+   display: block;
+   content: 'Modul: taskinterval\0D Zeitintervall für Wartungstätigkeiten der im Element task beschriebenen Tätigkeit/Wartungsplan';
+   font-size: 9pt;
+   text-align: left;
+   font-weight: normal;
+   border: #E0E0E0 solid 0.5pt;
+   color: #808080;
+   background-color: #ECECEC;
+   padding: 1.5pt 1.5pt 1.5pt 10pt;
+   margin-left: -10pt;
+   margin-right: -10pt;
+   margin-top: 0pt;
+}
+mod>tools:before {
+   display: block;
+   content: 'Modul: tools\0D Werkzeugliste mit Informationen zu Werkzeugen';
+   font-size: 9pt;
+   text-align: left;
+   font-weight: normal;
+   border: #E0E0E0 solid 0.5pt;
+   color: #808080;
+   background-color: #ECECEC;
+   padding: 1.5pt 1.5pt 1.5pt 10pt;
+   margin-left: -10pt;
+   margin-right: -10pt;
+   margin-top: 0pt;
+}
+mod>lubrication:before {
+   display: block;
+   content: 'Modul: lubrication\0D Informationen zu Schmier- und Betriebsmitteln';
+   font-size: 9pt;
+   text-align: left;
+   font-weight: normal;
+   border: #E0E0E0 solid 0.5pt;
+   color: #808080;
+   background-color: #ECECEC;
+   padding: 1.5pt 1.5pt 1.5pt 10pt;
+   margin-left: -10pt;
+   margin-right: -10pt;
+   margin-top: 0pt;
+}
+mod>diagnosis:before {
+   display: block;
+   content: 'Modul: diagnosis\0D Informationen zur Fehlersuche und -behandlung';
+   font-size: 9pt;
+   text-align: left;
+   font-weight: normal;
+   border: #E0E0E0 solid 0.5pt;
+   color: #808080;
+   background-color: #ECECEC;
+   padding: 1.5pt 1.5pt 1.5pt 10pt;
+   margin-left: -10pt;
+   margin-right: -10pt;
+   margin-top: 0pt;
+}
+mod>glossary:before {
+   display: block;
+   content: 'Modul: glossary\0D Glossar zur Erläuterung von Fachbegriffen';
+   font-size: 9pt;
+   text-align: left;
+   font-weight: normal;
+   border: #E0E0E0 solid 0.5pt;
+   color: #808080;
+   background-color: #ECECEC;
+   padding: 1.5pt 1.5pt 1.5pt 10pt;
+   margin-left: -10pt;
+   margin-right: -10pt;
+   margin-top: 0pt;
+}
+/* Information classes */
+*>heading:after {
+   display: block;
+   content: ' ';
+   font-size: 8pt;
+   text-align: left;
+   font-weight: normal;
+   color: #808080;
+   padding: 2px 2px 2px 15px;
+   margin-left: -10pt;
+}
+*[infoclass-1="neutral"]>heading:after {
+   content: 'Informationsklasse 1: neutral';
+}
+*[infoclass-1="Abnahmeprotokoll"]>heading:after {
+   content: 'Informationsklasse 1: Abnahmeprotokoll';
+}
+*[infoclass-1="Einführung"]>heading:after {
+   content: 'Informationsklasse 1: Einführung';
+}
+*[infoclass-1="Betrieb"]>heading:after {
+   content: 'Informationsklasse 1: Betrieb';
+}
+*[infoclass-1="Fehlerdiagnose"]>heading:after {
+   content: 'Informationsklasse 1: Fehlerdiagnose';
+}
+*[infoclass-1="Glossar"]>heading:after {
+   content: 'Informationsklasse 1: Glossar';
+}
+*[infoclass-1="Produkt-Info"]>heading:after {
+   content: 'Informationsklasse 1: Produkt-Info';
+}
+*[infoclass-1="Sicherheit"]>heading:after {
+   content: 'Informationsklasse 1: Sicherheit';
+}
+*[infoclass-1="Wartung"]>heading:after {
+   content: 'Informationsklasse 1: Wartung';
+}
+/* Material classes */
+heading:before {
+   display: block;
+   content: ' ';
+   font-size: 8pt;
+   text-align: right;
+   font-weight: normal;
+   color: #808080;
+   background-color: #ECECEC;
+   padding: 0px 2px 2px 2px;
+   margin-left: -10pt;
+   margin-top: 0pt;
+}
+*[matclass-1="neutral"]>heading:before {
+   content: 'Aggregat: neutral';
+}
+*[matclass-1="Anleger Stapelbrett"]>heading:before {
+   content: 'Aggregat: Anleger Stapelbrett';
+}
+*[matclass-1="Bogenanlage"]>heading:before {
+   content: 'Aggregat: Bogenanlage';
+}
+*[matclass-1="Druckeinheit"]>heading:before {
+   content: 'Aggregat: Druckeinheit';
+}
+*[matclass-1="Druckwerk"]>heading:before {
+   content: 'Aggregat: Druckwerk';
+}
+*[matclass-1="Einziehband"]>heading:before {
+   content: 'Aggregat: Einziehband';
+}
+*[matclass-1="Einziehkette"]>heading:before {
+   content: 'Aggregat: Einziehkette';
+}
+*[matclass-1="Einzugwerk"]>heading:before {
+   content: 'Aggregat: Einzugwerk';
+}
+*[matclass-1="Falzapparat"]>heading:before {
+   content: 'Aggregat: Falzapparat';
+}
+*[matclass-1="Farbwerk"]>heading:before {
+   content: 'Aggregat: Farbwerk';
+}
+*[matclass-1="Gesamte-Maschine"]>heading:before {
+   content: 'Aggregat: Gesamte Maschine';
+}
+*[matclass-1="Kühlwalzenständer"]>heading:before {
+   content: 'Aggregat: Kühlwalzenständer';
+}
+*[matclass-1="Leitstand"]>heading:before {
+   content: 'Aggregat: Leitstand';
+}
+*[matclass-1="Modulare Auslage"]>heading:before {
+   content: 'Aggregat: Modulare Auslage';
+}
+*[matclass-1="Nota-Save III"]>heading:before {
+   content: 'Aggregat: Nota-Save III';
+}
+*[matclass-1="Oberbau"]>heading:before {
+   content: 'Aggregat: Oberbau';
+}
+*[matclass-1="PATRAS"]>heading:before {
+   content: 'Aggregat: PATRAS';
+}
+*[matclass-1="Rollenwechsler"]>heading:before {
+   content: 'Aggregat: Rollenwechsler';
+}
+*[matclass-1="Trockner"]>heading:before {
+   content: 'Aggregat: Trockner';
+}
+*[matclass-1="Wischung"]>heading:before {
+   content: 'Aggregat: Wischung';
+}
+/* Paragraphs styles */
+paragraph {
+   display: block;
+   margin-top: 2px;
+   margin-left: 2px;
+   margin-right: 2px;
+   margin-bottom: 10px;
+   text-align: left;
+   font-size: 12px;
+   font-family: Arial Unicode MS, sans-serif;
+}
+/* Headings styles */
+heading {
+   font-size: 14px;
+   display: block;
+   font-family: Arial, sans-serif;
+   background-color: #F5F5F5;
+   margin-bottom: 8px;
+   margin-top: 12px;
+   text-align: left;
+   color: #003499;
+   padding-left: 12px;
+   font-weight: bold;
+   border: #E0E0E0 solid 0.5pt;
+}
+/* H4 */outlook>heading {
+   display: block;
+   font-family: Arial, sans-serif;
+   font-size: 18px;
+   text-align: left;
+   border-top: none;
+   color:#003499;
+   background-color: #F5F5F5;
+   font-weight: bold;
+   padding-left: 12px;
+   margin-top: 18px;
+   margin-bottom: 12px;
+}
+/* H2 */descriptive>heading {
+   display: block;
+   font-family: Arial, sans-serif;
+   font-size: 22px;
+   text-align: left;
+   color: #003499;
+   background-color: #F5F5F5;
+   font-weight: bold;
+   padding-left: 12px;
+   margin-bottom: 12px;
+}
+/* H3 */descriptive>descriptive>heading {
+   display: block;
+   font-family: Arial, sans-serif;
+   font-size: 20px;
+   text-align: left;
+   border-top: none;
+   color: #003499;
+   background-color: #F5F5F5;
+   font-weight: bold;
+   padding-left: 12px;
+   margin-top: 18px;
+   margin-bottom: 12px;
+}
+/* H4 */descriptive>descriptive>descriptive>heading {
+   display: block;
+   font-family: Arial, sans-serif;
+   font-size: 18px;
+   text-align: left;
+   border-top: none;
+   color:#003499;
+   background-color: #F5F5F5;
+   font-weight: bold;
+   padding-left: 12px;
+   margin-top: 18px;
+   margin-bottom: 12px;
+}
+/* H5 */descriptive>descriptive>descriptive>descriptive>heading {
+   font-size: 16px;
+   display: block;
+   font-family: Arial, sans-serif;
+   text-align: left;
+   color: #003499;
+   background-color: #F5F5F5;
+   font-weight: bold;
+   padding-left: 12px;
+   margin-top: 18px;
+   margin-bottom: 12px;
+}
+/* H6 */descriptive>descriptive>descriptive>descriptive>descriptive>heading {
+   font-size: 14px;
+   display: block;
+   font-family: Arial, sans-serif;
+   text-align: left;
+   color: #003499;
+   background-color: #F5F5F5;
+   font-weight: bold;
+   padding-left: 12px;
+   margin-top: 18px;
+   margin-bottom: 12px;
+}
+/* H2 */diagnosis>heading {
+   display: block;
+   font-family: Arial, sans-serif;
+   font-size: 22px;
+   text-align: left;
+   color: #003499;
+   background-color: #F5F5F5;
+   font-weight: bold;
+   padding-left: 12px;
+   margin-top: 18px;
+   margin-bottom: 12px;
+}
+/* H3 */diagnosis>diagnosis>heading {
+   display: block;
+   font-family: Arial, sans-serif;
+   font-size: 20px;
+   text-align: left;
+   border-top: none;
+   color: #003499;
+   background-color: #F5F5F5;
+   font-weight: bold;
+   padding-left: 12px;
+   margin-top: 18px;
+   margin-bottom: 12px;
+}
+/* H4 */diagnosis>diagnosis>diagnosis>heading {
+   display: block;
+   font-family: Arial, sans-serif;
+   font-size: 18px;
+   text-align: left;
+   border-top: none;
+   color:#003499;
+   background-color: #F5F5F5;
+   font-weight: bold;
+   padding-left: 12px;
+   margin-top: 18px;
+   margin-bottom: 12px;
+}
+/* H5 */diagnosis>diagnosis>diagnosis>diagnosis>heading {
+   font-size: 16px;
+   display: block;
+   font-family: Arial, sans-serif;
+   text-align: left;
+   color: #003499;
+   background-color: #F5F5F5;
+   font-weight: bold;
+   padding-left: 12px;
+   margin-top: 18px;
+   margin-bottom: 12px;
+}
+/* H6 */diagnosis>diagnosis>diagnosis>diagnosis>diagnosis>heading {
+   font-size: 14px;
+   display: block;
+   font-family: Arial, sans-serif;
+   text-align: left;
+   color: #003499;
+   background-color: #F5F5F5;
+   font-weight: bold;
+   padding-left: 12px;
+   margin-top: 18px;
+   margin-bottom: 12px;
+}
+/* H2 */glossary>heading {
+   display: block;
+   font-family: Arial, sans-serif;
+   font-size: 22px;
+   text-align: left;
+   color: #003499;
+   background-color: #F5F5F5;
+   font-weight: bold;
+   padding-left: 12px;
+   margin-top: 18px;
+   margin-bottom: 12px;
+}
+/* H3 */glossary>glossary>heading {
+   display: block;
+   font-family: Arial, sans-serif;
+   font-size: 20px;
+   text-align: left;
+   border-top: none;
+   color: #003499;
+   background-color: #F5F5F5;
+   font-weight: bold;
+   padding-left: 12px;
+   margin-top: 18px;
+   margin-bottom: 12px;
+}
+/* H4 */glossary>glossary>glossary>heading {
+   display: block;
+   font-family: Arial, sans-serif;
+   font-size: 18px;
+   text-align: left;
+   border-top: none;
+   color:#003499;
+   background-color: #F5F5F5;
+   font-weight: bold;
+   padding-left: 12px;
+   margin-top: 18px;
+   margin-bottom: 12px;
+}
+/* H5 */glossary>glossary>glossary>glossary>heading {
+   font-size: 16px;
+   display: block;
+   font-family: Arial, sans-serif;
+   text-align: left;
+   color: #003499;
+   background-color: #F5F5F5;
+   font-weight: bold;
+   padding-left: 12px;
+   margin-top: 18px;
+   margin-bottom: 12px;
+}
+/* H6 */glossary>glossary>glossary>glossary>glossary>heading {
+   font-size: 14px;
+   display: block;
+   font-family: Arial, sans-serif;
+   text-align: left;
+   color: #003499;
+   background-color: #F5F5F5;
+   font-weight: bold;
+   padding-left: 12px;
+   margin-top: 18px;
+   margin-bottom: 12px;
+}
+/* H2 */lubrication>heading {
+   display: block;
+   font-family: Arial, sans-serif;
+   font-size: 22px;
+   text-align: left;
+   color: #003499;
+   background-color: #F5F5F5;
+   font-weight: bold;
+   padding-left: 12px;
+   margin-top: 18px;
+   margin-bottom: 12px;
+}
+/* H3 */lubrication>lubrication>heading {
+   display: block;
+   font-family: Arial, sans-serif;
+   font-size: 20px;
+   text-align: left;
+   border-top: none;
+   color: #003499;
+   background-color: #F5F5F5;
+   font-weight: bold;
+   padding-left: 12px;
+   margin-top: 18px;
+   margin-bottom: 12px;
+}
+/* H4 */lubrication>lubrication>lubrication>heading {
+   display: block;
+   font-family: Arial, sans-serif;
+   font-size: 18px;
+   text-align: left;
+   border-top: none;
+   color:#003499;
+   background-color: #F5F5F5;
+   font-weight: bold;
+   padding-left: 12px;
+   margin-top: 18px;
+   margin-bottom: 12px;
+}
+/* H5 */lubrication>lubrication>lubrication>lubrication>heading {
+   font-size: 16px;
+   display: block;
+   font-family: Arial, sans-serif;
+   text-align: left;
+   color: #003499;
+   background-color: #F5F5F5;
+   font-weight: bold;
+   padding-left: 12px;
+   margin-top: 18px;
+   margin-bottom: 12px;
+}
+/* H6 */lubrication>lubrication>lubrication>lubrication>lubrication>heading {
+   font-size: 14px;
+   display: block;
+   font-family: Arial, sans-serif;
+   text-align: left;
+   color: #003499;
+   background-color: #F5F5F5;
+   font-weight: bold;
+   padding-left: 12px;
+   margin-top: 18px;
+   margin-bottom: 12px;
+}
+task {
+   display: inline;
+   margin-top: 7pt;
+}
+/* H2 */task>heading {
+   display: block;
+   font-family: Arial, sans-serif;
+   font-size: 22px;
+   text-align: left;
+   color: #003499;
+   background-color: #F5F5F5;
+   font-weight: bold;
+   padding-left: 12px;
+   margin-top: 18px;
+   margin-bottom: 12px;
+}
+/* H3 */task>task>heading {
+   display: block;
+   font-family: Arial, sans-serif;
+   font-size: 20px;
+   text-align: left;
+   border-top: none;
+   color: #003499;
+   background-color: #F5F5F5;
+   font-weight: bold;
+   padding-left: 12px;
+   margin-top: 18px;
+   margin-bottom: 12px;
+}
+/* H4 */task>task>task>heading {
+   display: block;
+   font-family: Arial, sans-serif;
+   font-size: 18px;
+   text-align: left;
+   border-top: none;
+   color:#003499;
+   background-color: #F5F5F5;
+   font-weight: bold;
+   padding-left: 12px;
+   margin-top: 18px;
+   margin-bottom: 12px;
+}
+/* H5 */task>task>task>task>heading {
+   font-size: 16px;
+   display: block;
+   font-family: Arial, sans-serif;
+   text-align: left;
+   color: #003499;
+   background-color: #F5F5F5;
+   font-weight: bold;
+   padding-left: 12px;
+   margin-top: 18px;
+   margin-bottom: 12px;
+}
+/* H6 */task>task>task>task>task>heading {
+   font-size: 14px;
+   display: block;
+   font-family: Arial, sans-serif;
+   text-align: left;
+   color: #003499;
+   background-color: #F5F5F5;
+   font-weight: bold;
+   padding-left: 12px;
+   margin-top: 18px;
+   padding-top:2px;
+   margin-bottom: 12px;
+}
+/* H2 */taskintervals>heading {
+   display: block;
+   font-family: Arial, sans-serif;
+   font-size: 22px;
+   text-align: left;
+   color: #003499;
+   background-color: #F5F5F5;
+   font-weight: bold;
+   padding-left: 12px;
+   margin-top: 18px;
+   margin-bottom: 12px;
+}
+/* H3 */taskintervals>taskintervals>heading {
+   display: block;
+   font-family: Arial, sans-serif;
+   font-size: 20px;
+   text-align: left;
+   border-top: none;
+   color: #003499;
+   background-color: #F5F5F5;
+   font-weight: bold;
+   padding-left: 12px;
+   margin-top: 18px;
+   margin-bottom: 12px;
+}
+/* H4 */taskintervals>taskintervals>taskintervals>heading {
+   display: block;
+   font-family: Arial, sans-serif;
+   font-size: 18px;
+   text-align: left;
+   border-top: none;
+   color:#003499;
+   background-color: #F5F5F5;
+   font-weight: bold;
+   padding-left: 12px;
+   margin-top: 18px;
+   margin-bottom: 12px;
+}
+/* H5 */taskintervals>taskintervals>taskintervals>taskintervals>heading {
+   font-size: 16px;
+   display: block;
+   font-family: Arial, sans-serif;
+   text-align: left;
+   color: #003499;
+   background-color: #F5F5F5;
+   font-weight: bold;
+   padding-left: 12px;
+   margin-top: 18px;
+   margin-bottom: 12px;
+}
+/* H6 */taskintervals>taskintervals>taskintervals>taskintervals>taskintervals>heading {
+   font-size: 14px;
+   display: block;
+   font-family: Arial, sans-serif;
+   text-align: left;
+   color: #003499;
+   background-color: #F5F5F5;
+   font-weight: bold;
+   padding-left: 12px;
+   margin-top: 18px;
+   margin-bottom: 12px;
+}
+/* H2 */tools>heading {
+   display: block;
+   font-family: Arial, sans-serif;
+   font-size: 22px;
+   text-align: left;
+   color: #003499;
+   background-color: #F5F5F5;
+   font-weight: bold;
+   padding-left: 12px;
+   margin-top: 18px;
+   margin-bottom: 12px;
+}
+/* H3 */tools>tools>heading {
+   display: block;
+   font-family: Arial, sans-serif;
+   font-size: 20px;
+   text-align: left;
+   border-top: none;
+   color: #003499;
+   background-color: #F5F5F5;
+   font-weight: bold;
+   padding-left: 12px;
+   margin-top: 18px;
+   margin-bottom: 12px;
+}
+/* H4 */tools>tools>tools>heading {
+   display: block;
+   font-family: Arial, sans-serif;
+   font-size: 18px;
+   text-align: left;
+   border-top: none;
+   color:#003499;
+   background-color: #F5F5F5;
+   font-weight: bold;
+   padding-left: 12px;
+   margin-top: 18px;
+   margin-bottom: 12px;
+}
+/* H5 */tools>tools>tools>tools>heading {
+   font-size: 16px;
+   display: block;
+   font-family: Arial, sans-serif;
+   text-align: left;
+   color: #003499;
+   background-color: #F5F5F5;
+   font-weight: bold;
+   padding-left: 12px;
+   margin-top: 18px;
+   margin-bottom: 12px;
+}
+/* H6 */tools>tools>tools>tools>tools>heading {
+   font-size: 14px;
+   display: block;
+   font-family: Arial, sans-serif;
+   text-align: left;
+   color: #003499;
+   background-color: #F5F5F5;
+   font-weight: bold;
+   padding-left: 12px;
+   margin-top: 18px;
+   margin-bottom: 12px;
+}
+/* Emphasis styles */
+/* Toggle elements styles (bold, italic, underline) */
+emphasis {
+   font-weight: bold;
+}
+/* URLs styles */
+/* Images styles */
+/* Lists styles */
+list {
+   display: block;
+   margin: 12px;
+}
+list[listtype='marked'] {
+   list-style-type: disc;
+}
+list[listtype='numbered'] {
+   list-style-type: decimal;
+}
+prerequisites>list>item>paragraph:before {
+	content: "\2713" " ";
+}
+prerequisites>list[listtype='marked'] {
+	list-style-type: none;
+}
+item {
+   margin: 0pt 0pt 0pt 14pt;
+   display: list-item;
+   font-style: normal;
+}
+item>paragraph {
+   margin: 1.5pt;
+}
+item>paragraph\paragraph {
+   margin: 0pt;
+}
+/* XHTML headings styles */
+/* Tables headings styles */
+tbody {
+   display: block;
+}
+/* Lists headings styles */
+/* Address elements styles */
+/* Names styles */
+lubricant>partsname {
+   display: block;
+   margin: 3pt 0pt 3pt 5pt;
+}
+partsname:before {
+	content: "Baugruppe:\0B ";
+	color: #336699;
+	font-weight: bold;
+}
+/* Other styles */
+action {
+   display: block;
+   margin-bottom: 10px;
+   margin-left: 15pt;
+}
+actiondescription {
+   display: block;
+   margin-bottom: 5pt;
+}
+actionsequenceend {
+   display: block;
+}
+caption {
+   display: block;
+   font-weight: bold;
+   font-style: normal;
+   font-size: 95%;
+}
+graphic>caption:before {
+content: 'Abbildung: ';
+}
+graphic>caption {
+   margin: 3pt;
+}
+table>caption {
+	margin: 3pt;
+}
+table>caption:before {
+content: 'Tabelle: ';
+}
+cause {
+   display: block;
+   font-weight:bold;
+   margin-top: 10px;
+   margin-bottom: 3px;
+}
+errordescription>cause:before {
+   content: url(icons\cause.png) " Ursache: ";
+   color: #8080FF;
+}
+colspec {
+   display: inline;
+}
+condition {
+   display: block;
+}
+condition {
+   display: block;
+   font-style: italic;
+}
+condition:before {
+   content: 'Bedingung: ';
+   color: #8080FF;
+}
+consequences {
+   display: block;
+}
+consequences:before {
+	content: '\25B7' " ";
+}
+data {
+   display: block;
+   margin: 0pt 0pt 2pt 5pt;
+}
+lubricant>data:before {
+	content: "Menge:\0B ";
+	color: #336699;
+	font-weight: bold;
+}
+datatype:after {
+   content: ':\0B';
+}
+description {
+   display: block;
+}
+descriptive {
+   display: block;
+}
+descriptive_body {
+   display: block;
+}
+diagnosis {
+   display: block;
+}
+diagnosis_body {
+   display: block;
+}
+entry {
+   display: block;
+	background-color: rgb(233,235,245);
+}
+thead>row>entry {
+   display: block;
+   font-weight: bold;
+   background-color: rgb(153,185,216);
+   color: white;
+}
+entrytbl {
+   display: block;
+}
+error-code {
+   display: block;
+}
+errordescription {
+   display: block;
+   border: #808080 solid 0.5pt;
+   padding: 3pt;
+   text-align: left;
+   margin-bottom: 16px;
+}
+figure {
+   display: block;
+   border: #808080 solid 0.5pt;
+   padding: 3pt;
+   text-align: left;
+}
+footnote {
+   display: block;
+   margin: 3pt;
+}
+footnote:before {
+	content: "* ";
+}
+glossary {
+   display: block;
+}
+glossary-entry {
+   display: block;
+   margin-bottom: 10pt;
+   border: 1pt solid black;
+   padding: 5pt;
+}
+glossary_body {
+   display: block;
+}
+glossdef {
+   display: block;
+}
+glossterm {
+   display: block;
+   font-size: 11pt;
+   font-weight: bold;
+   color: #8080FF;
+   
+}
+graphic {
+   display: block;
+   margin-top: 12px;
+}
+graphiclink {
+   display: inline;
+}
+identification {
+   display: block;
+   font-weight: bold;
+}
+inlinegraphic {
+   display: inline;
+}
+key-entry {
+   display: inline;
+}
+key-entry:after {
+   content: ', ';
+}
+keyword {
+   display: block;
+   font-size: 9pt;
+   font-weight: normal;
+   font-style: italic;
+   color: #8080FF;
+}
+keyword:before {
+   content: 'keyword: ';
+}
+legend {
+   display: block;
+   font-size: 9pt;
+   counter-reset : legenditem;
+   padding-left: 15pt;
+   margin-bottom: 12pt;
+}
+legenditem:before {
+   content : counter(legenditem) "  | ";
+}
+legenditem {
+   display: block;
+   counter-increment : legenditem;
+}
+listintro {
+   display: block;
+}
+lower-value {
+   display: inline;
+}
+lower-value:after {
+	content: "-";
+}
+lower-value>si-value>unit {
+	display:none;
+}
+lower-value>us-value>unit {
+	display:none;
+}
+lubrclass {
+   display: block;
+   margin: 3pt 0pt 3pt 5pt;
+}
+lubricant>lubrclass:before {
+	content: "Klasse/Viskosit�t:\0B ";
+	color: #336699;
+	font-weight: bold;
+}
+lubric-table {
+   display: block;
+}
+lubrication {
+   display: block;
+}
+lubrication_body {
+   display: block;
+}
+medium {
+   display: block;
+   margin: 3pt 0pt 3pt 5pt;
+}
+lubricant>medium:before {
+	content: "Medium:\0B ";
+	color: #336699;
+	font-weight: bold;
+}
+mod {
+   display: block;
+   border: #808080 solid 1pt;
+}
+note {
+   display: block;
+   background-color: rgb(233,235,245);
+}
+note:before {
+	content: url(icons/note.png);
+}
+number {
+   display: inline;
+}
+number:after {
+   content: "\0A0";
+}
+or-action {
+   display: block;
+   margin-bottom: 10px;
+}
+or-action>action>step:before {
+	content: '\25AC' " ";
+}
+orientation {
+   display: block;
+}
+outlook {
+   display: block;
+   margin-top: 16px;
+}
+outlook:before {
+	content: url(icons/outlook.png);
+}
+lubricant {
+   display: block;
+   border: 1pt solid black;
+   padding: 2pt;
+}
+lubricant:before {
+	content: 'Schmierstoff: ';
+   color: #808080;
+   font-weight: bold;
+   margin-bottom: 5pt;
+}
+prerequisites {
+   display: block;
+}
+prerequisites:before {
+   content: 'Vorraussetzungen: ';
+   color: #8080FF;
+}
+problemdescription {
+   display: block;
+}
+quoted {
+   display: inline;
+}
+quoted:before {
+   content: "\201E";
+}
+quoted:after {
+   content: "\201C";
+}
+result {
+   display: block;
+   margin-left: 15pt;
+}
+result>paragraph:before {
+   content: "\25B7" " ";
+}
+actionsequenceend>result>paragraph:before {
+   content: "\25B6" " ";
+}
+row {
+   display: block;
+}
+safetyadvice {
+   display: block;
+   margin-top: 5mm;
+   margin-bottom: 5mm;
+   border: 1pt solid black;
+   padding: 2pt;
+	counter-reset: safetystep;
+}
+safetyadvice[class='danger']:before {
+	content:url(icons/danger_de.png);
+}
+safetyadvice[class='warning']:before {
+	content:url(icons/warning_de.png);
+}
+safetyadvice[class='caution']:before {
+	content:url(icons/caution_de.png);
+}
+safetyadvice[class='notice']:before {
+	content:url(icons/notice_de.png);
+}
+safetysymbol {
+   display: inline;
+}
+shortinfo {
+   display: block;
+}
+si-value {
+   display: inline;
+}
+solution {
+   display: block;
+}
+errordescription>solution:before {
+   content: url(icons\solution.png) " Abhilfe: ";
+   color: #8080FF;
+}
+spanspec {
+   display: inline;
+   margin: 0pt 0pt 2pt 5pt;
+}
+spec {
+   display: block;
+   margin: 3pt 0pt 3pt 5pt;
+}
+lubricant>spec:before {
+	content: "Schmier- und Betriebsmittelspezifikation:\0B ";
+	color: #336699;
+	font-weight: bold;
+}
+step {
+   display: inline;
+   counter-increment : step;
+}
+step:before {
+   content : counter(step) ". ";
+}
+task_body>action>step {
+	counter-increment : taskstep;
+}
+task_body>action>step:before {
+	content : counter(taskstep) ". ";
+}
+safetyadvice>action>step {
+	counter-increment : safetystep;
+}
+safetyadvice>action>step:before {
+	content : counter(safetystep) ". ";
+}
+subscript {
+	font-size : 66%;
+	vertical-align : sub;
+	display : inline;
+}
+superscript {
+	font-size : 66%;
+	vertical-align : super;
+	display : inline;
+}
+symbol {
+   display: block;
+   margin: 3pt 0pt 3pt 5pt;
+}
+lubricant>symbol:before {
+	content: "F�llmengensymbol:\0B ";
+	color: #336699;
+	font-weight: bold;
+}
+symptom {
+   display: block;
+}
+errordescription>symptom>error-code:before {
+   content: url(icons\symptom.png) " St�rung: ";
+   color: #8080FF;
+}
+errordescription>symptom>description:before {
+   content: url(icons\symptom.png) " St�rung: ";
+   color: #8080FF;
+}
+table {
+   display: block;
+}
+task {
+   display: block;
+}
+task_body {
+   display: block;
+   counter-reset : step;
+}
+taskinterval {
+   display: block;
+   margin-top: 5mm;
+   margin-bottom: 5mm;
+   border: 1pt solid black;
+   padding: 2pt;
+}
+taskinterval:before {
+	content: "Wartungsintervall: " '\2028';
+	color: #8080FF;
+	font-weight: bold;
+}
+/* Anzeige des Wartungsintervalls Kunde */
+taskinterval[customer-interval='customer-10h']:before {
+	content: "Wartungsintervall (Kunde 10 h): " '\2028';
+	color: #8080FF;
+	font-weight: bold;
+}
+taskinterval[customer-interval='customer-25h']:before {
+	content: "Wartungsintervall (Kunde 25 h): " '\2028';
+	color: #8080FF;
+	font-weight: bold;
+}
+taskinterval[customer-interval='customer-50h']:before {
+	content: "Wartungsintervall (Kunde 50 h): " '\2028';
+	color: #8080FF;
+	font-weight: bold;
+}
+taskinterval[customer-interval='customer-100h']:before {
+	content: "Wartungsintervall (Kunde 100 h): " '\2028';
+	color: #8080FF;
+	font-weight: bold;
+}
+taskinterval[customer-interval='customer-150h']:before {
+	content: "Wartungsintervall (Kunde 150 h): " '\2028';
+	color: #8080FF;
+	font-weight: bold;
+}
+taskinterval[customer-interval='customer-200h']:before {
+	content: "Wartungsintervall (Kunde 200 h): " '\2028';
+	color: #8080FF;
+	font-weight: bold;
+}
+taskinterval[customer-interval='customer-250h']:before {
+	content: "Wartungsintervall (Kunde 250 h): " '\2028';
+	color: #8080FF;
+	font-weight: bold;
+}
+taskinterval[customer-interval='customer-500h']:before {
+	content: "Wartungsintervall (Kunde 500 h): " '\2028';
+	color: #8080FF;
+	font-weight: bold;
+}
+taskinterval[customer-interval='customer-1000h']:before {
+	content: "Wartungsintervall (Kunde 1000 h): " '\2028';
+	color: #8080FF;
+	font-weight: bold;
+}
+taskinterval[customer-interval='customer-1500h']:before {
+	content: "Wartungsintervall (Kunde 1500 h): " '\2028';
+	color: #8080FF;
+	font-weight: bold;
+}
+taskinterval[customer-interval='customer-2000h']:before {
+	content: "Wartungsintervall (Kunde 2000 h): " '\2028';
+	color: #8080FF;
+	font-weight: bold;
+}
+taskinterval[customer-interval='customer-3000h']:before {
+	content: "Wartungsintervall (Kunde 3000 h): " '\2028';
+	color: #8080FF;
+	font-weight: bold;
+}
+taskinterval[customer-interval='customer-4000h']:before {
+	content: "Wartungsintervall (Kunde 4000 h): " '\2028';
+	color: #8080FF;
+	font-weight: bold;
+}
+taskinterval[customer-interval='customer-5000h']:before {
+	content: "Wartungsintervall (Kunde 5000 h): " '\2028';
+	color: #8080FF;
+	font-weight: bold;
+}
+taskinterval[customer-interval='customer-6000h']:before {
+	content: "Wartungsintervall (Kunde 6000 h): " '\2028';
+	color: #8080FF;
+	font-weight: bold;
+}
+taskinterval[customer-interval='customer-10000h']:before {
+	content: "Wartungsintervall (Kunde 10 000 h): " '\2028';
+	color: #8080FF;
+	font-weight: bold;
+}
+taskinterval[customer-interval='customer-12000h']:before {
+	content: "Wartungsintervall (Kunde 12 000 h): " '\2028';
+	color: #8080FF;
+	font-weight: bold;
+}
+taskinterval[customer-interval='customer-15000h']:before {
+	content: "Wartungsintervall (Kunde 15 000 h): " '\2028';
+	color: #8080FF;
+	font-weight: bold;
+}
+taskinterval[customer-interval='customer-20000h']:before {
+	content: "Wartungsintervall (Kunde 20 000 h): " '\2028';
+	color: #8080FF;
+	font-weight: bold;
+}
+taskinterval[customer-interval='customer-year']:before {
+	content: "Wartungsintervall (Kunde 1 Jahr): " '\2028';
+	color: #8080FF;
+	font-weight: bold;
+}
+taskinterval[customer-interval='customer-2years']:before {
+	content: "Wartungsintervall (Kunde 2 Jahre): " '\2028';
+	color: #8080FF;
+	font-weight: bold;
+}
+taskinterval[customer-interval='customer-3years']:before {
+	content: "Wartungsintervall (Kunde 3 Jahre): " '\2028';
+	color: #8080FF;
+	font-weight: bold;
+}
+taskinterval[customer-interval='customer-4years']:before {
+	content: "Wartungsintervall (Kunde 4 Jahre): " '\2028';
+	color: #8080FF;
+	font-weight: bold;
+}
+taskinterval[customer-interval='customer-5years']:before {
+	content: "Wartungsintervall (Kunde 5 Jahre): " '\2028';
+	color: #8080FF;
+	font-weight: bold;
+}
+taskinterval[customer-interval='customer-half-year']:before {
+	content: "Wartungsintervall (Kunde halbes Jahr): " '\2028';
+	color: #8080FF;
+	font-weight: bold;
+}
+taskinterval[customer-interval='customer-quarter']:before {
+	content: "Wartungsintervall (Kunde viertel Jahr): " '\2028';
+	color: #8080FF;
+	font-weight: bold;
+}
+taskinterval[customer-interval='customer-month']:before {
+	content: "Wartungsintervall (Kunde 1 Monat): " '\2028';
+	color: #8080FF;
+	font-weight: bold;
+}
+taskinterval[customer-interval='customer-week']:before {
+	content: "Wartungsintervall (Kunde 1 Woche): " '\2028';
+	color: #8080FF;
+	font-weight: bold;
+}
+taskinterval[customer-interval='customer-day']:before {
+	content: "Wartungsintervall (Kunde 1 Tag): " '\2028';
+	color: #8080FF;
+	font-weight: bold;
+}
+/* Ende der Anzeige spezifisches Wartungsintervall Kunde */
+
+/* Anzeige des Wartungsintervalls Service */
+taskinterval[service-interval='service-10h']:before {
+	content: "Wartungsintervall (Service 10 h): " '\2028';
+	color: #8080FF;
+	font-weight: bold;
+}
+taskinterval[service-interval='service-25h']:before {
+	content: "Wartungsintervall (Service 25 h): " '\2028';
+	color: #8080FF;
+	font-weight: bold;
+}
+taskinterval[service-interval='service-50h']:before {
+	content: "Wartungsintervall (Service 50 h): " '\2028';
+	color: #8080FF;
+	font-weight: bold;
+}
+taskinterval[service-interval='service-100h']:before {
+	content: "Wartungsintervall (Service 100 h): " '\2028';
+	color: #8080FF;
+	font-weight: bold;
+}
+taskinterval[service-interval='service-150h']:before {
+	content: "Wartungsintervall (Service 150 h): " '\2028';
+	color: #8080FF;
+	font-weight: bold;
+}
+taskinterval[service-interval='service-200h']:before {
+	content: "Wartungsintervall (Service 200 h): " '\2028';
+	color: #8080FF;
+	font-weight: bold;
+}
+taskinterval[service-interval='service-250h']:before {
+	content: "Wartungsintervall (Service 250 h): " '\2028';
+	color: #8080FF;
+	font-weight: bold;
+}
+taskinterval[service-interval='service-500h']:before {
+	content: "Wartungsintervall (Service 500 h): " '\2028';
+	color: #8080FF;
+	font-weight: bold;
+}
+taskinterval[service-interval='service-1000h']:before {
+	content: "Wartungsintervall (Service 1000 h): " '\2028';
+	color: #8080FF;
+	font-weight: bold;
+}
+taskinterval[service-interval='service-1500h']:before {
+	content: "Wartungsintervall (Service 1500 h): " '\2028';
+	color: #8080FF;
+	font-weight: bold;
+}
+taskinterval[service-interval='service-2000h']:before {
+	content: "Wartungsintervall (Service 2000 h): " '\2028';
+	color: #8080FF;
+	font-weight: bold;
+}
+taskinterval[service-interval='service-3000h']:before {
+	content: "Wartungsintervall (Service 3000 h): " '\2028';
+	color: #8080FF;
+	font-weight: bold;
+}
+taskinterval[service-interval='service-4000h']:before {
+	content: "Wartungsintervall (Service 4000 h): " '\2028';
+	color: #8080FF;
+	font-weight: bold;
+}
+taskinterval[service-interval='service-5000h']:before {
+	content: "Wartungsintervall (Service 5000 h): " '\2028';
+	color: #8080FF;
+	font-weight: bold;
+}
+taskinterval[service-interval='service-6000h']:before {
+	content: "Wartungsintervall (Service 6000 h): " '\2028';
+	color: #8080FF;
+	font-weight: bold;
+}
+taskinterval[service-interval='service-10000h']:before {
+	content: "Wartungsintervall (Service 10 000 h): " '\2028';
+	color: #8080FF;
+	font-weight: bold;
+}
+taskinterval[service-interval='service-12000h']:before {
+	content: "Wartungsintervall (Service 12 000 h): " '\2028';
+	color: #8080FF;
+	font-weight: bold;
+}
+taskinterval[service-interval='service-15000h']:before {
+	content: "Wartungsintervall (Service 15 000 h): " '\2028';
+	color: #8080FF;
+	font-weight: bold;
+}
+taskinterval[service-interval='service-20000h']:before {
+	content: "Wartungsintervall (Service 20 000 h): " '\2028';
+	color: #8080FF;
+	font-weight: bold;
+}
+taskinterval[service-interval='service-year']:before {
+	content: "Wartungsintervall (Service 1 Jahr): " '\2028';
+	color: #8080FF;
+	font-weight: bold;
+}
+taskinterval[service-interval='service-2years']:before {
+	content: "Wartungsintervall (Service 2 Jahre): " '\2028';
+	color: #8080FF;
+	font-weight: bold;
+}
+taskinterval[service-interval='service-3years']:before {
+	content: "Wartungsintervall (Service 3 Jahre): " '\2028';
+	color: #8080FF;
+	font-weight: bold;
+}
+taskinterval[service-interval='service-4years']:before {
+	content: "Wartungsintervall (Service 4 Jahre): " '\2028';
+	color: #8080FF;
+	font-weight: bold;
+}
+taskinterval[service-interval='service-5years']:before {
+	content: "Wartungsintervall (Service 5 Jahre): " '\2028';
+	color: #8080FF;
+	font-weight: bold;
+}
+taskinterval[service-interval='service-half-year']:before {
+	content: "Wartungsintervall (Service halbes Jahr): " '\2028';
+	color: #8080FF;
+	font-weight: bold;
+}
+taskinterval[service-interval='service-quarter']:before {
+	content: "Wartungsintervall (Service viertel Jahr): " '\2028';
+	color: #8080FF;
+	font-weight: bold;
+}
+taskinterval[service-interval='service-month']:before {
+	content: "Wartungsintervall (Service 1 Monat): " '\2028';
+	color: #8080FF;
+	font-weight: bold;
+}
+taskinterval[service-interval='service-week']:before {
+	content: "Wartungsintervall (Service 1 Woche): " '\2028';
+	color: #8080FF;
+	font-weight: bold;
+}
+taskinterval[service-interval='service-day']:before {
+	content: "Wartungsintervall (Service 1 Tag): " '\2028';
+	color: #8080FF;
+	font-weight: bold;
+}
+/* Ende der Anzeige spezifisches Wartungsintervall Service */
+/* Anzeige Sonderintervall */
+taskinterval[special-interval='10h']:before {
+	content: "Wartungsintervall (Sonderintervall 10 h): " '\2028';
+	color: #8080FF;
+	font-weight: bold;
+}
+taskinterval[special-interval='50h']:before {
+	content: "Wartungsintervall (Sonderintervall 50 h): " '\2028';
+	color: #8080FF;
+	font-weight: bold;
+}
+taskinterval[special-interval='200h']:before {
+	content: "Wartungsintervall (Sonderintervall 200 h): " '\2028';
+	color: #8080FF;
+	font-weight: bold;
+}
+taskinterval[special-interval='250h']:before {
+	content: "Wartungsintervall (Sonderintervall 250 h): " '\2028';
+	color: #8080FF;
+	font-weight: bold;
+}
+taskinterval[special-interval='500h']:before {
+	content: "Wartungsintervall (Sonderintervall 500 h): " '\2028';
+	color: #8080FF;
+	font-weight: bold;
+}
+taskinterval[special-interval='1000h']:before {
+	content: "Wartungsintervall (Sonderintervall 1000 h): " '\2028';
+	color: #8080FF;
+	font-weight: bold;
+}
+taskinterval[special-interval='2000h']:before {
+	content: "Wartungsintervall (Sonderintervall 2000 h): " '\2028';
+	color: #8080FF;
+	font-weight: bold;
+}
+taskinterval[special-interval='3000h']:before {
+	content: "Wartungsintervall (Sonderintervall 3000 h): " '\2028';
+	color: #8080FF;
+	font-weight: bold;
+}
+taskinterval[special-interval='5000h']:before {
+	content: "Wartungsintervall (Sonderintervall 5000 h): " '\2028';
+	color: #8080FF;
+	font-weight: bold;
+}
+taskinterval[special-interval='10000h']:before {
+	content: "Wartungsintervall (Sonderintervall 10 000 h): " '\2028';
+	color: #8080FF;
+	font-weight: bold;
+}
+taskinterval[special-interval='year']:before {
+	content: "Wartungsintervall (Sonderintervall 1 Jahr): " '\2028';
+	color: #8080FF;
+	font-weight: bold;
+}
+taskinterval[special-interval='half-year']:before {
+	content: "Wartungsintervall (Sonderintervall halbes Jahr): " '\2028';
+	color: #8080FF;
+	font-weight: bold;
+}
+taskinterval[special-interval='quarter']:before {
+	content: "Wartungsintervall (Sonderintervall viertel Jahr): " '\2028';
+	color: #8080FF;
+	font-weight: bold;
+}
+taskinterval[special-interval='month']:before {
+	content: "Wartungsintervall (Sonderintervall 1 Monat): " '\2028';
+	color: #8080FF;
+	font-weight: bold;
+}
+taskinterval[special-interval='week']:before {
+	content: "Wartungsintervall (Sonderintervall 1 Woche): " '\2028';
+	color: #8080FF;
+	font-weight: bold;
+}
+taskinterval[special-interval='day']:before {
+	content: "Wartungsintervall (Sonderintervall 1 Tag): " '\2028';
+	color: #8080FF;
+	font-weight: bold;
+}
+taskinterval[special-interval='customer-demand']:before {
+	content: "Wartungsintervall (Sonderintervall Anfrage Kunde): " '\2028';
+	color: #8080FF;
+	font-weight: bold;
+}
+taskinterval[special-interval='service-demand']:before {
+	content: "Wartungsintervall (Sonderintervall Anfrage Service): " '\2028';
+	color: #8080FF;
+	font-weight: bold;
+}
+taskinterval[special-interval='winter']:before {
+	content: "Wartungsintervall (Sonderintervall Winter): " '\2028';
+	color: #8080FF;
+	font-weight: bold;
+}
+/* Ende Anzeige Sonderintervall */
+/* Anzeige sonstiger Wartungsintervalle */
+taskinterval[customer-before='c-installation']:before {
+	content: "Wartungsintervall (Kunde vor der Installation): " '\2028';
+	color: #8080FF;
+	font-weight: bold;
+}
+taskinterval[customer-before='c-put-into-operation']:before {
+	content: "Wartungsintervall (Kunde vor der Erstinbetriebnahme): " '\2028';
+	color: #8080FF;
+	font-weight: bold;
+}
+taskinterval[customer-once='customer-once-10h']:before {
+	content: "Wartungsintervall (Kunde einmalig nach 10 h): " '\2028';
+	color: #8080FF;
+	font-weight: bold;
+}
+taskinterval[customer-once='customer-once-50h']:before {
+	content: "Wartungsintervall (Kunde einmalig nach 50 h): " '\2028';
+	color: #8080FF;
+	font-weight: bold;
+}
+taskinterval[hand-over='service-hand-over']:before {
+	content: "Wartungsintervall (bei �bergabe): " '\2028';
+	color: #8080FF;
+	font-weight: bold;
+}
+taskinterval[service-before='s-installation']:before {
+	content: "Wartungsintervall (Service vor der Installation): " '\2028';
+	color: #8080FF;
+	font-weight: bold;
+}
+taskinterval[service-before='s-put-into-operation']:before {
+	content: "Wartungsintervall (Service vor der Erstinbetriebnahme): " '\2028';
+	color: #8080FF;
+	font-weight: bold;
+}
+taskinterval[service-once='service-once-500h']:before {
+	content: "Wartungsintervall (Service einmalig nach 500 h): " '\2028';
+	color: #8080FF;
+	font-weight: bold;
+}
+taskinterval[service-once='service-once-1000h']:before {
+	content: "Wartungsintervall (Service einmalig nach 1000 h): " '\2028';
+	color: #8080FF;
+	font-weight: bold;
+}
+taskinterval[service-once='service-once-2000h']:before {
+	content: "Wartungsintervall (Service einmalig nach 2000 h): " '\2028';
+	color: #8080FF;
+	font-weight: bold;
+}
+/* Ende der Anzeige Wartungsintervalle */
+taskintervals {
+   display: block;
+}
+taskintervals_body {
+   display: block;
+}
+techdata {
+   display: block;
+   border: #808080 solid 0.5pt;
+   padding: 2pt;
+}
+techdata:before {
+   display: block;
+   content: 'Technische Daten:';
+   color: #808080;
+   font-weight: bold;
+   margin-bottom: 5pt;
+}
+textdata {
+   display: inline;
+}
+textlink {
+   display: inline;
+}
+tfoot {
+   display: block;
+}
+tgroup {
+   display: block;
+}
+thead {
+   display: block;
+}
+tolerance-asymmetric-value {
+	/* font-size : 66%;
+	vertical-align : super; */
+	display : inline;
+}
+tolerance-high-value {
+   display: inline;
+}
+tolerance-high-value:before {
+	content: " +";
+}
+tolerance-low-value {
+   display: inline;
+}
+tolerance-low-value:before {
+	content: " -";
+}
+tolerance-symmetric-value {
+	/* font-size : 66%;
+	vertical-align : super; */
+	display : inline;
+}
+tolerance-symmetric-value:before {
+	content:" " '\00B1';
+}
+tool {
+   display: block;
+}
+tools {
+   display: block;
+}
+tools_body {
+   display: block;
+}
+transno {
+   display: inline;
+}
+troubleshooting {
+   display: block;
+   background-color: rgb(233,235,245);
+   margin-top: 16px;
+}
+troubleshooting:before {
+	content: url(icons/troubleshooting.png);
+}
+troubleshooting>action>step {
+	counter-increment : troublestep;
+}
+troubleshooting>action>step:before {
+	content : counter(troublestep) ". ";
+}
+unit {
+   display: inline;
+}
+upper-value {
+   display: inline;
+}
+us-value {
+   display: block;
+}
+user-interface {
+   display: inline;
+   font-variant: small-caps;
+}
+variable {
+   display: inline;
+}
