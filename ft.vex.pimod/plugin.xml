@@ -6,6 +6,20 @@
 			base-type="org.eclipse.core.runtime.xml" file-extensions="pi-mod">
 		</content-type>
 	</extension>
+ <extension
+       point="org.eclipse.wst.xml.core.catalogContributions">
+    <catalogContribution
+          id="default">
+       <public
+             publicId="-//PI-MOD//DTD DOC//EN"
+             uri="dtd/doc.dtd">
+       </public>
+       <public
+             publicId="-//PI-MOD//DTD MOD//EN"
+             uri="dtd/pi-mod.dtd">
+       </public>
+    </catalogContribution>
+ </extension>
 
    <extension
          id="doc"
