@@ -3,7 +3,7 @@
 <plugin>
 	<extension point="org.eclipse.core.contenttype.contentTypes">
 		<content-type id="pi-mod" name="%contentType.pi-mod"
-			base-type="org.eclipse.core.runtime.xml" file-extensions="pi-mod">
+			base-type="org.eclipse.wst.xml.vex.ui.XmlDocument" file-extensions="pimod,doc">
 		</content-type>
 	</extension>
  <extension
