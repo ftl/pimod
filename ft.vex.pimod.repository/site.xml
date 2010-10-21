@@ -1,7 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <site>
-   <description name="PI-Mod Integration for Vex" url="http://www.thienel-software.de/vex/pimod">
-   PI-Mod Integration for Vex
-   </description>
    <feature url="features/ft.vex.pimod.feature_1.0.0.qualifier.jar" id="ft.vex.pimod.feature" version="1.0.0.qualifier"/>
 </site>
