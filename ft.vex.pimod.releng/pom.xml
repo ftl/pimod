@@ -16,6 +16,7 @@
 	<modules>
 		<module>../ft.vex.pimod</module>
 		<module>../ft.vex.pimod.feature</module>
+		<module>../ft.vex.pimod.repository</module>
 	</modules>
 
 	<scm>
