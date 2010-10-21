@@ -6,7 +6,7 @@
 	<artifactId>ft.vex.pimod.feature</artifactId>
 	<packaging>eclipse-feature</packaging>
 	<version>1.0.0-SNAPSHOT</version>
-	<name>PI-Mod Integration for Vex</name>
+	<name>PI-Mod Integration for Vex (Feature)</name>
 
 	<parent>
 		<artifactId>ft.vex.pimod.releng</artifactId>
@@ -14,6 +14,9 @@
 		<version>1.0.0-SNAPSHOT</version>
 		<relativePath>../ft.vex.pimod.releng/pom.xml</relativePath>
 	</parent>
+	<scm>
+		<url>http://github.com/ftl/pimod</url>
+	</scm>
 	<organization>
 		<name>Florian Thienel Softwareentwicklung</name>
 		<url>http://www.thienel-software.de</url>
