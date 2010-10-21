@@ -14,6 +14,13 @@
   <groupId>ft.vex.pimod</groupId>
   <artifactId>ft.vex.pimod.repository</artifactId>
   <packaging>eclipse-update-site</packaging>
-  <name>Vex Update Site</name>
+  <name>PI-Mod Integration for Vex (Update Site)</name>
+  <scm>
+  	<url>http://github.com/ftl/pimod</url>
+  </scm>
+  <organization>
+  	<name>Florian Thienel Softwareentwicklung</name>
+  	<url>http://www.thienel-software.de</url>
+  </organization>
 
 </project>
