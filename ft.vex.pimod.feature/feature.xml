@@ -117,6 +117,10 @@ and re-export of encryption software, to see if this is permitted.
 Java and all Java-based trademarks are trademarks of Sun Microsystems, Inc. in the United States, other countries, or both.
    </license>
 
+   <url>
+      <update label="PI-Mod Integration for Vex" url="http://www.thienel-software.de/vex/pimod"/>
+   </url>
+
    <requires>
       <import feature="org.eclipse.wst.xml.vex.feature" version="0.5.0.qualifier"/>
    </requires>
