@@ -886,6 +886,7 @@ figure {
    border: #808080 solid 0.5pt;
    padding: 3pt;
    text-align: left;
+   background-image: attr(graphicname);
 }
 footnote {
    display: block;
@@ -929,6 +930,7 @@ identification {
 }
 inlinegraphic {
    display: inline;
+   background-image: attr(graphicname);
 }
 key-entry {
    display: inline;
