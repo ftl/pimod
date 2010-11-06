@@ -12,21 +12,25 @@
           id="default">
        <public
              publicId="-//PI-MOD//DTD DOC//EN"
-             uri="dtd/doc.dtd">
+             uri="dtd/1.0/doc.dtd">
        </public>
        <public
              publicId="-//PI-MOD//DTD MOD//EN"
-             uri="dtd/pi-mod.dtd">
+             uri="dtd/1.0/pi-mod.dtd">
+       </public>
+       <public
+             publicId="-//PI-MOD//DTD PI-Mod V1.2.1//EN"
+             uri="dtd/1.2.1/pi-mod.dtd">
        </public>
     </catalogContribution>
  </extension>
 
    <extension
-         id="doc"
-         name="%doctype.doc"
+         id="doc_1_0"
+         name="%doctype.doc_1_0"
          point="org.eclipse.wst.xml.vex.ui.doctypes">
       <doctype
-            dtd="dtd/doc.dtd"
+            dtd="dtd/1.0/doc.dtd"
             publicId="-//PI-MOD//DTD DOC//EN"
             systemId="doc.dtd">
          <rootElement
@@ -35,11 +39,11 @@
       </doctype>
    </extension>
    <extension
-         id="mod"
-         name="%doctype.mod"
+         id="mod_1_0"
+         name="%doctype.mod_1_0"
          point="org.eclipse.wst.xml.vex.ui.doctypes">
       <doctype
-            dtd="dtd/pi-mod.dtd"
+            dtd="dtd/1.0/pi-mod.dtd"
             publicId="-//PI-MOD//DTD MOD//EN"
             systemId="pi-mod.dtd">
          <rootElement
@@ -48,11 +52,24 @@
       </doctype>
    </extension>
    <extension
-         id="plain"
-         name="%style.plain"
+         id="mod_1_2_1"
+         name="%doctype.mod_1_2_1"
+         point="org.eclipse.wst.xml.vex.ui.doctypes">
+      <doctype
+            dtd="dtd/1.2.1/pi-mod.dtd"
+            publicId="-//PI-MOD//DTD PI-Mod V1.2.1//EN"
+            systemId="pi-mod.dtd">
+         <rootElement
+               name="mod">
+         </rootElement>
+      </doctype>
+   </extension>
+   <extension
+         id="plain_1_0"
+         name="%style.plain_1_0"
          point="org.eclipse.wst.xml.vex.ui.styles">
       <style
-            css="styles/pi-mod.css">
+            css="styles/1.0/pi-mod.css">
          <doctypeRef
                publicId="-//PI-MOD//DTD DOC//EN">
          </doctypeRef>
