@@ -2,7 +2,7 @@
 <feature
       id="ft.vex.pimod.feature"
       label="%featureName"
-      version="1.2.1.qualifier"
+      version="1.2.2.qualifier"
       provider-name="%providerName">
 
    <description url="http://www.thienel-software.de">
@@ -29,7 +29,7 @@
          id="ft.vex.pimod"
          download-size="0"
          install-size="0"
-         version="1.2.1.qualifier"
+         version="1.2.2.qualifier"
          unpack="false"/>
 
 </feature>

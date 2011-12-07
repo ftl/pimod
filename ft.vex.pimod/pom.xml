@@ -5,13 +5,13 @@
 	<groupId>ft.vex.pimod</groupId>
 	<artifactId>ft.vex.pimod</artifactId>
 	<packaging>eclipse-plugin</packaging>
-	<version>1.2.1-SNAPSHOT</version>
+	<version>1.2.2-SNAPSHOT</version>
 	<name>PI-Mod Integration for Vex</name>
 
 	<parent>
 		<artifactId>ft.vex.pimod.releng</artifactId>
 		<groupId>ft.vex.pimod</groupId>
-		<version>1.2.1-SNAPSHOT</version>
+		<version>1.2.2-SNAPSHOT</version>
 		<relativePath>../ft.vex.pimod.releng/pom.xml</relativePath>
 	</parent>
 	<organization>

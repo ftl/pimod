@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <site>
-   <feature url="features/ft.vex.pimod.feature_1.2.1.qualifier.jar" id="ft.vex.pimod.feature" version="1.2.1.qualifier">
+   <feature url="features/ft.vex.pimod.feature_1.2.2.qualifier.jar" id="ft.vex.pimod.feature" version="1.2.2.qualifier">
       <category name="vex.pimod.category"/>
    </feature>
    <category-def name="vex.pimod.category" label="PI-Mod Integration for Vex"/>
