@@ -22,7 +22,7 @@
    </url>
 
    <requires>
-      <import feature="org.eclipse.wst.xml.vex.feature" version="1.0.0.qualifier"/>
+      <import feature="org.eclipse.vex.feature" version="1.0.0.qualifier"/>
    </requires>
 
    <plugin
