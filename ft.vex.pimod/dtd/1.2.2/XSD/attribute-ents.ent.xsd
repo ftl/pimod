@@ -1,0 +1,246 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  ***************************************************************************
+  
+  PI-Mod V1.2.2 - DTD Module "attribute-ents.ent"
+  
+  ********************************************************************************
+  
+  DTD module declares attributes of PI-Mod DTD as parameter entities.
+  
+  Public Identifier:
+  
+      "-//PI-MOD//ENTITIES Attribute Entities V1.2.2//EN"
+  
+  Typical invocation:
+  
+  	<!ENTITY % attribute-ents
+  		PUBLIC "-//PI-MOD//ENTITIES Attribute Entities V1.2.2//EN"
+  		"attribute-ents.ent"
+  	>
+  	%attribute-ents;
+  
+  ********************************************************************************
+  
+  Copyright (C) 2011, The PI-Mod Project
+  
+  Contributors to the The PI-Mod Project (V1.2.2): 
+  	 Wolfgang Ziegler 
+  	 Stephan Steurer 
+  	 Claudia Oberle
+  
+  Permission is hereby granted, free of charge, to any person obtaining a copy
+  of this software and associated documentation files (the "Software"), to deal
+  in the Software without restriction, including without limitation the rights
+  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+  copies of the Software, and to permit persons to whom the Software is
+  furnished to do so, subject to the following conditions:
+  
+  The above copyright notice and this permission notice shall be included in
+  all copies or substantial portions of the Software.
+  
+  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+  THE SOFTWARE.
+  
+  ********************************************************************************
+  
+  Naming conventions for parameter entities:
+  
+  	cmf.ELEMENTGROUP	content model fragment: collects similar 
+  				elements in group ELEMENTGROUP
+  	cm.ELEMENT		content model: complete content model of element
+  				ELEMENT
+  	att.ATTRIBUTE		attribute: declaration of single attribute
+  				ATTRIBUTE (with Name Type Default)
+  	attv.ATTRIBUTE		attribute value enumeration: enumeration of
+  				predefined values for Attribute ATTRIBUTE
+  	atts.ATTRIBUTEGROUP	attribute sublist: collects attributes, which 
+  				belong together, in group ATTRIBUTEGROUP
+  	attl.ELEMENT		attribute list: complete attribute list of
+  				element ELEMENT
+  	attle.ELEMENT		attribute list extension: extension point for
+  				additonial project specific attributes of
+  				element ELEMENT; is always empty string in
+  				PI-Mod Core DTD modules
+  	csp.			conditional section parameter: conditional 
+  				section for ... (see below), which can be
+  				enabled (INCLUDE) or disabled (IGNORE)
+  	csp.el.ELEMENT		... element: element declaration and
+  				corresponding attribute declration of Element
+  				ELEMENT
+  	csp.es.ENTITY-SET	... entity set: declaration and call of 
+  				parameter entity of entity set ENTITY-SET
+  
+  ****************************************************************************
+-->
+<!-- Copy from OASIS table module (needed for some XML parsers) -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
+  <xs:simpleType name="yesorno">
+    <xs:restriction base="xs:NMTOKEN"/>
+  </xs:simpleType>
+  <!-- ********************* Attribute value enumerations ******************** -->
+  <xs:simpleType name="attv.countries">
+    <xs:restriction base="xs:string"/>
+  </xs:simpleType>
+  <xs:simpleType name="attv.customerinterval">
+    <xs:restriction base="xs:string"/>
+  </xs:simpleType>
+  <xs:simpleType name="attv.datacustomer">
+    <xs:restriction base="xs:string"/>
+  </xs:simpleType>
+  <xs:simpleType name="attv.dataservice">
+    <xs:restriction base="xs:string"/>
+  </xs:simpleType>
+  <xs:simpleType name="attv.infoclass-1">
+    <xs:restriction base="xs:string"/>
+  </xs:simpleType>
+  <xs:simpleType name="attv.langcode">
+    <xs:restriction base="xs:string"/>
+  </xs:simpleType>
+  <xs:simpleType name="attv.prodclass-1">
+    <xs:restriction base="xs:string"/>
+  </xs:simpleType>
+  <xs:simpleType name="attv.serviceinterval">
+    <xs:restriction base="xs:string"/>
+  </xs:simpleType>
+  <xs:simpleType name="attv.specialintervals">
+    <xs:restriction base="xs:string"/>
+  </xs:simpleType>
+  <xs:simpleType name="attv.userinterface">
+    <xs:restriction base="xs:string"/>
+  </xs:simpleType>
+  <!-- ******************** Single attribute declarations ******************** -->
+  <xs:attributeGroup name="att.class">
+    <xs:attribute name="class" use="required">
+      <xs:simpleType>
+        <xs:restriction base="xs:token">
+          <xs:enumeration value="caution"/>
+          <xs:enumeration value="danger"/>
+          <xs:enumeration value="notice"/>
+          <xs:enumeration value="warning"/>
+        </xs:restriction>
+      </xs:simpleType>
+    </xs:attribute>
+  </xs:attributeGroup>
+  <xs:attributeGroup name="att.infoclass-1">
+    <xs:attribute name="infoclass-1" use="required" type="attv.infoclass-1"/>
+  </xs:attributeGroup>
+  <xs:attributeGroup name="att.nodeid">
+    <xs:attribute name="nodeid"/>
+  </xs:attributeGroup>
+  <xs:attributeGroup name="att.orient">
+    <xs:attribute name="orient" default="port">
+      <xs:simpleType>
+        <xs:restriction base="xs:token">
+          <xs:enumeration value="port"/>
+          <xs:enumeration value="land"/>
+        </xs:restriction>
+      </xs:simpleType>
+    </xs:attribute>
+  </xs:attributeGroup>
+  <xs:attributeGroup name="att.print">
+    <xs:attribute name="print" default="yes">
+      <xs:simpleType>
+        <xs:restriction base="xs:token">
+          <xs:enumeration value="yes"/>
+          <xs:enumeration value="no"/>
+        </xs:restriction>
+      </xs:simpleType>
+    </xs:attribute>
+  </xs:attributeGroup>
+  <xs:attributeGroup name="att.prodclass-1">
+    <xs:attribute name="prodclass-1" use="required" type="attv.prodclass-1"/>
+  </xs:attributeGroup>
+  <xs:attributeGroup name="att.translate">
+    <xs:attribute name="translate" default="yes">
+      <xs:simpleType>
+        <xs:restriction base="xs:token">
+          <xs:enumeration value="yes"/>
+          <xs:enumeration value="no"/>
+        </xs:restriction>
+      </xs:simpleType>
+    </xs:attribute>
+  </xs:attributeGroup>
+  <xs:attributeGroup name="att.valid">
+    <xs:attribute name="valid"/>
+  </xs:attributeGroup>
+  <!-- ******************** Attribute sublist declarations ******************* -->
+  <xs:attributeGroup name="atts.data">
+    <xs:attribute name="customer" type="attv.datacustomer"/>
+    <xs:attribute name="service" type="attv.dataservice"/>
+  </xs:attributeGroup>
+  <xs:attributeGroup name="atts.module">
+    <xs:attribute name="countrycode" type="attv.countries"/>
+    <xs:attribute name="langcode" type="attv.langcode"/>
+  </xs:attributeGroup>
+  <xs:attributeGroup name="atts.mediaobject">
+    <xs:attribute name="objectwidth" default="original">
+      <xs:simpleType>
+        <xs:restriction base="xs:token">
+          <xs:enumeration value="original"/>
+          <xs:enumeration value="textsize"/>
+          <xs:enumeration value="fullpage"/>
+          <xs:enumeration value="marginsize"/>
+        </xs:restriction>
+      </xs:simpleType>
+    </xs:attribute>
+    <xs:attributeGroup ref="att.orient"/>
+  </xs:attributeGroup>
+  <xs:attributeGroup name="atts.link">
+    <xs:attribute name="linktotargetid"/>
+  </xs:attributeGroup>
+  <xs:attributeGroup name="atts.classification">
+    <xs:attributeGroup ref="att.infoclass-1"/>
+    <xs:attributeGroup ref="att.prodclass-1"/>
+  </xs:attributeGroup>
+  <!-- ********************* Attribute list declarations ********************* -->
+  <xs:attributeGroup name="attl.table">
+    <xs:attributeGroup ref="att.orient"/>
+    <xs:attribute name="pgwide" type="yesorno"/>
+    <xs:attribute name="tabstyle"/>
+    <xs:attribute name="tablewidth" default="textsize">
+      <xs:simpleType>
+        <xs:restriction base="xs:token">
+          <xs:enumeration value="textsize"/>
+          <xs:enumeration value="fullpage"/>
+          <xs:enumeration value="original"/>
+        </xs:restriction>
+      </xs:simpleType>
+    </xs:attribute>
+    <xs:attributeGroup ref="att.nodeid"/>
+    <xs:attributeGroup ref="att.translate"/>
+    <xs:attributeGroup ref="att.valid"/>
+  </xs:attributeGroup>
+  <xs:attributeGroup name="attl.tgroup">
+    <xs:attribute name="tgroupstyle"/>
+    <xs:attributeGroup ref="att.nodeid"/>
+    <xs:attributeGroup ref="att.translate"/>
+  </xs:attributeGroup>
+  <xs:attributeGroup name="attl.thead">
+    <xs:attributeGroup ref="att.nodeid"/>
+    <xs:attributeGroup ref="att.translate"/>
+  </xs:attributeGroup>
+  <xs:attributeGroup name="attl.tbody">
+    <xs:attributeGroup ref="att.nodeid"/>
+    <xs:attributeGroup ref="att.translate"/>
+  </xs:attributeGroup>
+  <xs:attributeGroup name="attl.colspec">
+    <xs:attributeGroup ref="att.nodeid"/>
+    <xs:attributeGroup ref="att.translate"/>
+  </xs:attributeGroup>
+  <xs:attributeGroup name="attl.row">
+    <xs:attributeGroup ref="att.nodeid"/>
+    <xs:attributeGroup ref="att.translate"/>
+  </xs:attributeGroup>
+  <xs:attributeGroup name="attl.entry">
+    <xs:attributeGroup ref="att.nodeid"/>
+    <xs:attributeGroup ref="att.translate"/>
+  </xs:attributeGroup>
+  <!-- **** Declaration of attribut list extension point for OASIS table attributes **** -->
+</xs:schema>
+<!-- *************** End of DTD module "attribute-ents.ent" **************** -->

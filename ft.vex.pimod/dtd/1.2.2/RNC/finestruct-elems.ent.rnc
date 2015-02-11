@@ -1,0 +1,710 @@
+# ***************************************************************************
+# 
+# PI-Mod V1.2.2 - DTD Module "finestruct-elems.ent"
+# 
+# ********************************************************************************
+# 
+# DTD module declares element types of the fine structure of PI-Mod.
+# 
+# Public Identifier:
+# 
+#     "-//PI-MOD//ELEMENTS Fine Structure V1.2.2//EN"
+# 
+# Typical invocation:
+# 
+#	<!ENTITY % finestruct-elems
+#		PUBLIC "-//PI-MOD//ELEMENTS Fine Structure V1.2.2//EN"
+#		"finestruct-elems.ent"
+#	>
+#	%finestruct-elems;
+# 
+# ********************************************************************************
+# 
+# Copyright (C) 2011, The PI-Mod Project
+# 
+# Contributors to the The PI-Mod Project (V1.2.2): 
+#	 Wolfgang Ziegler 
+#	 Stephan Steurer 
+#	 Claudia Oberle
+# 
+# Permission is hereby granted, free of charge, to any person obtaining a copy
+# of this software and associated documentation files (the "Software"), to deal
+# in the Software without restriction, including without limitation the rights
+# to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+# copies of the Software, and to permit persons to whom the Software is
+# furnished to do so, subject to the following conditions:
+# 
+# The above copyright notice and this permission notice shall be included in
+# all copies or substantial portions of the Software.
+# 
+# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+# IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+# FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+# AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+# LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+# OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+# THE SOFTWARE.
+# 
+# ********************************************************************************
+# 
+# Naming conventions for parameter entities:
+# 
+#	cmf.ELEMENTGROUP	content model fragment: collects similar 
+#				elements in group ELEMENTGROUP
+#	cm.ELEMENT		content model: complete content model of element
+#				ELEMENT
+#	att.ATTRIBUTE		attribute: declaration of single attribute
+#				ATTRIBUTE (with Name Type Default)
+#	attv.ATTRIBUTE		attribute value enumeration: enumeration of
+#				predefined values for Attribute ATTRIBUTE
+#	atts.ATTRIBUTEGROUP	attribute sublist: collects attributes, which 
+#				belong together, in group ATTRIBUTEGROUP
+#	attl.ELEMENT		attribute list: complete attribute list of
+#				element ELEMENT
+#	attle.ELEMENT		attribute list extension: extension point for
+#				additonial project specific attributes of
+#				element ELEMENT; is always empty string in
+#				PI-Mod Core DTD modules
+#	csp.			conditional section parameter: conditional 
+#				section for ... (see below), which can be
+#				enabled (INCLUDE) or disabled (IGNORE)
+#	csp.el.ELEMENT		... element: element declaration and
+#				corresponding attribute declration of Element
+#				ELEMENT
+#	csp.es.ENTITY-SET	... entity set: declaration and call of 
+#				parameter entity of entity set ENTITY-SET
+# 
+# ****************************************************************************
+
+# ************* Overwrite OASIS table parameter entities ****************
+
+namespace a = "http://relaxng.org/ns/compatibility/annotations/1.0"
+
+tbl.table.mdl = cm.table
+tbl.entry.mdl = cm.entry
+tbl.table.att = attl.table, attle.table
+tbl.tgroup.att = attl.tgroup, attle.tgroup
+tbl.thead.att = attl.thead, attle.thead
+tbl.tbody.att = attl.tbody, attle.tbody
+tbl.colspec.att = attl.colspec, attle.colspec
+tbl.row.att = attl.row, attle.row
+tbl.entry.att = attl.entry, attle.entry
+# **************** Include OASIS Exchange Table Model ******************
+include "soextblx.rnc"
+# ************************ Element declarations ************************
+
+# **** Element <action> ****
+cm.action = condition?, step
+attl.action = att.nodeid, att.translate, att.valid
+attle.action = empty
+action = element action { attlist.action, cm.action }
+attlist.action &= attl.action, attle.action
+# **** Element <actiondescription> ****
+cm.actiondescription = cmf.standardblock+
+attl.actiondescription = att.nodeid, att.translate, att.valid
+attle.actiondescription = empty
+actiondescription =
+  element actiondescription {
+    attlist.actiondescription, cm.actiondescription
+  }
+attlist.actiondescription &=
+  attl.actiondescription, attle.actiondescription
+# **** Element <actionsequenceend> ****
+cm.actionsequenceend = result?, troubleshooting?, note*
+attl.actionsequenceend = att.nodeid, att.translate, att.valid
+attle.actionsequenceend = empty
+actionsequenceend =
+  element actionsequenceend {
+    attlist.actionsequenceend, cm.actionsequenceend
+  }
+attlist.actionsequenceend &=
+  attl.actionsequenceend, attle.actionsequenceend
+# **** Element <caption> ****
+cm.caption = cmf.plaintext*
+attl.caption = att.nodeid, att.translate
+attle.caption = empty
+caption = element caption { attlist.caption, cm.caption }
+attlist.caption &= attl.caption, attle.caption
+# **** Element <cause> ****
+cm.cause = cmf.plaintext*
+attl.cause = att.nodeid, att.translate, att.valid
+attle.cause = empty
+cause = element cause { attlist.cause, cm.cause }
+attlist.cause &= attl.cause, attle.cause
+# **** Element <safetysymbol> ****
+cm.safetysymbol = empty
+attl.safetysymbol =
+  attribute objectname { text },
+  att.nodeid,
+  att.translate
+attle.safetysymbol = empty
+safetysymbol =
+  element safetysymbol { attlist.safetysymbol, cm.safetysymbol }
+attlist.safetysymbol &= attl.safetysymbol, attle.safetysymbol
+# **** Element <condition> ****
+cm.condition = cmf.plaintext*
+attl.condition = att.nodeid, att.translate
+attle.condition = empty
+condition = element condition { attlist.condition, cm.condition }
+attlist.condition &= attl.condition, attle.condition
+# **** Element <consequences> ****
+cm.consequences = cmf.plaintext*
+attl.consequences = att.nodeid, att.translate
+attle.consequences = empty
+consequences =
+  element consequences { attlist.consequences, cm.consequences }
+attlist.consequences &= attl.consequences, attle.consequences
+# **** Element <data> ****
+cm.data =
+  datatype,
+  ((si-value?,
+    us-value?,
+    (tolerance-asymmetric-value | tolerance-symmetric-value)?)
+   | (lower-value, upper-value)
+   | textdata)
+attl.data = atts.data, att.nodeid, att.translate, att.valid
+attle.data = empty
+data = element data { attlist.data, cm.data }
+attlist.data &= attl.data, attle.data
+# **** Element <diagnosisinfo> ****
+cm.diagnosisinfo = errordescription+
+attl.diagnosisinfo = att.nodeid, att.translate
+attle.diagnosisinfo = empty
+diagnosisinfo =
+  element diagnosisinfo { attlist.diagnosisinfo, cm.diagnosisinfo }
+attlist.diagnosisinfo &= attl.diagnosisinfo, attle.diagnosisinfo
+# **** Element <inlinedata> ****
+cm.inlinedata = cmf.simpledata
+attl.inlinedata = atts.data, att.nodeid, att.translate, att.valid
+attle.inlinedata = empty
+inlinedata = element inlinedata { attlist.inlinedata, cm.inlinedata }
+attlist.inlinedata &= attl.inlinedata, attle.inlinedata
+# **** Element <datatype> ****
+cm.datatype =
+  (cmf.justtext | cmf.values | cmf.links | subscript | superscript)*
+attl.datatype = att.nodeid, att.translate
+attle.datatype = empty
+datatype = element datatype { attlist.datatype, cm.datatype }
+attlist.datatype &= attl.datatype, attle.datatype
+# **** Element <description> ****
+cm.description = cmf.plaintext*
+attl.description = att.nodeid, att.translate, att.valid
+attle.description = empty
+description =
+  element description { attlist.description, cm.description }
+attlist.description &= attl.description, attle.description
+# **** Element <emphasis> ****
+cm.emphasis =
+  (cmf.justtext
+   | cmf.inlinemediaobjects
+   | quoted
+   | cmf.links
+   | subscript
+   | superscript
+   | inlinedata)*
+attl.emphasis = att.nodeid, att.translate
+attle.emphasis = empty
+emphasis = element emphasis { attlist.emphasis, cm.emphasis }
+attlist.emphasis &= attl.emphasis, attle.emphasis
+# **** Element <key-entry> ****
+cm.key-entry = cmf.justtext*
+attl.key-entry = att.nodeid, att.translate
+attle.key-entry = empty
+key-entry = element key-entry { attlist.key-entry, cm.key-entry }
+attlist.key-entry &= attl.key-entry, attle.key-entry
+# **** Element <error-code> ****
+cm.error-code = cmf.plaintext*
+attl.error-code = att.nodeid, att.translate
+attle.error-code = empty
+error-code = element error-code { attlist.error-code, cm.error-code }
+attlist.error-code &= attl.error-code, attle.error-code
+# **** Element <errordescription> ****
+cm.errordescription = symptom, (cause, solution)+
+attl.errordescription = att.nodeid, att.translate, att.valid
+attle.errordescription = empty
+errordescription =
+  element errordescription {
+    attlist.errordescription, cm.errordescription
+  }
+attlist.errordescription &=
+  attl.errordescription, attle.errordescription
+# **** Element <image> ****
+cm.image = empty
+attl.image =
+  attribute objectname { text },
+  att.nodeid,
+  att.translate
+attle.image = empty
+image = element image { attlist.image, cm.image }
+attlist.image &= attl.image, attle.image
+# **** Element <footnote> ****
+cm.footnote =
+  (cmf.justtext | cmf.typography | cmf.links | cmf.inlinesemantics)*
+attl.footnote = att.nodeid, att.translate, att.valid
+attle.footnote = empty
+footnote = element footnote { attlist.footnote, cm.footnote }
+attlist.footnote &= attl.footnote, attle.footnote
+# **** Element <glossary-entry> ****
+cm.glossary-entry = glossterm, glossdef
+attl.glossary-entry = att.nodeid, att.translate, att.valid
+attle.glossary-entry = empty
+glossary-entry =
+  element glossary-entry { attlist.glossary-entry, cm.glossary-entry }
+attlist.glossary-entry &= attl.glossary-entry, attle.glossary-entry
+# **** Element <glossterm> ****
+cm.glossterm = cmf.titletext*
+attl.glossterm = att.nodeid, att.translate
+attle.glossterm = empty
+glossterm = element glossterm { attlist.glossterm, cm.glossterm }
+attlist.glossterm &= attl.glossterm, attle.glossterm
+# **** Element <glossdef> ****
+cm.glossdef = cmf.complexblock+
+attl.glossdef = att.nodeid, att.translate
+attle.glossdef = empty
+glossdef = element glossdef { attlist.glossdef, cm.glossdef }
+attlist.glossdef &= attl.glossdef, attle.glossdef
+# **** Element <mediaobject> ****
+cm.mediaobject = image, caption?, legend?
+attl.mediaobject =
+  atts.mediaobject, att.nodeid, att.valid, att.translate
+attle.mediaobject = empty
+mediaobject =
+  element mediaobject { attlist.mediaobject, cm.mediaobject }
+attlist.mediaobject &= attl.mediaobject, attle.mediaobject
+# **** Element <heading> ****
+cm.heading = cmf.titletext*
+attl.heading = att.nodeid, att.translate
+attle.heading = empty
+heading = element heading { attlist.heading, cm.heading }
+attlist.heading &= attl.heading, attle.heading
+# **** Element <identification> ****
+cm.identification = cmf.plaintext*
+attl.identification = att.nodeid, att.translate
+attle.identification = empty
+identification =
+  element identification { attlist.identification, cm.identification }
+attlist.identification &= attl.identification, attle.identification
+# **** Element <identno> ****
+cm.identno = cmf.plaintext*
+attl.identno = att.nodeid, att.translate
+attle.identno = empty
+identno = element identno { attlist.identno, cm.identno }
+attlist.identno &= attl.identno, attle.identno
+# **** Element <inlinemediaobject> ****
+cm.inlinemediaobject = empty
+attl.inlinemediaobject =
+  attribute objectname { text },
+  att.nodeid,
+  att.translate
+attle.inlinemediaobject = empty
+inlinemediaobject =
+  element inlinemediaobject {
+    attlist.inlinemediaobject, cm.inlinemediaobject
+  }
+attlist.inlinemediaobject &=
+  attl.inlinemediaobject, attle.inlinemediaobject
+# **** Element <item> ****
+cm.item = (paragraph | \list)+
+attl.item = att.nodeid, att.valid, att.translate
+attle.item = empty
+item = element item { attlist.item, cm.item }
+attlist.item &= attl.item, attle.item
+# **** Element <itemno> ****
+cm.itemno = cmf.plaintext*
+attl.itemno = att.nodeid, att.translate
+attle.itemno = empty
+itemno = element itemno { attlist.itemno, cm.itemno }
+attlist.itemno &= attl.itemno, attle.itemno
+# **** Element <itemtext> ****
+cm.itemtext = cmf.plaintext*
+attl.itemtext = att.nodeid, att.translate
+attle.itemtext = empty
+itemtext = element itemtext { attlist.itemtext, cm.itemtext }
+attlist.itemtext &= attl.itemtext, attle.itemtext
+# **** Element <keyword> ****
+cm.keyword = key-entry, key-entry?
+attl.keyword = att.nodeid, att.translate, att.valid
+attle.keyword = empty
+keyword = element keyword { attlist.keyword, cm.keyword }
+attlist.keyword &= attl.keyword, attle.keyword
+# **** Element <legend> ****
+cm.legend = heading?, (legend | legenditem)+
+attl.legend = att.nodeid, att.translate
+attle.legend = empty
+legend = element legend { attlist.legend, cm.legend }
+attlist.legend &= attl.legend, attle.legend
+# **** Element <legenditem> ****
+cm.legenditem = itemno?, itemtext+
+attl.legenditem = att.nodeid
+attle.legenditem = empty
+legenditem = element legenditem { attlist.legenditem, cm.legenditem }
+attlist.legenditem &= attl.legenditem, attle.legenditem
+# **** Element <list> ****
+cm.list = keyword*, listintro?, item+, footnote*
+attl.list =
+  [ a:defaultValue = "marked" ]
+  attribute listtype { "numbered" | "marked" }?,
+  att.nodeid,
+  att.valid,
+  att.translate
+attle.list = empty
+\list = element list { attlist.list, cm.list }
+attlist.list &= attl.list, attle.list
+# **** Element <listintro> ****
+cm.listintro = cmf.plaintext*
+attl.listintro = att.nodeid, att.translate
+attle.listintro = empty
+listintro = element listintro { attlist.listintro, cm.listintro }
+attlist.listintro &= attl.listintro, attle.listintro
+# **** Element <lower-value> ****
+cm.lower-value = cmf.values*
+attl.lower-value = att.nodeid, att.translate
+attle.lower-value = empty
+lower-value =
+  element lower-value { attlist.lower-value, cm.lower-value }
+attlist.lower-value &= attl.lower-value, attle.lower-value
+# **** Element <lubrclass> ****
+cm.lubrclass = cmf.entrycontent*
+attl.lubrclass = att.nodeid, att.translate
+attle.lubrclass = empty
+lubrclass = element lubrclass { attlist.lubrclass, cm.lubrclass }
+attlist.lubrclass &= attl.lubrclass, attle.lubrclass
+# **** Element <lubricant> ****
+cm.lubricant =
+  symbol?, name, identno?, medium?, spec?, lubrclass?, description?
+attl.lubricant = att.nodeid, att.translate, att.valid
+attle.lubricant = empty
+lubricant = element lubricant { attlist.lubricant, cm.lubricant }
+attlist.lubricant &= attl.lubricant, attle.lubricant
+# **** Element <lubricantinfo> ****
+cm.lubricantinfo = (quantity, lubricant)+
+attl.lubricantinfo = att.nodeid, att.translate
+attle.lubricantinfo = empty
+lubricantinfo =
+  element lubricantinfo { attlist.lubricantinfo, cm.lubricantinfo }
+attlist.lubricantinfo &= attl.lubricantinfo, attle.lubricantinfo
+# **** Element <medium> ****
+cm.medium = cmf.plaintext*
+attl.medium = att.nodeid, att.translate
+attle.medium = empty
+medium = element medium { attlist.medium, cm.medium }
+attlist.medium &= attl.medium, attle.medium
+# **** Element <name> ****
+cm.name = cmf.plaintext*
+attl.name = att.nodeid, att.translate
+attle.name = empty
+name = element name { attlist.name, cm.name }
+attlist.name &= attl.name, attle.name
+# **** Element <note> ****
+cm.note = (paragraph | \list)+
+attl.note = att.nodeid, att.translate, att.valid
+attle.note = empty
+note = element note { attlist.note, cm.note }
+attlist.note &= attl.note, attle.note
+# **** Element <number> ****
+cm.number = cmf.numberunit*
+attl.number = att.print, att.nodeid, att.translate
+attle.number = empty
+number = element number { attlist.number, cm.number }
+attlist.number &= attl.number, attle.number
+# **** Element <or-action> ****
+cm.or-action = (note | safetyadvice | mediaobject)*, action, note*
+attl.or-action = att.nodeid, att.valid, att.translate
+attle.or-action = empty
+or-action = element or-action { attlist.or-action, cm.or-action }
+attlist.or-action &= attl.or-action, attle.or-action
+# **** Element <orientation> ****
+cm.orientation = cmf.complexblock+
+attl.orientation = att.nodeid, att.translate
+attle.orientation = empty
+orientation =
+  element orientation { attlist.orientation, cm.orientation }
+attlist.orientation &= attl.orientation, attle.orientation
+# **** Element <outlook> ****
+cm.outlook = heading?, cmf.complexblock+
+attl.outlook = att.nodeid, att.valid, att.translate
+attle.outlook = empty
+outlook = element outlook { attlist.outlook, cm.outlook }
+attlist.outlook &= attl.outlook, attle.outlook
+# **** Element <paragraph> ****
+cm.paragraph = cmf.plaintext*
+attl.paragraph = att.nodeid, att.valid, att.translate
+attle.paragraph = empty
+paragraph = element paragraph { attlist.paragraph, cm.paragraph }
+attlist.paragraph &= attl.paragraph, attle.paragraph
+# **** Element <part> ****
+cm.part = symbol?, name, identno?, spec?, description?
+attl.part = att.nodeid, att.translate, att.valid
+attle.part = empty
+part = element part { attlist.part, cm.part }
+attlist.part &= attl.part, attle.part
+# **** Element <prerequisites> ****
+cm.prerequisites = cmf.complexblock+
+attl.prerequisites = att.nodeid, att.translate
+attle.prerequisites = empty
+prerequisites =
+  element prerequisites { attlist.prerequisites, cm.prerequisites }
+attlist.prerequisites &= attl.prerequisites, attle.prerequisites
+# **** Element <problemdescription> ****
+cm.problemdescription = cmf.plaintext*
+attl.problemdescription = att.nodeid, att.valid, att.translate
+attle.problemdescription = empty
+problemdescription =
+  element problemdescription {
+    attlist.problemdescription, cm.problemdescription
+  }
+attlist.problemdescription &=
+  attl.problemdescription, attle.problemdescription
+# **** Element <quantity> ****
+cm.quantity = cmf.simpledata
+attl.quantity = atts.data, att.nodeid, att.translate
+attle.quantity = empty
+quantity = element quantity { attlist.quantity, cm.quantity }
+attlist.quantity &= attl.quantity, attle.quantity
+# **** Element <quoted> ****
+cm.quoted =
+  (cmf.justtext
+   | emphasis
+   | subscript
+   | superscript
+   | cmf.inlinemediaobjects
+   | cmf.links
+   | inlinedata)*
+attl.quoted = att.nodeid, att.translate
+attle.quoted = empty
+quoted = element quoted { attlist.quoted, cm.quoted }
+attlist.quoted &= attl.quoted, attle.quoted
+# **** Element <result> ****
+cm.result = cmf.complexblock*
+attl.result = att.nodeid, att.valid, att.translate
+attle.result = empty
+result = element result { attlist.result, cm.result }
+attlist.result &= attl.result, attle.result
+# **** Element <safetyadvice> ****
+cm.safetyadvice =
+  cause, safetysymbol?, consequences*, action+, mediaobject?
+attl.safetyadvice = att.nodeid, att.class, att.valid, att.translate
+attle.safetyadvice = empty
+safetyadvice =
+  element safetyadvice { attlist.safetyadvice, cm.safetyadvice }
+attlist.safetyadvice &= attl.safetyadvice, attle.safetyadvice
+# **** Element <shortinfo> ****
+cm.shortinfo = cmf.complexblock+
+attl.shortinfo = att.nodeid, att.translate
+attle.shortinfo = empty
+shortinfo = element shortinfo { attlist.shortinfo, cm.shortinfo }
+attlist.shortinfo &= attl.shortinfo, attle.shortinfo
+# **** Element <si-value> ****
+cm.si-value = number, unit
+attl.si-value = att.nodeid, att.translate
+attle.si-value = empty
+si-value = element si-value { attlist.si-value, cm.si-value }
+attlist.si-value &= attl.si-value, attle.si-value
+# **** Element <solution> ****
+cm.solution = cmf.plaintext*
+attl.solution = att.nodeid, att.valid, att.translate
+attle.solution = empty
+solution = element solution { attlist.solution, cm.solution }
+attlist.solution &= attl.solution, attle.solution
+# **** Element <spec> ****
+cm.spec = cmf.plaintext*
+attl.spec = att.nodeid, att.translate
+attle.spec = empty
+spec = element spec { attlist.spec, cm.spec }
+attlist.spec &= attl.spec, attle.spec
+# **** Element <step> ****
+cm.step = cmf.plaintext*
+attl.step = att.nodeid, att.translate
+attle.step = empty
+step = element step { attlist.step, cm.step }
+attlist.step &= attl.step, attle.step
+# **** Element <subscript> ****
+cm.subscript = cmf.justtext*
+attl.subscript = att.nodeid, att.translate
+attle.subscript = empty
+subscript = element subscript { attlist.subscript, cm.subscript }
+attlist.subscript &= attl.subscript, attle.subscript
+# **** Element <superscript> ****
+cm.superscript = cmf.justtext*
+attl.superscript = att.nodeid, att.translate
+attle.superscript = empty
+superscript =
+  element superscript { attlist.superscript, cm.superscript }
+attlist.superscript &= attl.superscript, attle.superscript
+# **** Element <symbol> ****
+cm.symbol = cmf.inlinemediaobjects
+attl.symbol = att.nodeid
+attle.symbol = empty
+symbol = element symbol { attlist.symbol, cm.symbol }
+attlist.symbol &= attl.symbol, attle.symbol
+# **** Element <symptom> ****
+cm.symptom = error-code?, description?
+attl.symptom = att.nodeid, att.translate
+attle.symptom = empty
+symptom = element symptom { attlist.symptom, cm.symptom }
+attlist.symptom &= attl.symptom, attle.symptom
+# **** Element <taskinterval> ****
+cm.taskinterval = cmf.plaintext*
+attl.taskinterval =
+  attribute customer-interval { attv.customerinterval }?,
+  attribute service-interval { attv.serviceinterval }?,
+  attribute special-interval { attv.specialintervals }?,
+  att.nodeid,
+  att.translate,
+  att.valid
+attle.taskinterval = empty
+taskinterval =
+  element taskinterval { attlist.taskinterval, cm.taskinterval }
+attlist.taskinterval &= attl.taskinterval, attle.taskinterval
+# **** Element <taskintervalinfo> ****
+cm.taskintervalinfo = taskinterval+
+attl.taskintervalinfo = att.nodeid, att.translate
+attle.taskintervalinfo = empty
+taskintervalinfo =
+  element taskintervalinfo {
+    attlist.taskintervalinfo, cm.taskintervalinfo
+  }
+attlist.taskintervalinfo &=
+  attl.taskintervalinfo, attle.taskintervalinfo
+# **** Element <techdata> ****
+cm.techdata = heading?, (techdata | data)+
+attl.techdata = att.nodeid, att.translate, att.valid
+attle.techdata = empty
+techdata = element techdata { attlist.techdata, cm.techdata }
+attlist.techdata &= attl.techdata, attle.techdata
+# **** Element <textdata> ****
+cm.textdata =
+  (cmf.justtext | inlinedata | cmf.links | subscript | superscript)*
+attl.textdata = att.nodeid, att.translate
+attle.textdata = empty
+textdata = element textdata { attlist.textdata, cm.textdata }
+attlist.textdata &= attl.textdata, attle.textdata
+# **** Element <link> ****
+cm.link =
+  (cmf.justtext
+   | cmf.inlinemediaobjects
+   | transno
+   | subscript
+   | superscript
+   | quoted
+   | inlinedata
+   | cmf.variables)*
+attl.link = atts.link, att.nodeid, att.translate
+attle.link = empty
+link = element link { attlist.link, cm.link }
+attlist.link &= attl.link, attle.link
+# **** Element <tolerance-asymmetric-value> ****
+cm.tolerance-asymmetric-value =
+  (tolerance-high-value, tolerance-low-value?) | tolerance-low-value
+attl.tolerance-asymmetric-value = att.nodeid, att.translate
+attle.tolerance-asymmetric-value = empty
+tolerance-asymmetric-value =
+  element tolerance-asymmetric-value {
+    attlist.tolerance-asymmetric-value, cm.tolerance-asymmetric-value
+  }
+attlist.tolerance-asymmetric-value &=
+  attl.tolerance-asymmetric-value, attle.tolerance-asymmetric-value
+# **** Element <tolerance-high-value> ****
+cm.tolerance-high-value = cmf.values
+attl.tolerance-high-value = att.nodeid, att.translate
+attle.tolerance-high-value = empty
+tolerance-high-value =
+  element tolerance-high-value {
+    attlist.tolerance-high-value, cm.tolerance-high-value
+  }
+attlist.tolerance-high-value &=
+  attl.tolerance-high-value, attle.tolerance-high-value
+# **** Element <tolerance-low-value> ****
+cm.tolerance-low-value = cmf.values
+attl.tolerance-low-value = att.nodeid, att.translate
+attle.tolerance-low-value = empty
+tolerance-low-value =
+  element tolerance-low-value {
+    attlist.tolerance-low-value, cm.tolerance-low-value
+  }
+attlist.tolerance-low-value &=
+  attl.tolerance-low-value, attle.tolerance-low-value
+# **** Element <tolerance-symmetric-value> ****
+cm.tolerance-symmetric-value = cmf.values
+attl.tolerance-symmetric-value = att.nodeid, att.translate
+attle.tolerance-symmetric-value = empty
+tolerance-symmetric-value =
+  element tolerance-symmetric-value {
+    attlist.tolerance-symmetric-value, cm.tolerance-symmetric-value
+  }
+attlist.tolerance-symmetric-value &=
+  attl.tolerance-symmetric-value, attle.tolerance-symmetric-value
+# **** Element <tool> ****
+cm.tool = symbol?, name, identno?, spec?, description?
+attl.tool = att.nodeid, att.translate, att.valid
+attle.tool = empty
+tool = element tool { attlist.tool, cm.tool }
+attlist.tool &= attl.tool, attle.tool
+# **** Element <toolinfo> ****
+cm.toolinfo = (quantity, (tool | part))+
+attl.toolinfo = att.nodeid, att.translate
+attle.toolinfo = empty
+toolinfo = element toolinfo { attlist.toolinfo, cm.toolinfo }
+attlist.toolinfo &= attl.toolinfo, attle.toolinfo
+# **** Element <transno> ****
+cm.transno = (cmf.justtext | cmf.typography | cmf.links)*
+attl.transno = att.nodeid, att.translate
+attle.transno = empty
+transno = element transno { attlist.transno, cm.transno }
+attlist.transno &= attl.transno, attle.transno
+# **** Element <troubleshooting> ****
+cm.troubleshooting =
+  identification,
+  (problemdescription*, (mediaobject?, action)+)+
+attl.troubleshooting = att.nodeid, att.valid, att.translate
+attle.troubleshooting = empty
+troubleshooting =
+  element troubleshooting {
+    attlist.troubleshooting, cm.troubleshooting
+  }
+attlist.troubleshooting &= attl.troubleshooting, attle.troubleshooting
+# **** Element <user-interface> ****
+cm.user-interface =
+  (cmf.justtext
+   | cmf.inlinemediaobjects
+   | cmf.links
+   | subscript
+   | superscript
+   | transno)*
+attl.user-interface =
+  att.nodeid,
+  attribute type { attv.userinterface }?,
+  att.translate
+attle.user-interface = empty
+user-interface =
+  element user-interface { attlist.user-interface, cm.user-interface }
+attlist.user-interface &= attl.user-interface, attle.user-interface
+# **** Element <variable> ****
+cm.variable = (cmf.justtext | cmf.typography)*
+attl.variable =
+  att.nodeid,
+  attribute name { text },
+  att.translate
+attle.variable = empty
+variable = element variable { attlist.variable, cm.variable }
+attlist.variable &= attl.variable, attle.variable
+# **** Element <unit> ****
+cm.unit = cmf.numberunit*
+attl.unit = att.print, att.nodeid, att.translate
+attle.unit = empty
+unit = element unit { attlist.unit, cm.unit }
+attlist.unit &= attl.unit, attle.unit
+# **** Element <upper-value> ****
+cm.upper-value = cmf.values*
+attl.upper-value = att.nodeid, att.translate
+attle.upper-value = empty
+upper-value =
+  element upper-value { attlist.upper-value, cm.upper-value }
+attlist.upper-value &= attl.upper-value, attle.upper-value
+# **** Element <us-value> ****
+cm.us-value = number, unit
+attl.us-value = att.nodeid, att.translate
+attle.us-value = empty
+us-value = element us-value { attlist.us-value, cm.us-value }
+attlist.us-value &= attl.us-value, attle.us-value
+# ************** End of DTD module "finestruct-elems.ent" ***************

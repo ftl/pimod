@@ -1,0 +1,259 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  ***************************************************************************
+  
+  PI-Mod V1.2.2 - DTD Module "modtypes-elems.ent"
+  
+  ********************************************************************************
+  
+  DTD module declares element types, which are the PI-Mod modules.
+  
+  Public Identifier:
+  
+      "-//PI-MOD//ELEMENTS Module Types V1.2.2//EN"
+  
+  Typical invocation:
+  
+  	<!ENTITY % modtypes-elems
+  		PUBLIC "-//PI-MOD//ELEMENTS Module Types V1.2.2//EN"
+  		"modtypes-elems.ent"
+  	>
+  	%modtypes-elems;
+  
+  ********************************************************************************
+  
+  Copyright (C) 2011, The PI-Mod Project
+  
+  Contributors to the The PI-Mod Project (V1.2.2): 
+  	 Wolfgang Ziegler 
+  	 Stephan Steurer 
+  	 Claudia Oberle
+  
+  Permission is hereby granted, free of charge, to any person obtaining a copy
+  of this software and associated documentation files (the "Software"), to deal
+  in the Software without restriction, including without limitation the rights
+  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+  copies of the Software, and to permit persons to whom the Software is
+  furnished to do so, subject to the following conditions:
+  
+  The above copyright notice and this permission notice shall be included in
+  all copies or substantial portions of the Software.
+  
+  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+  THE SOFTWARE.
+  
+  ********************************************************************************
+  
+  Naming conventions for parameter entities:
+  
+  	cmf.ELEMENTGROUP	content model fragment: collects similar 
+  				elements in group ELEMENTGROUP
+  	cm.ELEMENT		content model: complete content model of element
+  				ELEMENT
+  	att.ATTRIBUTE		attribute: declaration of single attribute
+  				ATTRIBUTE (with Name Type Default)
+  	attv.ATTRIBUTE		attribute value enumeration: enumeration of
+  				predefined values for Attribute ATTRIBUTE
+  	atts.ATTRIBUTEGROUP	attribute sublist: collects attributes, which 
+  				belong together, in group ATTRIBUTEGROUP
+  	attl.ELEMENT		attribute list: complete attribute list of
+  				element ELEMENT
+  	attle.ELEMENT		attribute list extension: extension point for
+  				additonial project specific attributes of
+  				element ELEMENT; is always empty string in
+  				PI-Mod Core DTD modules
+  	csp.			conditional section parameter: conditional 
+  				section for ... (see below), which can be
+  				enabled (INCLUDE) or disabled (IGNORE)
+  	csp.el.ELEMENT		... element: element declaration and
+  				corresponding attribute declration of Element
+  				ELEMENT
+  	csp.es.ENTITY-SET	... entity set: declaration and call of 
+  				parameter entity of entity set ENTITY-SET
+  
+  ****************************************************************************
+-->
+<!-- **** Element <collection> **** -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
+  <xs:complexType name="cm.collection">
+    <xs:sequence>
+      <xs:element ref="heading"/>
+      <xs:element minOccurs="0" ref="orientation"/>
+      <xs:element minOccurs="0" ref="collection_body"/>
+      <xs:element minOccurs="0" maxOccurs="unbounded" ref="collection"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:attributeGroup name="attl.collection">
+    <xs:attributeGroup ref="atts.module"/>
+    <xs:attributeGroup ref="atts.classification"/>
+    <xs:attributeGroup ref="att.nodeid"/>
+    <xs:attributeGroup ref="att.translate"/>
+    <xs:attributeGroup ref="att.valid"/>
+  </xs:attributeGroup>
+  <xs:element name="collection">
+    <xs:complexType>
+      <xs:complexContent>
+        <xs:extension base="cm.collection">
+          <xs:attributeGroup ref="attlist.collection"/>
+        </xs:extension>
+      </xs:complexContent>
+    </xs:complexType>
+  </xs:element>
+  <xs:attributeGroup name="attlist.collection">
+    <xs:attributeGroup ref="attl.collection"/>
+  </xs:attributeGroup>
+  <!-- **** Element <collection_body> **** -->
+  <xs:complexType name="cm.collection_body">
+    <xs:choice>
+      <xs:element maxOccurs="unbounded" ref="errordescription"/>
+      <xs:element maxOccurs="unbounded" ref="glossary-entry"/>
+      <xs:element maxOccurs="unbounded" ref="lubricant"/>
+      <xs:element maxOccurs="unbounded" ref="part"/>
+      <xs:element ref="table"/>
+      <xs:element maxOccurs="unbounded" ref="taskinterval"/>
+      <xs:element maxOccurs="unbounded" ref="tool"/>
+    </xs:choice>
+  </xs:complexType>
+  <xs:attributeGroup name="attl.collection_body">
+    <xs:attributeGroup ref="att.nodeid"/>
+    <xs:attributeGroup ref="att.translate"/>
+  </xs:attributeGroup>
+  <xs:element name="collection_body">
+    <xs:complexType>
+      <xs:complexContent>
+        <xs:extension base="cm.collection_body">
+          <xs:attributeGroup ref="attlist.collection_body"/>
+        </xs:extension>
+      </xs:complexContent>
+    </xs:complexType>
+  </xs:element>
+  <xs:attributeGroup name="attlist.collection_body">
+    <xs:attributeGroup ref="attl.collection_body"/>
+  </xs:attributeGroup>
+  <!-- **** Element <descriptive> **** -->
+  <xs:complexType name="cm.descriptive">
+    <xs:sequence>
+      <xs:element ref="heading"/>
+      <xs:element minOccurs="0" ref="orientation"/>
+      <xs:element minOccurs="0" ref="descriptive_body"/>
+      <xs:element minOccurs="0" maxOccurs="unbounded" ref="descriptive"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:attributeGroup name="attl.descriptive">
+    <xs:attributeGroup ref="atts.module"/>
+    <xs:attributeGroup ref="atts.classification"/>
+    <xs:attributeGroup ref="att.nodeid"/>
+    <xs:attributeGroup ref="att.translate"/>
+    <xs:attributeGroup ref="att.valid"/>
+  </xs:attributeGroup>
+  <xs:element name="descriptive">
+    <xs:complexType>
+      <xs:complexContent>
+        <xs:extension base="cm.descriptive">
+          <xs:attributeGroup ref="attlist.descriptive"/>
+        </xs:extension>
+      </xs:complexContent>
+    </xs:complexType>
+  </xs:element>
+  <xs:attributeGroup name="attlist.descriptive">
+    <xs:attributeGroup ref="attl.descriptive"/>
+  </xs:attributeGroup>
+  <!-- **** Element <descriptive_body> **** -->
+  <xs:complexType name="cm.descriptive_body">
+    <xs:sequence>
+      <xs:element maxOccurs="unbounded" ref="cmf.complexblock"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:attributeGroup name="attl.descriptive_body">
+    <xs:attributeGroup ref="att.nodeid"/>
+    <xs:attributeGroup ref="att.translate"/>
+  </xs:attributeGroup>
+  <xs:element name="descriptive_body">
+    <xs:complexType>
+      <xs:complexContent>
+        <xs:extension base="cm.descriptive_body">
+          <xs:attributeGroup ref="attlist.descriptive_body"/>
+        </xs:extension>
+      </xs:complexContent>
+    </xs:complexType>
+  </xs:element>
+  <xs:attributeGroup name="attlist.descriptive_body">
+    <xs:attributeGroup ref="attl.descriptive_body"/>
+  </xs:attributeGroup>
+  <!-- **** Element <task> **** -->
+  <xs:complexType name="cm.task">
+    <xs:sequence>
+      <xs:element ref="heading"/>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element ref="diagnosisinfo"/>
+        <xs:element ref="lubricantinfo"/>
+        <xs:element ref="taskintervalinfo"/>
+        <xs:element ref="toolinfo"/>
+      </xs:choice>
+      <xs:element minOccurs="0" ref="orientation"/>
+      <xs:element minOccurs="0" ref="shortinfo"/>
+      <xs:element minOccurs="0" ref="prerequisites"/>
+      <xs:element minOccurs="0" ref="task_body"/>
+      <xs:element minOccurs="0" maxOccurs="unbounded" ref="task"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:attributeGroup name="attl.task">
+    <xs:attributeGroup ref="atts.module"/>
+    <xs:attributeGroup ref="atts.classification"/>
+    <xs:attributeGroup ref="att.nodeid"/>
+    <xs:attributeGroup ref="att.translate"/>
+    <xs:attributeGroup ref="att.valid"/>
+  </xs:attributeGroup>
+  <xs:element name="task">
+    <xs:complexType>
+      <xs:complexContent>
+        <xs:extension base="cm.task">
+          <xs:attributeGroup ref="attlist.task"/>
+        </xs:extension>
+      </xs:complexContent>
+    </xs:complexType>
+  </xs:element>
+  <xs:attributeGroup name="attlist.task">
+    <xs:attributeGroup ref="attl.task"/>
+  </xs:attributeGroup>
+  <!-- **** Element <task_body> **** -->
+  <xs:complexType name="cm.task_body">
+    <xs:sequence>
+      <xs:sequence maxOccurs="unbounded">
+        <xs:choice minOccurs="0" maxOccurs="unbounded">
+          <xs:element ref="actiondescription"/>
+          <xs:element ref="safetyadvice"/>
+        </xs:choice>
+        <xs:element ref="action"/>
+        <xs:element minOccurs="0" maxOccurs="unbounded" ref="or-action"/>
+        <xs:element minOccurs="0" ref="result"/>
+        <xs:element minOccurs="0" maxOccurs="unbounded" ref="troubleshooting"/>
+        <xs:element minOccurs="0" maxOccurs="unbounded" ref="note"/>
+      </xs:sequence>
+      <xs:element minOccurs="0" ref="actionsequenceend"/>
+      <xs:element minOccurs="0" ref="outlook"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:attributeGroup name="attl.task_body">
+    <xs:attributeGroup ref="att.nodeid"/>
+    <xs:attributeGroup ref="att.translate"/>
+  </xs:attributeGroup>
+  <xs:element name="task_body">
+    <xs:complexType>
+      <xs:complexContent>
+        <xs:extension base="cm.task_body">
+          <xs:attributeGroup ref="attlist.task_body"/>
+        </xs:extension>
+      </xs:complexContent>
+    </xs:complexType>
+  </xs:element>
+  <xs:attributeGroup name="attlist.task_body">
+    <xs:attributeGroup ref="attl.task_body"/>
+  </xs:attributeGroup>
+</xs:schema>
+<!-- *************** End of DTD module "modtypes-elems.ent" **************** -->

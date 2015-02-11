@@ -1,0 +1,1946 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  ***************************************************************************
+  
+  PI-Mod V1.2.2 - DTD Module "finestruct-elems.ent"
+  
+  ********************************************************************************
+  
+  DTD module declares element types of the fine structure of PI-Mod.
+  
+  Public Identifier:
+  
+      "-//PI-MOD//ELEMENTS Fine Structure V1.2.2//EN"
+  
+  Typical invocation:
+  
+  	<!ENTITY % finestruct-elems
+  		PUBLIC "-//PI-MOD//ELEMENTS Fine Structure V1.2.2//EN"
+  		"finestruct-elems.ent"
+  	>
+  	%finestruct-elems;
+  
+  ********************************************************************************
+  
+  Copyright (C) 2011, The PI-Mod Project
+  
+  Contributors to the The PI-Mod Project (V1.2.2): 
+  	 Wolfgang Ziegler 
+  	 Stephan Steurer 
+  	 Claudia Oberle
+  
+  Permission is hereby granted, free of charge, to any person obtaining a copy
+  of this software and associated documentation files (the "Software"), to deal
+  in the Software without restriction, including without limitation the rights
+  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+  copies of the Software, and to permit persons to whom the Software is
+  furnished to do so, subject to the following conditions:
+  
+  The above copyright notice and this permission notice shall be included in
+  all copies or substantial portions of the Software.
+  
+  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+  THE SOFTWARE.
+  
+  ********************************************************************************
+  
+  Naming conventions for parameter entities:
+  
+  	cmf.ELEMENTGROUP	content model fragment: collects similar 
+  				elements in group ELEMENTGROUP
+  	cm.ELEMENT		content model: complete content model of element
+  				ELEMENT
+  	att.ATTRIBUTE		attribute: declaration of single attribute
+  				ATTRIBUTE (with Name Type Default)
+  	attv.ATTRIBUTE		attribute value enumeration: enumeration of
+  				predefined values for Attribute ATTRIBUTE
+  	atts.ATTRIBUTEGROUP	attribute sublist: collects attributes, which 
+  				belong together, in group ATTRIBUTEGROUP
+  	attl.ELEMENT		attribute list: complete attribute list of
+  				element ELEMENT
+  	attle.ELEMENT		attribute list extension: extension point for
+  				additonial project specific attributes of
+  				element ELEMENT; is always empty string in
+  				PI-Mod Core DTD modules
+  	csp.			conditional section parameter: conditional 
+  				section for ... (see below), which can be
+  				enabled (INCLUDE) or disabled (IGNORE)
+  	csp.el.ELEMENT		... element: element declaration and
+  				corresponding attribute declration of Element
+  				ELEMENT
+  	csp.es.ENTITY-SET	... entity set: declaration and call of 
+  				parameter entity of entity set ENTITY-SET
+  
+  ****************************************************************************
+-->
+<!-- ************* Overwrite OASIS table parameter entities **************** -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
+  <xs:include schemaLocation="soextblx.xsd"/>
+  <xs:complexType name="tbl.table.mdl">
+    <xs:complexContent>
+      <xs:extension base="cm.table"/>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:group name="tbl.entry.mdl">
+    <xs:sequence>
+      <xs:group ref="cm.entry"/>
+    </xs:sequence>
+  </xs:group>
+  <xs:attributeGroup name="tbl.table.att">
+    <xs:attributeGroup ref="attl.table"/>
+  </xs:attributeGroup>
+  <xs:attributeGroup name="tbl.tgroup.att">
+    <xs:attributeGroup ref="attl.tgroup"/>
+  </xs:attributeGroup>
+  <xs:attributeGroup name="tbl.thead.att">
+    <xs:attributeGroup ref="attl.thead"/>
+  </xs:attributeGroup>
+  <xs:attributeGroup name="tbl.tbody.att">
+    <xs:attributeGroup ref="attl.tbody"/>
+  </xs:attributeGroup>
+  <xs:attributeGroup name="tbl.colspec.att">
+    <xs:attributeGroup ref="attl.colspec"/>
+  </xs:attributeGroup>
+  <xs:attributeGroup name="tbl.row.att">
+    <xs:attributeGroup ref="attl.row"/>
+  </xs:attributeGroup>
+  <xs:attributeGroup name="tbl.entry.att">
+    <xs:attributeGroup ref="attl.entry"/>
+  </xs:attributeGroup>
+  <!-- **************** Include OASIS Exchange Table Model ****************** -->
+  <!-- ************************ Element declarations ************************ -->
+  <!-- **** Element <action> **** -->
+  <xs:complexType name="cm.action">
+    <xs:sequence>
+      <xs:element minOccurs="0" ref="condition"/>
+      <xs:element ref="step"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:attributeGroup name="attl.action">
+    <xs:attributeGroup ref="att.nodeid"/>
+    <xs:attributeGroup ref="att.translate"/>
+    <xs:attributeGroup ref="att.valid"/>
+  </xs:attributeGroup>
+  <xs:element name="action">
+    <xs:complexType>
+      <xs:complexContent>
+        <xs:extension base="cm.action">
+          <xs:attributeGroup ref="attlist.action"/>
+        </xs:extension>
+      </xs:complexContent>
+    </xs:complexType>
+  </xs:element>
+  <xs:attributeGroup name="attlist.action">
+    <xs:attributeGroup ref="attl.action"/>
+  </xs:attributeGroup>
+  <!-- **** Element <actiondescription> **** -->
+  <xs:complexType name="cm.actiondescription">
+    <xs:sequence>
+      <xs:element maxOccurs="unbounded" ref="cmf.standardblock"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:attributeGroup name="attl.actiondescription">
+    <xs:attributeGroup ref="att.nodeid"/>
+    <xs:attributeGroup ref="att.translate"/>
+    <xs:attributeGroup ref="att.valid"/>
+  </xs:attributeGroup>
+  <xs:element name="actiondescription">
+    <xs:complexType>
+      <xs:complexContent>
+        <xs:extension base="cm.actiondescription">
+          <xs:attributeGroup ref="attlist.actiondescription"/>
+        </xs:extension>
+      </xs:complexContent>
+    </xs:complexType>
+  </xs:element>
+  <xs:attributeGroup name="attlist.actiondescription">
+    <xs:attributeGroup ref="attl.actiondescription"/>
+  </xs:attributeGroup>
+  <!-- **** Element <actionsequenceend> **** -->
+  <xs:complexType name="cm.actionsequenceend">
+    <xs:sequence>
+      <xs:element minOccurs="0" ref="result"/>
+      <xs:element minOccurs="0" ref="troubleshooting"/>
+      <xs:element minOccurs="0" maxOccurs="unbounded" ref="note"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:attributeGroup name="attl.actionsequenceend">
+    <xs:attributeGroup ref="att.nodeid"/>
+    <xs:attributeGroup ref="att.translate"/>
+    <xs:attributeGroup ref="att.valid"/>
+  </xs:attributeGroup>
+  <xs:element name="actionsequenceend">
+    <xs:complexType>
+      <xs:complexContent>
+        <xs:extension base="cm.actionsequenceend">
+          <xs:attributeGroup ref="attlist.actionsequenceend"/>
+        </xs:extension>
+      </xs:complexContent>
+    </xs:complexType>
+  </xs:element>
+  <xs:attributeGroup name="attlist.actionsequenceend">
+    <xs:attributeGroup ref="attl.actionsequenceend"/>
+  </xs:attributeGroup>
+  <!-- **** Element <caption> **** -->
+  <xs:complexType name="cm.caption" mixed="true">
+    <xs:group minOccurs="0" maxOccurs="unbounded" ref="cmf.plaintext"/>
+  </xs:complexType>
+  <xs:attributeGroup name="attl.caption">
+    <xs:attributeGroup ref="att.nodeid"/>
+    <xs:attributeGroup ref="att.translate"/>
+  </xs:attributeGroup>
+  <xs:element name="caption">
+    <xs:complexType>
+      <xs:complexContent>
+        <xs:extension base="cm.caption">
+          <xs:attributeGroup ref="attlist.caption"/>
+        </xs:extension>
+      </xs:complexContent>
+    </xs:complexType>
+  </xs:element>
+  <xs:attributeGroup name="attlist.caption">
+    <xs:attributeGroup ref="attl.caption"/>
+  </xs:attributeGroup>
+  <!-- **** Element <cause> **** -->
+  <xs:complexType name="cm.cause" mixed="true">
+    <xs:group minOccurs="0" maxOccurs="unbounded" ref="cmf.plaintext"/>
+  </xs:complexType>
+  <xs:attributeGroup name="attl.cause">
+    <xs:attributeGroup ref="att.nodeid"/>
+    <xs:attributeGroup ref="att.translate"/>
+    <xs:attributeGroup ref="att.valid"/>
+  </xs:attributeGroup>
+  <xs:element name="cause">
+    <xs:complexType>
+      <xs:complexContent>
+        <xs:extension base="cm.cause">
+          <xs:attributeGroup ref="attlist.cause"/>
+        </xs:extension>
+      </xs:complexContent>
+    </xs:complexType>
+  </xs:element>
+  <xs:attributeGroup name="attlist.cause">
+    <xs:attributeGroup ref="attl.cause"/>
+  </xs:attributeGroup>
+  <!-- **** Element <safetysymbol> **** -->
+  <xs:attributeGroup name="attl.safetysymbol">
+    <xs:attribute name="objectname" use="required"/>
+    <xs:attributeGroup ref="att.nodeid"/>
+    <xs:attributeGroup ref="att.translate"/>
+  </xs:attributeGroup>
+  <xs:element name="safetysymbol">
+    <xs:complexType>
+      <xs:attributeGroup ref="attlist.safetysymbol"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:attributeGroup name="attlist.safetysymbol">
+    <xs:attributeGroup ref="attl.safetysymbol"/>
+  </xs:attributeGroup>
+  <!-- **** Element <condition> **** -->
+  <xs:complexType name="cm.condition" mixed="true">
+    <xs:group minOccurs="0" maxOccurs="unbounded" ref="cmf.plaintext"/>
+  </xs:complexType>
+  <xs:attributeGroup name="attl.condition">
+    <xs:attributeGroup ref="att.nodeid"/>
+    <xs:attributeGroup ref="att.translate"/>
+  </xs:attributeGroup>
+  <xs:element name="condition">
+    <xs:complexType>
+      <xs:complexContent>
+        <xs:extension base="cm.condition">
+          <xs:attributeGroup ref="attlist.condition"/>
+        </xs:extension>
+      </xs:complexContent>
+    </xs:complexType>
+  </xs:element>
+  <xs:attributeGroup name="attlist.condition">
+    <xs:attributeGroup ref="attl.condition"/>
+  </xs:attributeGroup>
+  <!-- **** Element <consequences> **** -->
+  <xs:complexType name="cm.consequences" mixed="true">
+    <xs:group minOccurs="0" maxOccurs="unbounded" ref="cmf.plaintext"/>
+  </xs:complexType>
+  <xs:attributeGroup name="attl.consequences">
+    <xs:attributeGroup ref="att.nodeid"/>
+    <xs:attributeGroup ref="att.translate"/>
+  </xs:attributeGroup>
+  <xs:element name="consequences">
+    <xs:complexType>
+      <xs:complexContent>
+        <xs:extension base="cm.consequences">
+          <xs:attributeGroup ref="attlist.consequences"/>
+        </xs:extension>
+      </xs:complexContent>
+    </xs:complexType>
+  </xs:element>
+  <xs:attributeGroup name="attlist.consequences">
+    <xs:attributeGroup ref="attl.consequences"/>
+  </xs:attributeGroup>
+  <!-- **** Element <data> **** -->
+  <xs:complexType name="cm.data">
+    <xs:sequence>
+      <xs:element ref="datatype"/>
+      <xs:choice>
+        <xs:sequence>
+          <xs:element minOccurs="0" ref="si-value"/>
+          <xs:element minOccurs="0" ref="us-value"/>
+          <xs:choice minOccurs="0">
+            <xs:element ref="tolerance-asymmetric-value"/>
+            <xs:element ref="tolerance-symmetric-value"/>
+          </xs:choice>
+        </xs:sequence>
+        <xs:sequence>
+          <xs:element ref="lower-value"/>
+          <xs:element ref="upper-value"/>
+        </xs:sequence>
+        <xs:element ref="textdata"/>
+      </xs:choice>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:attributeGroup name="attl.data">
+    <xs:attributeGroup ref="atts.data"/>
+    <xs:attributeGroup ref="att.nodeid"/>
+    <xs:attributeGroup ref="att.translate"/>
+    <xs:attributeGroup ref="att.valid"/>
+  </xs:attributeGroup>
+  <xs:element name="data">
+    <xs:complexType>
+      <xs:complexContent>
+        <xs:extension base="cm.data">
+          <xs:attributeGroup ref="attlist.data"/>
+        </xs:extension>
+      </xs:complexContent>
+    </xs:complexType>
+  </xs:element>
+  <xs:attributeGroup name="attlist.data">
+    <xs:attributeGroup ref="attl.data"/>
+  </xs:attributeGroup>
+  <!-- **** Element <diagnosisinfo> **** -->
+  <xs:complexType name="cm.diagnosisinfo">
+    <xs:sequence>
+      <xs:element maxOccurs="unbounded" ref="errordescription"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:attributeGroup name="attl.diagnosisinfo">
+    <xs:attributeGroup ref="att.nodeid"/>
+    <xs:attributeGroup ref="att.translate"/>
+  </xs:attributeGroup>
+  <xs:element name="diagnosisinfo">
+    <xs:complexType>
+      <xs:complexContent>
+        <xs:extension base="cm.diagnosisinfo">
+          <xs:attributeGroup ref="attlist.diagnosisinfo"/>
+        </xs:extension>
+      </xs:complexContent>
+    </xs:complexType>
+  </xs:element>
+  <xs:attributeGroup name="attlist.diagnosisinfo">
+    <xs:attributeGroup ref="attl.diagnosisinfo"/>
+  </xs:attributeGroup>
+  <!-- **** Element <inlinedata> **** -->
+  <xs:complexType name="cm.inlinedata">
+    <xs:complexContent>
+      <xs:extension base="cmf.simpledata"/>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:attributeGroup name="attl.inlinedata">
+    <xs:attributeGroup ref="atts.data"/>
+    <xs:attributeGroup ref="att.nodeid"/>
+    <xs:attributeGroup ref="att.translate"/>
+    <xs:attributeGroup ref="att.valid"/>
+  </xs:attributeGroup>
+  <xs:element name="inlinedata" substitutionGroup="cmf.inlinesemantics">
+    <xs:complexType>
+      <xs:complexContent>
+        <xs:extension base="cm.inlinedata">
+          <xs:attributeGroup ref="attlist.inlinedata"/>
+        </xs:extension>
+      </xs:complexContent>
+    </xs:complexType>
+  </xs:element>
+  <xs:attributeGroup name="attlist.inlinedata">
+    <xs:attributeGroup ref="attl.inlinedata"/>
+  </xs:attributeGroup>
+  <!-- **** Element <datatype> **** -->
+  <xs:complexType name="cm.datatype" mixed="true">
+    <xs:choice minOccurs="0" maxOccurs="unbounded">
+      <xs:element ref="cmf.values"/>
+      <xs:element ref="cmf.links"/>
+      <xs:element ref="subscript"/>
+      <xs:element ref="superscript"/>
+    </xs:choice>
+  </xs:complexType>
+  <xs:attributeGroup name="attl.datatype">
+    <xs:attributeGroup ref="att.nodeid"/>
+    <xs:attributeGroup ref="att.translate"/>
+  </xs:attributeGroup>
+  <xs:element name="datatype">
+    <xs:complexType>
+      <xs:complexContent>
+        <xs:extension base="cm.datatype">
+          <xs:attributeGroup ref="attlist.datatype"/>
+        </xs:extension>
+      </xs:complexContent>
+    </xs:complexType>
+  </xs:element>
+  <xs:attributeGroup name="attlist.datatype">
+    <xs:attributeGroup ref="attl.datatype"/>
+  </xs:attributeGroup>
+  <!-- **** Element <description> **** -->
+  <xs:complexType name="cm.description" mixed="true">
+    <xs:group minOccurs="0" maxOccurs="unbounded" ref="cmf.plaintext"/>
+  </xs:complexType>
+  <xs:attributeGroup name="attl.description">
+    <xs:attributeGroup ref="att.nodeid"/>
+    <xs:attributeGroup ref="att.translate"/>
+    <xs:attributeGroup ref="att.valid"/>
+  </xs:attributeGroup>
+  <xs:element name="description">
+    <xs:complexType>
+      <xs:complexContent>
+        <xs:extension base="cm.description">
+          <xs:attributeGroup ref="attlist.description"/>
+        </xs:extension>
+      </xs:complexContent>
+    </xs:complexType>
+  </xs:element>
+  <xs:attributeGroup name="attlist.description">
+    <xs:attributeGroup ref="attl.description"/>
+  </xs:attributeGroup>
+  <!-- **** Element <emphasis> **** -->
+  <xs:complexType name="cm.emphasis" mixed="true">
+    <xs:choice minOccurs="0" maxOccurs="unbounded">
+      <xs:element ref="cmf.inlinemediaobjects"/>
+      <xs:element ref="quoted"/>
+      <xs:element ref="cmf.links"/>
+      <xs:element ref="subscript"/>
+      <xs:element ref="superscript"/>
+      <xs:element ref="inlinedata"/>
+    </xs:choice>
+  </xs:complexType>
+  <xs:attributeGroup name="attl.emphasis">
+    <xs:attributeGroup ref="att.nodeid"/>
+    <xs:attributeGroup ref="att.translate"/>
+  </xs:attributeGroup>
+  <xs:element name="emphasis" substitutionGroup="cmf.typography">
+    <xs:complexType>
+      <xs:complexContent>
+        <xs:extension base="cm.emphasis">
+          <xs:attributeGroup ref="attlist.emphasis"/>
+        </xs:extension>
+      </xs:complexContent>
+    </xs:complexType>
+  </xs:element>
+  <xs:attributeGroup name="attlist.emphasis">
+    <xs:attributeGroup ref="attl.emphasis"/>
+  </xs:attributeGroup>
+  <!-- **** Element <key-entry> **** -->
+  <xs:attributeGroup name="attl.key-entry">
+    <xs:attributeGroup ref="att.nodeid"/>
+    <xs:attributeGroup ref="att.translate"/>
+  </xs:attributeGroup>
+  <xs:element name="key-entry">
+    <xs:complexType mixed="true">
+      <xs:attributeGroup ref="attlist.key-entry"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:attributeGroup name="attlist.key-entry">
+    <xs:attributeGroup ref="attl.key-entry"/>
+  </xs:attributeGroup>
+  <!-- **** Element <error-code> **** -->
+  <xs:complexType name="cm.error-code" mixed="true">
+    <xs:group minOccurs="0" maxOccurs="unbounded" ref="cmf.plaintext"/>
+  </xs:complexType>
+  <xs:attributeGroup name="attl.error-code">
+    <xs:attributeGroup ref="att.nodeid"/>
+    <xs:attributeGroup ref="att.translate"/>
+  </xs:attributeGroup>
+  <xs:element name="error-code">
+    <xs:complexType>
+      <xs:complexContent>
+        <xs:extension base="cm.error-code">
+          <xs:attributeGroup ref="attlist.error-code"/>
+        </xs:extension>
+      </xs:complexContent>
+    </xs:complexType>
+  </xs:element>
+  <xs:attributeGroup name="attlist.error-code">
+    <xs:attributeGroup ref="attl.error-code"/>
+  </xs:attributeGroup>
+  <!-- **** Element <errordescription> **** -->
+  <xs:complexType name="cm.errordescription">
+    <xs:sequence>
+      <xs:element ref="symptom"/>
+      <xs:sequence maxOccurs="unbounded">
+        <xs:element ref="cause"/>
+        <xs:element ref="solution"/>
+      </xs:sequence>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:attributeGroup name="attl.errordescription">
+    <xs:attributeGroup ref="att.nodeid"/>
+    <xs:attributeGroup ref="att.translate"/>
+    <xs:attributeGroup ref="att.valid"/>
+  </xs:attributeGroup>
+  <xs:element name="errordescription">
+    <xs:complexType>
+      <xs:complexContent>
+        <xs:extension base="cm.errordescription">
+          <xs:attributeGroup ref="attlist.errordescription"/>
+        </xs:extension>
+      </xs:complexContent>
+    </xs:complexType>
+  </xs:element>
+  <xs:attributeGroup name="attlist.errordescription">
+    <xs:attributeGroup ref="attl.errordescription"/>
+  </xs:attributeGroup>
+  <!-- **** Element <image> **** -->
+  <xs:attributeGroup name="attl.image">
+    <xs:attribute name="objectname" use="required"/>
+    <xs:attributeGroup ref="att.nodeid"/>
+    <xs:attributeGroup ref="att.translate"/>
+  </xs:attributeGroup>
+  <xs:element name="image">
+    <xs:complexType>
+      <xs:attributeGroup ref="attlist.image"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:attributeGroup name="attlist.image">
+    <xs:attributeGroup ref="attl.image"/>
+  </xs:attributeGroup>
+  <!-- **** Element <footnote> **** -->
+  <xs:complexType name="cm.footnote" mixed="true">
+    <xs:choice minOccurs="0" maxOccurs="unbounded">
+      <xs:element ref="cmf.typography"/>
+      <xs:element ref="cmf.links"/>
+      <xs:element ref="cmf.inlinesemantics"/>
+    </xs:choice>
+  </xs:complexType>
+  <xs:attributeGroup name="attl.footnote">
+    <xs:attributeGroup ref="att.nodeid"/>
+    <xs:attributeGroup ref="att.translate"/>
+    <xs:attributeGroup ref="att.valid"/>
+  </xs:attributeGroup>
+  <xs:element name="footnote" substitutionGroup="cmf.simpleblock">
+    <xs:complexType>
+      <xs:complexContent>
+        <xs:extension base="cm.footnote">
+          <xs:attributeGroup ref="attlist.footnote"/>
+        </xs:extension>
+      </xs:complexContent>
+    </xs:complexType>
+  </xs:element>
+  <xs:attributeGroup name="attlist.footnote">
+    <xs:attributeGroup ref="attl.footnote"/>
+  </xs:attributeGroup>
+  <!-- **** Element <glossary-entry> **** -->
+  <xs:complexType name="cm.glossary-entry">
+    <xs:sequence>
+      <xs:element ref="glossterm"/>
+      <xs:element ref="glossdef"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:attributeGroup name="attl.glossary-entry">
+    <xs:attributeGroup ref="att.nodeid"/>
+    <xs:attributeGroup ref="att.translate"/>
+    <xs:attributeGroup ref="att.valid"/>
+  </xs:attributeGroup>
+  <xs:element name="glossary-entry">
+    <xs:complexType>
+      <xs:complexContent>
+        <xs:extension base="cm.glossary-entry">
+          <xs:attributeGroup ref="attlist.glossary-entry"/>
+        </xs:extension>
+      </xs:complexContent>
+    </xs:complexType>
+  </xs:element>
+  <xs:attributeGroup name="attlist.glossary-entry">
+    <xs:attributeGroup ref="attl.glossary-entry"/>
+  </xs:attributeGroup>
+  <!-- **** Element <glossterm> **** -->
+  <xs:complexType name="cm.glossterm" mixed="true">
+    <xs:group minOccurs="0" maxOccurs="unbounded" ref="cmf.titletext"/>
+  </xs:complexType>
+  <xs:attributeGroup name="attl.glossterm">
+    <xs:attributeGroup ref="att.nodeid"/>
+    <xs:attributeGroup ref="att.translate"/>
+  </xs:attributeGroup>
+  <xs:element name="glossterm">
+    <xs:complexType>
+      <xs:complexContent>
+        <xs:extension base="cm.glossterm">
+          <xs:attributeGroup ref="attlist.glossterm"/>
+        </xs:extension>
+      </xs:complexContent>
+    </xs:complexType>
+  </xs:element>
+  <xs:attributeGroup name="attlist.glossterm">
+    <xs:attributeGroup ref="attl.glossterm"/>
+  </xs:attributeGroup>
+  <!-- **** Element <glossdef> **** -->
+  <xs:complexType name="cm.glossdef">
+    <xs:sequence>
+      <xs:element maxOccurs="unbounded" ref="cmf.complexblock"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:attributeGroup name="attl.glossdef">
+    <xs:attributeGroup ref="att.nodeid"/>
+    <xs:attributeGroup ref="att.translate"/>
+  </xs:attributeGroup>
+  <xs:element name="glossdef">
+    <xs:complexType>
+      <xs:complexContent>
+        <xs:extension base="cm.glossdef">
+          <xs:attributeGroup ref="attlist.glossdef"/>
+        </xs:extension>
+      </xs:complexContent>
+    </xs:complexType>
+  </xs:element>
+  <xs:attributeGroup name="attlist.glossdef">
+    <xs:attributeGroup ref="attl.glossdef"/>
+  </xs:attributeGroup>
+  <!-- **** Element <mediaobject> **** -->
+  <xs:complexType name="cm.mediaobject">
+    <xs:sequence>
+      <xs:element ref="image"/>
+      <xs:element minOccurs="0" ref="caption"/>
+      <xs:element minOccurs="0" ref="legend"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:attributeGroup name="attl.mediaobject">
+    <xs:attributeGroup ref="atts.mediaobject"/>
+    <xs:attributeGroup ref="att.nodeid"/>
+    <xs:attributeGroup ref="att.valid"/>
+    <xs:attributeGroup ref="att.translate"/>
+  </xs:attributeGroup>
+  <xs:element name="mediaobject" substitutionGroup="cmf.standardblock">
+    <xs:complexType>
+      <xs:complexContent>
+        <xs:extension base="cm.mediaobject">
+          <xs:attributeGroup ref="attlist.mediaobject"/>
+        </xs:extension>
+      </xs:complexContent>
+    </xs:complexType>
+  </xs:element>
+  <xs:attributeGroup name="attlist.mediaobject">
+    <xs:attributeGroup ref="attl.mediaobject"/>
+  </xs:attributeGroup>
+  <!-- **** Element <heading> **** -->
+  <xs:complexType name="cm.heading" mixed="true">
+    <xs:group minOccurs="0" maxOccurs="unbounded" ref="cmf.titletext"/>
+  </xs:complexType>
+  <xs:attributeGroup name="attl.heading">
+    <xs:attributeGroup ref="att.nodeid"/>
+    <xs:attributeGroup ref="att.translate"/>
+  </xs:attributeGroup>
+  <xs:element name="heading">
+    <xs:complexType>
+      <xs:complexContent>
+        <xs:extension base="cm.heading">
+          <xs:attributeGroup ref="attlist.heading"/>
+        </xs:extension>
+      </xs:complexContent>
+    </xs:complexType>
+  </xs:element>
+  <xs:attributeGroup name="attlist.heading">
+    <xs:attributeGroup ref="attl.heading"/>
+  </xs:attributeGroup>
+  <!-- **** Element <identification> **** -->
+  <xs:complexType name="cm.identification" mixed="true">
+    <xs:group minOccurs="0" maxOccurs="unbounded" ref="cmf.plaintext"/>
+  </xs:complexType>
+  <xs:attributeGroup name="attl.identification">
+    <xs:attributeGroup ref="att.nodeid"/>
+    <xs:attributeGroup ref="att.translate"/>
+  </xs:attributeGroup>
+  <xs:element name="identification">
+    <xs:complexType>
+      <xs:complexContent>
+        <xs:extension base="cm.identification">
+          <xs:attributeGroup ref="attlist.identification"/>
+        </xs:extension>
+      </xs:complexContent>
+    </xs:complexType>
+  </xs:element>
+  <xs:attributeGroup name="attlist.identification">
+    <xs:attributeGroup ref="attl.identification"/>
+  </xs:attributeGroup>
+  <!-- **** Element <identno> **** -->
+  <xs:complexType name="cm.identno" mixed="true">
+    <xs:group minOccurs="0" maxOccurs="unbounded" ref="cmf.plaintext"/>
+  </xs:complexType>
+  <xs:attributeGroup name="attl.identno">
+    <xs:attributeGroup ref="att.nodeid"/>
+    <xs:attributeGroup ref="att.translate"/>
+  </xs:attributeGroup>
+  <xs:element name="identno">
+    <xs:complexType>
+      <xs:complexContent>
+        <xs:extension base="cm.identno">
+          <xs:attributeGroup ref="attlist.identno"/>
+        </xs:extension>
+      </xs:complexContent>
+    </xs:complexType>
+  </xs:element>
+  <xs:attributeGroup name="attlist.identno">
+    <xs:attributeGroup ref="attl.identno"/>
+  </xs:attributeGroup>
+  <!-- **** Element <inlinemediaobject> **** -->
+  <xs:attributeGroup name="attl.inlinemediaobject">
+    <xs:attribute name="objectname" use="required"/>
+    <xs:attributeGroup ref="att.nodeid"/>
+    <xs:attributeGroup ref="att.translate"/>
+  </xs:attributeGroup>
+  <xs:element name="inlinemediaobject" substitutionGroup="cmf.inlinemediaobjects"/>
+  <xs:attributeGroup name="attlist.inlinemediaobject">
+    <xs:attributeGroup ref="attl.inlinemediaobject"/>
+  </xs:attributeGroup>
+  <!-- **** Element <item> **** -->
+  <xs:complexType name="cm.item">
+    <xs:choice maxOccurs="unbounded">
+      <xs:element ref="paragraph"/>
+      <xs:element ref="list"/>
+    </xs:choice>
+  </xs:complexType>
+  <xs:attributeGroup name="attl.item">
+    <xs:attributeGroup ref="att.nodeid"/>
+    <xs:attributeGroup ref="att.valid"/>
+    <xs:attributeGroup ref="att.translate"/>
+  </xs:attributeGroup>
+  <xs:element name="item">
+    <xs:complexType>
+      <xs:complexContent>
+        <xs:extension base="cm.item">
+          <xs:attributeGroup ref="attlist.item"/>
+        </xs:extension>
+      </xs:complexContent>
+    </xs:complexType>
+  </xs:element>
+  <xs:attributeGroup name="attlist.item">
+    <xs:attributeGroup ref="attl.item"/>
+  </xs:attributeGroup>
+  <!-- **** Element <itemno> **** -->
+  <xs:complexType name="cm.itemno" mixed="true">
+    <xs:group minOccurs="0" maxOccurs="unbounded" ref="cmf.plaintext"/>
+  </xs:complexType>
+  <xs:attributeGroup name="attl.itemno">
+    <xs:attributeGroup ref="att.nodeid"/>
+    <xs:attributeGroup ref="att.translate"/>
+  </xs:attributeGroup>
+  <xs:element name="itemno">
+    <xs:complexType>
+      <xs:complexContent>
+        <xs:extension base="cm.itemno">
+          <xs:attributeGroup ref="attlist.itemno"/>
+        </xs:extension>
+      </xs:complexContent>
+    </xs:complexType>
+  </xs:element>
+  <xs:attributeGroup name="attlist.itemno">
+    <xs:attributeGroup ref="attl.itemno"/>
+  </xs:attributeGroup>
+  <!-- **** Element <itemtext> **** -->
+  <xs:complexType name="cm.itemtext" mixed="true">
+    <xs:group minOccurs="0" maxOccurs="unbounded" ref="cmf.plaintext"/>
+  </xs:complexType>
+  <xs:attributeGroup name="attl.itemtext">
+    <xs:attributeGroup ref="att.nodeid"/>
+    <xs:attributeGroup ref="att.translate"/>
+  </xs:attributeGroup>
+  <xs:element name="itemtext">
+    <xs:complexType>
+      <xs:complexContent>
+        <xs:extension base="cm.itemtext">
+          <xs:attributeGroup ref="attlist.itemtext"/>
+        </xs:extension>
+      </xs:complexContent>
+    </xs:complexType>
+  </xs:element>
+  <xs:attributeGroup name="attlist.itemtext">
+    <xs:attributeGroup ref="attl.itemtext"/>
+  </xs:attributeGroup>
+  <!-- **** Element <keyword> **** -->
+  <xs:complexType name="cm.keyword">
+    <xs:sequence>
+      <xs:element ref="key-entry"/>
+      <xs:element minOccurs="0" ref="key-entry"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:attributeGroup name="attl.keyword">
+    <xs:attributeGroup ref="att.nodeid"/>
+    <xs:attributeGroup ref="att.translate"/>
+    <xs:attributeGroup ref="att.valid"/>
+  </xs:attributeGroup>
+  <xs:element name="keyword" substitutionGroup="cmf.simpleblock">
+    <xs:complexType>
+      <xs:complexContent>
+        <xs:extension base="cm.keyword">
+          <xs:attributeGroup ref="attlist.keyword"/>
+        </xs:extension>
+      </xs:complexContent>
+    </xs:complexType>
+  </xs:element>
+  <xs:attributeGroup name="attlist.keyword">
+    <xs:attributeGroup ref="attl.keyword"/>
+  </xs:attributeGroup>
+  <!-- **** Element <legend> **** -->
+  <xs:complexType name="cm.legend">
+    <xs:sequence>
+      <xs:element minOccurs="0" ref="heading"/>
+      <xs:choice maxOccurs="unbounded">
+        <xs:element ref="legend"/>
+        <xs:element ref="legenditem"/>
+      </xs:choice>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:attributeGroup name="attl.legend">
+    <xs:attributeGroup ref="att.nodeid"/>
+    <xs:attributeGroup ref="att.translate"/>
+  </xs:attributeGroup>
+  <xs:element name="legend">
+    <xs:complexType>
+      <xs:complexContent>
+        <xs:extension base="cm.legend">
+          <xs:attributeGroup ref="attlist.legend"/>
+        </xs:extension>
+      </xs:complexContent>
+    </xs:complexType>
+  </xs:element>
+  <xs:attributeGroup name="attlist.legend">
+    <xs:attributeGroup ref="attl.legend"/>
+  </xs:attributeGroup>
+  <!-- **** Element <legenditem> **** -->
+  <xs:complexType name="cm.legenditem">
+    <xs:sequence>
+      <xs:element minOccurs="0" ref="itemno"/>
+      <xs:element maxOccurs="unbounded" ref="itemtext"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:attributeGroup name="attl.legenditem">
+    <xs:attributeGroup ref="att.nodeid"/>
+  </xs:attributeGroup>
+  <xs:element name="legenditem">
+    <xs:complexType>
+      <xs:complexContent>
+        <xs:extension base="cm.legenditem">
+          <xs:attributeGroup ref="attlist.legenditem"/>
+        </xs:extension>
+      </xs:complexContent>
+    </xs:complexType>
+  </xs:element>
+  <xs:attributeGroup name="attlist.legenditem">
+    <xs:attributeGroup ref="attl.legenditem"/>
+  </xs:attributeGroup>
+  <!-- **** Element <list> **** -->
+  <xs:complexType name="cm.list">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" ref="keyword"/>
+      <xs:element minOccurs="0" ref="listintro"/>
+      <xs:element maxOccurs="unbounded" ref="item"/>
+      <xs:element minOccurs="0" maxOccurs="unbounded" ref="footnote"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:attributeGroup name="attl.list">
+    <xs:attribute name="listtype" default="marked">
+      <xs:simpleType>
+        <xs:restriction base="xs:token">
+          <xs:enumeration value="numbered"/>
+          <xs:enumeration value="marked"/>
+        </xs:restriction>
+      </xs:simpleType>
+    </xs:attribute>
+    <xs:attributeGroup ref="att.nodeid"/>
+    <xs:attributeGroup ref="att.valid"/>
+    <xs:attributeGroup ref="att.translate"/>
+  </xs:attributeGroup>
+  <xs:element name="list" substitutionGroup="cmf.simpleblock">
+    <xs:complexType>
+      <xs:complexContent>
+        <xs:extension base="cm.list">
+          <xs:attributeGroup ref="attlist.list"/>
+        </xs:extension>
+      </xs:complexContent>
+    </xs:complexType>
+  </xs:element>
+  <xs:attributeGroup name="attlist.list">
+    <xs:attributeGroup ref="attl.list"/>
+  </xs:attributeGroup>
+  <!-- **** Element <listintro> **** -->
+  <xs:complexType name="cm.listintro" mixed="true">
+    <xs:group minOccurs="0" maxOccurs="unbounded" ref="cmf.plaintext"/>
+  </xs:complexType>
+  <xs:attributeGroup name="attl.listintro">
+    <xs:attributeGroup ref="att.nodeid"/>
+    <xs:attributeGroup ref="att.translate"/>
+  </xs:attributeGroup>
+  <xs:element name="listintro">
+    <xs:complexType>
+      <xs:complexContent>
+        <xs:extension base="cm.listintro">
+          <xs:attributeGroup ref="attlist.listintro"/>
+        </xs:extension>
+      </xs:complexContent>
+    </xs:complexType>
+  </xs:element>
+  <xs:attributeGroup name="attlist.listintro">
+    <xs:attributeGroup ref="attl.listintro"/>
+  </xs:attributeGroup>
+  <!-- **** Element <lower-value> **** -->
+  <xs:complexType name="cm.lower-value">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" ref="cmf.values"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:attributeGroup name="attl.lower-value">
+    <xs:attributeGroup ref="att.nodeid"/>
+    <xs:attributeGroup ref="att.translate"/>
+  </xs:attributeGroup>
+  <xs:element name="lower-value">
+    <xs:complexType>
+      <xs:complexContent>
+        <xs:extension base="cm.lower-value">
+          <xs:attributeGroup ref="attlist.lower-value"/>
+        </xs:extension>
+      </xs:complexContent>
+    </xs:complexType>
+  </xs:element>
+  <xs:attributeGroup name="attlist.lower-value">
+    <xs:attributeGroup ref="attl.lower-value"/>
+  </xs:attributeGroup>
+  <!-- **** Element <lubrclass> **** -->
+  <xs:complexType name="cm.lubrclass" mixed="true">
+    <xs:group minOccurs="0" maxOccurs="unbounded" ref="cmf.entrycontent"/>
+  </xs:complexType>
+  <xs:attributeGroup name="attl.lubrclass">
+    <xs:attributeGroup ref="att.nodeid"/>
+    <xs:attributeGroup ref="att.translate"/>
+  </xs:attributeGroup>
+  <xs:element name="lubrclass">
+    <xs:complexType>
+      <xs:complexContent>
+        <xs:extension base="cm.lubrclass">
+          <xs:attributeGroup ref="attlist.lubrclass"/>
+        </xs:extension>
+      </xs:complexContent>
+    </xs:complexType>
+  </xs:element>
+  <xs:attributeGroup name="attlist.lubrclass">
+    <xs:attributeGroup ref="attl.lubrclass"/>
+  </xs:attributeGroup>
+  <!-- **** Element <lubricant> **** -->
+  <xs:complexType name="cm.lubricant">
+    <xs:sequence>
+      <xs:element minOccurs="0" ref="symbol"/>
+      <xs:element ref="name"/>
+      <xs:element minOccurs="0" ref="identno"/>
+      <xs:element minOccurs="0" ref="medium"/>
+      <xs:element minOccurs="0" ref="spec"/>
+      <xs:element minOccurs="0" ref="lubrclass"/>
+      <xs:element minOccurs="0" ref="description"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:attributeGroup name="attl.lubricant">
+    <xs:attributeGroup ref="att.nodeid"/>
+    <xs:attributeGroup ref="att.translate"/>
+    <xs:attributeGroup ref="att.valid"/>
+  </xs:attributeGroup>
+  <xs:element name="lubricant">
+    <xs:complexType>
+      <xs:complexContent>
+        <xs:extension base="cm.lubricant">
+          <xs:attributeGroup ref="attlist.lubricant"/>
+        </xs:extension>
+      </xs:complexContent>
+    </xs:complexType>
+  </xs:element>
+  <xs:attributeGroup name="attlist.lubricant">
+    <xs:attributeGroup ref="attl.lubricant"/>
+  </xs:attributeGroup>
+  <!-- **** Element <lubricantinfo> **** -->
+  <xs:complexType name="cm.lubricantinfo">
+    <xs:sequence maxOccurs="unbounded">
+      <xs:element ref="quantity"/>
+      <xs:element ref="lubricant"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:attributeGroup name="attl.lubricantinfo">
+    <xs:attributeGroup ref="att.nodeid"/>
+    <xs:attributeGroup ref="att.translate"/>
+  </xs:attributeGroup>
+  <xs:element name="lubricantinfo">
+    <xs:complexType>
+      <xs:complexContent>
+        <xs:extension base="cm.lubricantinfo">
+          <xs:attributeGroup ref="attlist.lubricantinfo"/>
+        </xs:extension>
+      </xs:complexContent>
+    </xs:complexType>
+  </xs:element>
+  <xs:attributeGroup name="attlist.lubricantinfo">
+    <xs:attributeGroup ref="attl.lubricantinfo"/>
+  </xs:attributeGroup>
+  <!-- **** Element <medium> **** -->
+  <xs:complexType name="cm.medium" mixed="true">
+    <xs:group minOccurs="0" maxOccurs="unbounded" ref="cmf.plaintext"/>
+  </xs:complexType>
+  <xs:attributeGroup name="attl.medium">
+    <xs:attributeGroup ref="att.nodeid"/>
+    <xs:attributeGroup ref="att.translate"/>
+  </xs:attributeGroup>
+  <xs:element name="medium">
+    <xs:complexType>
+      <xs:complexContent>
+        <xs:extension base="cm.medium">
+          <xs:attributeGroup ref="attlist.medium"/>
+        </xs:extension>
+      </xs:complexContent>
+    </xs:complexType>
+  </xs:element>
+  <xs:attributeGroup name="attlist.medium">
+    <xs:attributeGroup ref="attl.medium"/>
+  </xs:attributeGroup>
+  <!-- **** Element <name> **** -->
+  <xs:complexType name="cm.name" mixed="true">
+    <xs:group minOccurs="0" maxOccurs="unbounded" ref="cmf.plaintext"/>
+  </xs:complexType>
+  <xs:attributeGroup name="attl.name">
+    <xs:attributeGroup ref="att.nodeid"/>
+    <xs:attributeGroup ref="att.translate"/>
+  </xs:attributeGroup>
+  <xs:element name="name">
+    <xs:complexType>
+      <xs:complexContent>
+        <xs:extension base="cm.name">
+          <xs:attributeGroup ref="attlist.name"/>
+        </xs:extension>
+      </xs:complexContent>
+    </xs:complexType>
+  </xs:element>
+  <xs:attributeGroup name="attlist.name">
+    <xs:attributeGroup ref="attl.name"/>
+  </xs:attributeGroup>
+  <!-- **** Element <note> **** -->
+  <xs:complexType name="cm.note">
+    <xs:choice maxOccurs="unbounded">
+      <xs:element ref="paragraph"/>
+      <xs:element ref="list"/>
+    </xs:choice>
+  </xs:complexType>
+  <xs:attributeGroup name="attl.note">
+    <xs:attributeGroup ref="att.nodeid"/>
+    <xs:attributeGroup ref="att.translate"/>
+    <xs:attributeGroup ref="att.valid"/>
+  </xs:attributeGroup>
+  <xs:element name="note" substitutionGroup="cmf.standardblock">
+    <xs:complexType>
+      <xs:complexContent>
+        <xs:extension base="cm.note">
+          <xs:attributeGroup ref="attlist.note"/>
+        </xs:extension>
+      </xs:complexContent>
+    </xs:complexType>
+  </xs:element>
+  <xs:attributeGroup name="attlist.note">
+    <xs:attributeGroup ref="attl.note"/>
+  </xs:attributeGroup>
+  <!-- **** Element <number> **** -->
+  <xs:complexType name="cm.number" mixed="true">
+    <xs:group minOccurs="0" maxOccurs="unbounded" ref="cmf.numberunit"/>
+  </xs:complexType>
+  <xs:attributeGroup name="attl.number">
+    <xs:attributeGroup ref="att.print"/>
+    <xs:attributeGroup ref="att.nodeid"/>
+    <xs:attributeGroup ref="att.translate"/>
+  </xs:attributeGroup>
+  <xs:element name="number">
+    <xs:complexType>
+      <xs:complexContent>
+        <xs:extension base="cm.number">
+          <xs:attributeGroup ref="attlist.number"/>
+        </xs:extension>
+      </xs:complexContent>
+    </xs:complexType>
+  </xs:element>
+  <xs:attributeGroup name="attlist.number">
+    <xs:attributeGroup ref="attl.number"/>
+  </xs:attributeGroup>
+  <!-- **** Element <or-action> **** -->
+  <xs:complexType name="cm.or-action">
+    <xs:sequence>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element ref="note"/>
+        <xs:element ref="safetyadvice"/>
+        <xs:element ref="mediaobject"/>
+      </xs:choice>
+      <xs:element ref="action"/>
+      <xs:element minOccurs="0" maxOccurs="unbounded" ref="note"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:attributeGroup name="attl.or-action">
+    <xs:attributeGroup ref="att.nodeid"/>
+    <xs:attributeGroup ref="att.valid"/>
+    <xs:attributeGroup ref="att.translate"/>
+  </xs:attributeGroup>
+  <xs:element name="or-action">
+    <xs:complexType>
+      <xs:complexContent>
+        <xs:extension base="cm.or-action">
+          <xs:attributeGroup ref="attlist.or-action"/>
+        </xs:extension>
+      </xs:complexContent>
+    </xs:complexType>
+  </xs:element>
+  <xs:attributeGroup name="attlist.or-action">
+    <xs:attributeGroup ref="attl.or-action"/>
+  </xs:attributeGroup>
+  <!-- **** Element <orientation> **** -->
+  <xs:complexType name="cm.orientation">
+    <xs:sequence>
+      <xs:element maxOccurs="unbounded" ref="cmf.complexblock"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:attributeGroup name="attl.orientation">
+    <xs:attributeGroup ref="att.nodeid"/>
+    <xs:attributeGroup ref="att.translate"/>
+  </xs:attributeGroup>
+  <xs:element name="orientation">
+    <xs:complexType>
+      <xs:complexContent>
+        <xs:extension base="cm.orientation">
+          <xs:attributeGroup ref="attlist.orientation"/>
+        </xs:extension>
+      </xs:complexContent>
+    </xs:complexType>
+  </xs:element>
+  <xs:attributeGroup name="attlist.orientation">
+    <xs:attributeGroup ref="attl.orientation"/>
+  </xs:attributeGroup>
+  <!-- **** Element <outlook> **** -->
+  <xs:complexType name="cm.outlook">
+    <xs:sequence>
+      <xs:element minOccurs="0" ref="heading"/>
+      <xs:element maxOccurs="unbounded" ref="cmf.complexblock"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:attributeGroup name="attl.outlook">
+    <xs:attributeGroup ref="att.nodeid"/>
+    <xs:attributeGroup ref="att.valid"/>
+    <xs:attributeGroup ref="att.translate"/>
+  </xs:attributeGroup>
+  <xs:element name="outlook">
+    <xs:complexType>
+      <xs:complexContent>
+        <xs:extension base="cm.outlook">
+          <xs:attributeGroup ref="attlist.outlook"/>
+        </xs:extension>
+      </xs:complexContent>
+    </xs:complexType>
+  </xs:element>
+  <xs:attributeGroup name="attlist.outlook">
+    <xs:attributeGroup ref="attl.outlook"/>
+  </xs:attributeGroup>
+  <!-- **** Element <paragraph> **** -->
+  <xs:complexType name="cm.paragraph" mixed="true">
+    <xs:group minOccurs="0" maxOccurs="unbounded" ref="cmf.plaintext"/>
+  </xs:complexType>
+  <xs:attributeGroup name="attl.paragraph">
+    <xs:attributeGroup ref="att.nodeid"/>
+    <xs:attributeGroup ref="att.valid"/>
+    <xs:attributeGroup ref="att.translate"/>
+  </xs:attributeGroup>
+  <xs:element name="paragraph" substitutionGroup="cmf.simpleblock">
+    <xs:complexType>
+      <xs:complexContent>
+        <xs:extension base="cm.paragraph">
+          <xs:attributeGroup ref="attlist.paragraph"/>
+        </xs:extension>
+      </xs:complexContent>
+    </xs:complexType>
+  </xs:element>
+  <xs:attributeGroup name="attlist.paragraph">
+    <xs:attributeGroup ref="attl.paragraph"/>
+  </xs:attributeGroup>
+  <!-- **** Element <part> **** -->
+  <xs:complexType name="cm.part">
+    <xs:sequence>
+      <xs:element minOccurs="0" ref="symbol"/>
+      <xs:element ref="name"/>
+      <xs:element minOccurs="0" ref="identno"/>
+      <xs:element minOccurs="0" ref="spec"/>
+      <xs:element minOccurs="0" ref="description"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:attributeGroup name="attl.part">
+    <xs:attributeGroup ref="att.nodeid"/>
+    <xs:attributeGroup ref="att.translate"/>
+    <xs:attributeGroup ref="att.valid"/>
+  </xs:attributeGroup>
+  <xs:element name="part">
+    <xs:complexType>
+      <xs:complexContent>
+        <xs:extension base="cm.part">
+          <xs:attributeGroup ref="attlist.part"/>
+        </xs:extension>
+      </xs:complexContent>
+    </xs:complexType>
+  </xs:element>
+  <xs:attributeGroup name="attlist.part">
+    <xs:attributeGroup ref="attl.part"/>
+  </xs:attributeGroup>
+  <!-- **** Element <prerequisites> **** -->
+  <xs:complexType name="cm.prerequisites">
+    <xs:sequence>
+      <xs:element maxOccurs="unbounded" ref="cmf.complexblock"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:attributeGroup name="attl.prerequisites">
+    <xs:attributeGroup ref="att.nodeid"/>
+    <xs:attributeGroup ref="att.translate"/>
+  </xs:attributeGroup>
+  <xs:element name="prerequisites">
+    <xs:complexType>
+      <xs:complexContent>
+        <xs:extension base="cm.prerequisites">
+          <xs:attributeGroup ref="attlist.prerequisites"/>
+        </xs:extension>
+      </xs:complexContent>
+    </xs:complexType>
+  </xs:element>
+  <xs:attributeGroup name="attlist.prerequisites">
+    <xs:attributeGroup ref="attl.prerequisites"/>
+  </xs:attributeGroup>
+  <!-- **** Element <problemdescription> **** -->
+  <xs:complexType name="cm.problemdescription" mixed="true">
+    <xs:group minOccurs="0" maxOccurs="unbounded" ref="cmf.plaintext"/>
+  </xs:complexType>
+  <xs:attributeGroup name="attl.problemdescription">
+    <xs:attributeGroup ref="att.nodeid"/>
+    <xs:attributeGroup ref="att.valid"/>
+    <xs:attributeGroup ref="att.translate"/>
+  </xs:attributeGroup>
+  <xs:element name="problemdescription">
+    <xs:complexType>
+      <xs:complexContent>
+        <xs:extension base="cm.problemdescription">
+          <xs:attributeGroup ref="attlist.problemdescription"/>
+        </xs:extension>
+      </xs:complexContent>
+    </xs:complexType>
+  </xs:element>
+  <xs:attributeGroup name="attlist.problemdescription">
+    <xs:attributeGroup ref="attl.problemdescription"/>
+  </xs:attributeGroup>
+  <!-- **** Element <quantity> **** -->
+  <xs:complexType name="cm.quantity">
+    <xs:complexContent>
+      <xs:extension base="cmf.simpledata"/>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:attributeGroup name="attl.quantity">
+    <xs:attributeGroup ref="atts.data"/>
+    <xs:attributeGroup ref="att.nodeid"/>
+    <xs:attributeGroup ref="att.translate"/>
+  </xs:attributeGroup>
+  <xs:element name="quantity">
+    <xs:complexType>
+      <xs:complexContent>
+        <xs:extension base="cm.quantity">
+          <xs:attributeGroup ref="attlist.quantity"/>
+        </xs:extension>
+      </xs:complexContent>
+    </xs:complexType>
+  </xs:element>
+  <xs:attributeGroup name="attlist.quantity">
+    <xs:attributeGroup ref="attl.quantity"/>
+  </xs:attributeGroup>
+  <!-- **** Element <quoted> **** -->
+  <xs:complexType name="cm.quoted" mixed="true">
+    <xs:choice minOccurs="0" maxOccurs="unbounded">
+      <xs:element ref="emphasis"/>
+      <xs:element ref="subscript"/>
+      <xs:element ref="superscript"/>
+      <xs:element ref="cmf.inlinemediaobjects"/>
+      <xs:element ref="cmf.links"/>
+      <xs:element ref="inlinedata"/>
+    </xs:choice>
+  </xs:complexType>
+  <xs:attributeGroup name="attl.quoted">
+    <xs:attributeGroup ref="att.nodeid"/>
+    <xs:attributeGroup ref="att.translate"/>
+  </xs:attributeGroup>
+  <xs:element name="quoted" substitutionGroup="cmf.typography">
+    <xs:complexType>
+      <xs:complexContent>
+        <xs:extension base="cm.quoted">
+          <xs:attributeGroup ref="attlist.quoted"/>
+        </xs:extension>
+      </xs:complexContent>
+    </xs:complexType>
+  </xs:element>
+  <xs:attributeGroup name="attlist.quoted">
+    <xs:attributeGroup ref="attl.quoted"/>
+  </xs:attributeGroup>
+  <!-- **** Element <result> **** -->
+  <xs:complexType name="cm.result">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" ref="cmf.complexblock"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:attributeGroup name="attl.result">
+    <xs:attributeGroup ref="att.nodeid"/>
+    <xs:attributeGroup ref="att.valid"/>
+    <xs:attributeGroup ref="att.translate"/>
+  </xs:attributeGroup>
+  <xs:element name="result">
+    <xs:complexType>
+      <xs:complexContent>
+        <xs:extension base="cm.result">
+          <xs:attributeGroup ref="attlist.result"/>
+        </xs:extension>
+      </xs:complexContent>
+    </xs:complexType>
+  </xs:element>
+  <xs:attributeGroup name="attlist.result">
+    <xs:attributeGroup ref="attl.result"/>
+  </xs:attributeGroup>
+  <!-- **** Element <safetyadvice> **** -->
+  <xs:complexType name="cm.safetyadvice">
+    <xs:sequence>
+      <xs:element ref="cause"/>
+      <xs:element minOccurs="0" ref="safetysymbol"/>
+      <xs:element minOccurs="0" maxOccurs="unbounded" ref="consequences"/>
+      <xs:element maxOccurs="unbounded" ref="action"/>
+      <xs:element minOccurs="0" ref="mediaobject"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:attributeGroup name="attl.safetyadvice">
+    <xs:attributeGroup ref="att.nodeid"/>
+    <xs:attributeGroup ref="att.class"/>
+    <xs:attributeGroup ref="att.valid"/>
+    <xs:attributeGroup ref="att.translate"/>
+  </xs:attributeGroup>
+  <xs:element name="safetyadvice" substitutionGroup="cmf.complexblock">
+    <xs:complexType>
+      <xs:complexContent>
+        <xs:extension base="cm.safetyadvice">
+          <xs:attributeGroup ref="attlist.safetyadvice"/>
+        </xs:extension>
+      </xs:complexContent>
+    </xs:complexType>
+  </xs:element>
+  <xs:attributeGroup name="attlist.safetyadvice">
+    <xs:attributeGroup ref="attl.safetyadvice"/>
+  </xs:attributeGroup>
+  <!-- **** Element <shortinfo> **** -->
+  <xs:complexType name="cm.shortinfo">
+    <xs:sequence>
+      <xs:element maxOccurs="unbounded" ref="cmf.complexblock"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:attributeGroup name="attl.shortinfo">
+    <xs:attributeGroup ref="att.nodeid"/>
+    <xs:attributeGroup ref="att.translate"/>
+  </xs:attributeGroup>
+  <xs:element name="shortinfo">
+    <xs:complexType>
+      <xs:complexContent>
+        <xs:extension base="cm.shortinfo">
+          <xs:attributeGroup ref="attlist.shortinfo"/>
+        </xs:extension>
+      </xs:complexContent>
+    </xs:complexType>
+  </xs:element>
+  <xs:attributeGroup name="attlist.shortinfo">
+    <xs:attributeGroup ref="attl.shortinfo"/>
+  </xs:attributeGroup>
+  <!-- **** Element <si-value> **** -->
+  <xs:complexType name="cm.si-value">
+    <xs:sequence>
+      <xs:element ref="number"/>
+      <xs:element ref="unit"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:attributeGroup name="attl.si-value">
+    <xs:attributeGroup ref="att.nodeid"/>
+    <xs:attributeGroup ref="att.translate"/>
+  </xs:attributeGroup>
+  <xs:element name="si-value" substitutionGroup="cmf.values">
+    <xs:complexType>
+      <xs:complexContent>
+        <xs:extension base="cm.si-value">
+          <xs:attributeGroup ref="attlist.si-value"/>
+        </xs:extension>
+      </xs:complexContent>
+    </xs:complexType>
+  </xs:element>
+  <xs:attributeGroup name="attlist.si-value">
+    <xs:attributeGroup ref="attl.si-value"/>
+  </xs:attributeGroup>
+  <!-- **** Element <solution> **** -->
+  <xs:complexType name="cm.solution" mixed="true">
+    <xs:group minOccurs="0" maxOccurs="unbounded" ref="cmf.plaintext"/>
+  </xs:complexType>
+  <xs:attributeGroup name="attl.solution">
+    <xs:attributeGroup ref="att.nodeid"/>
+    <xs:attributeGroup ref="att.valid"/>
+    <xs:attributeGroup ref="att.translate"/>
+  </xs:attributeGroup>
+  <xs:element name="solution">
+    <xs:complexType>
+      <xs:complexContent>
+        <xs:extension base="cm.solution">
+          <xs:attributeGroup ref="attlist.solution"/>
+        </xs:extension>
+      </xs:complexContent>
+    </xs:complexType>
+  </xs:element>
+  <xs:attributeGroup name="attlist.solution">
+    <xs:attributeGroup ref="attl.solution"/>
+  </xs:attributeGroup>
+  <!-- **** Element <spec> **** -->
+  <xs:complexType name="cm.spec" mixed="true">
+    <xs:group minOccurs="0" maxOccurs="unbounded" ref="cmf.plaintext"/>
+  </xs:complexType>
+  <xs:attributeGroup name="attl.spec">
+    <xs:attributeGroup ref="att.nodeid"/>
+    <xs:attributeGroup ref="att.translate"/>
+  </xs:attributeGroup>
+  <xs:element name="spec">
+    <xs:complexType>
+      <xs:complexContent>
+        <xs:extension base="cm.spec">
+          <xs:attributeGroup ref="attlist.spec"/>
+        </xs:extension>
+      </xs:complexContent>
+    </xs:complexType>
+  </xs:element>
+  <xs:attributeGroup name="attlist.spec">
+    <xs:attributeGroup ref="attl.spec"/>
+  </xs:attributeGroup>
+  <!-- **** Element <step> **** -->
+  <xs:complexType name="cm.step" mixed="true">
+    <xs:group minOccurs="0" maxOccurs="unbounded" ref="cmf.plaintext"/>
+  </xs:complexType>
+  <xs:attributeGroup name="attl.step">
+    <xs:attributeGroup ref="att.nodeid"/>
+    <xs:attributeGroup ref="att.translate"/>
+  </xs:attributeGroup>
+  <xs:element name="step">
+    <xs:complexType>
+      <xs:complexContent>
+        <xs:extension base="cm.step">
+          <xs:attributeGroup ref="attlist.step"/>
+        </xs:extension>
+      </xs:complexContent>
+    </xs:complexType>
+  </xs:element>
+  <xs:attributeGroup name="attlist.step">
+    <xs:attributeGroup ref="attl.step"/>
+  </xs:attributeGroup>
+  <!-- **** Element <subscript> **** -->
+  <xs:attributeGroup name="attl.subscript">
+    <xs:attributeGroup ref="att.nodeid"/>
+    <xs:attributeGroup ref="att.translate"/>
+  </xs:attributeGroup>
+  <xs:element name="subscript" substitutionGroup="cmf.typography">
+    <xs:complexType mixed="true">
+      <xs:attributeGroup ref="attlist.subscript"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:attributeGroup name="attlist.subscript">
+    <xs:attributeGroup ref="attl.subscript"/>
+  </xs:attributeGroup>
+  <!-- **** Element <superscript> **** -->
+  <xs:attributeGroup name="attl.superscript">
+    <xs:attributeGroup ref="att.nodeid"/>
+    <xs:attributeGroup ref="att.translate"/>
+  </xs:attributeGroup>
+  <xs:element name="superscript" substitutionGroup="cmf.typography">
+    <xs:complexType mixed="true">
+      <xs:attributeGroup ref="attlist.superscript"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:attributeGroup name="attlist.superscript">
+    <xs:attributeGroup ref="attl.superscript"/>
+  </xs:attributeGroup>
+  <!-- **** Element <symbol> **** -->
+  <xs:element name="cm.symbol" abstract="true">
+    <xs:complexType>
+      <xs:attributeGroup ref="attlist.inlinemediaobject"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:complexType name="cm.symbol">
+    <xs:sequence>
+      <xs:element ref="cm.symbol"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:attributeGroup name="attl.symbol">
+    <xs:attributeGroup ref="att.nodeid"/>
+  </xs:attributeGroup>
+  <xs:element name="symbol">
+    <xs:complexType>
+      <xs:complexContent>
+        <xs:extension base="cm.symbol">
+          <xs:attributeGroup ref="attlist.symbol"/>
+        </xs:extension>
+      </xs:complexContent>
+    </xs:complexType>
+  </xs:element>
+  <xs:attributeGroup name="attlist.symbol">
+    <xs:attributeGroup ref="attl.symbol"/>
+  </xs:attributeGroup>
+  <!-- **** Element <symptom> **** -->
+  <xs:complexType name="cm.symptom">
+    <xs:sequence>
+      <xs:element minOccurs="0" ref="error-code"/>
+      <xs:element minOccurs="0" ref="description"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:attributeGroup name="attl.symptom">
+    <xs:attributeGroup ref="att.nodeid"/>
+    <xs:attributeGroup ref="att.translate"/>
+  </xs:attributeGroup>
+  <xs:element name="symptom">
+    <xs:complexType>
+      <xs:complexContent>
+        <xs:extension base="cm.symptom">
+          <xs:attributeGroup ref="attlist.symptom"/>
+        </xs:extension>
+      </xs:complexContent>
+    </xs:complexType>
+  </xs:element>
+  <xs:attributeGroup name="attlist.symptom">
+    <xs:attributeGroup ref="attl.symptom"/>
+  </xs:attributeGroup>
+  <!-- **** Element <taskinterval> **** -->
+  <xs:complexType name="cm.taskinterval" mixed="true">
+    <xs:group minOccurs="0" maxOccurs="unbounded" ref="cmf.plaintext"/>
+  </xs:complexType>
+  <xs:attributeGroup name="attl.taskinterval">
+    <xs:attribute name="customer-interval" type="attv.customerinterval"/>
+    <xs:attribute name="service-interval" type="attv.serviceinterval"/>
+    <xs:attribute name="special-interval" type="attv.specialintervals"/>
+    <xs:attributeGroup ref="att.nodeid"/>
+    <xs:attributeGroup ref="att.translate"/>
+    <xs:attributeGroup ref="att.valid"/>
+  </xs:attributeGroup>
+  <xs:element name="taskinterval">
+    <xs:complexType>
+      <xs:complexContent>
+        <xs:extension base="cm.taskinterval">
+          <xs:attributeGroup ref="attlist.taskinterval"/>
+        </xs:extension>
+      </xs:complexContent>
+    </xs:complexType>
+  </xs:element>
+  <xs:attributeGroup name="attlist.taskinterval">
+    <xs:attributeGroup ref="attl.taskinterval"/>
+  </xs:attributeGroup>
+  <!-- **** Element <taskintervalinfo> **** -->
+  <xs:complexType name="cm.taskintervalinfo">
+    <xs:sequence>
+      <xs:element maxOccurs="unbounded" ref="taskinterval"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:attributeGroup name="attl.taskintervalinfo">
+    <xs:attributeGroup ref="att.nodeid"/>
+    <xs:attributeGroup ref="att.translate"/>
+  </xs:attributeGroup>
+  <xs:element name="taskintervalinfo">
+    <xs:complexType>
+      <xs:complexContent>
+        <xs:extension base="cm.taskintervalinfo">
+          <xs:attributeGroup ref="attlist.taskintervalinfo"/>
+        </xs:extension>
+      </xs:complexContent>
+    </xs:complexType>
+  </xs:element>
+  <xs:attributeGroup name="attlist.taskintervalinfo">
+    <xs:attributeGroup ref="attl.taskintervalinfo"/>
+  </xs:attributeGroup>
+  <!-- **** Element <techdata> **** -->
+  <xs:complexType name="cm.techdata">
+    <xs:sequence>
+      <xs:element minOccurs="0" ref="heading"/>
+      <xs:choice maxOccurs="unbounded">
+        <xs:element ref="techdata"/>
+        <xs:element ref="data"/>
+      </xs:choice>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:attributeGroup name="attl.techdata">
+    <xs:attributeGroup ref="att.nodeid"/>
+    <xs:attributeGroup ref="att.translate"/>
+    <xs:attributeGroup ref="att.valid"/>
+  </xs:attributeGroup>
+  <xs:element name="techdata" substitutionGroup="cmf.simpleblock">
+    <xs:complexType>
+      <xs:complexContent>
+        <xs:extension base="cm.techdata">
+          <xs:attributeGroup ref="attlist.techdata"/>
+        </xs:extension>
+      </xs:complexContent>
+    </xs:complexType>
+  </xs:element>
+  <xs:attributeGroup name="attlist.techdata">
+    <xs:attributeGroup ref="attl.techdata"/>
+  </xs:attributeGroup>
+  <!-- **** Element <textdata> **** -->
+  <xs:complexType name="cm.textdata" mixed="true">
+    <xs:choice minOccurs="0" maxOccurs="unbounded">
+      <xs:element ref="inlinedata"/>
+      <xs:element ref="cmf.links"/>
+      <xs:element ref="subscript"/>
+      <xs:element ref="superscript"/>
+    </xs:choice>
+  </xs:complexType>
+  <xs:attributeGroup name="attl.textdata">
+    <xs:attributeGroup ref="att.nodeid"/>
+    <xs:attributeGroup ref="att.translate"/>
+  </xs:attributeGroup>
+  <xs:element name="textdata">
+    <xs:complexType>
+      <xs:complexContent>
+        <xs:extension base="cm.textdata">
+          <xs:attributeGroup ref="attlist.textdata"/>
+        </xs:extension>
+      </xs:complexContent>
+    </xs:complexType>
+  </xs:element>
+  <xs:attributeGroup name="attlist.textdata">
+    <xs:attributeGroup ref="attl.textdata"/>
+  </xs:attributeGroup>
+  <!-- **** Element <link> **** -->
+  <xs:complexType name="cm.link" mixed="true">
+    <xs:choice minOccurs="0" maxOccurs="unbounded">
+      <xs:element ref="cmf.inlinemediaobjects"/>
+      <xs:element ref="transno"/>
+      <xs:element ref="subscript"/>
+      <xs:element ref="superscript"/>
+      <xs:element ref="quoted"/>
+      <xs:element ref="inlinedata"/>
+      <xs:element ref="cmf.variables"/>
+    </xs:choice>
+  </xs:complexType>
+  <xs:attributeGroup name="attl.link">
+    <xs:attributeGroup ref="atts.link"/>
+    <xs:attributeGroup ref="att.nodeid"/>
+    <xs:attributeGroup ref="att.translate"/>
+  </xs:attributeGroup>
+  <xs:element name="link" substitutionGroup="cmf.links"/>
+  <xs:attributeGroup name="attlist.link">
+    <xs:attributeGroup ref="attl.link"/>
+  </xs:attributeGroup>
+  <!-- **** Element <tolerance-asymmetric-value> **** -->
+  <xs:complexType name="cm.tolerance-asymmetric-value">
+    <xs:choice>
+      <xs:sequence>
+        <xs:element ref="tolerance-high-value"/>
+        <xs:element minOccurs="0" ref="tolerance-low-value"/>
+      </xs:sequence>
+      <xs:element ref="tolerance-low-value"/>
+    </xs:choice>
+  </xs:complexType>
+  <xs:attributeGroup name="attl.tolerance-asymmetric-value">
+    <xs:attributeGroup ref="att.nodeid"/>
+    <xs:attributeGroup ref="att.translate"/>
+  </xs:attributeGroup>
+  <xs:element name="tolerance-asymmetric-value">
+    <xs:complexType>
+      <xs:complexContent>
+        <xs:extension base="cm.tolerance-asymmetric-value">
+          <xs:attributeGroup ref="attlist.tolerance-asymmetric-value"/>
+        </xs:extension>
+      </xs:complexContent>
+    </xs:complexType>
+  </xs:element>
+  <xs:attributeGroup name="attlist.tolerance-asymmetric-value">
+    <xs:attributeGroup ref="attl.tolerance-asymmetric-value"/>
+  </xs:attributeGroup>
+  <!-- **** Element <tolerance-high-value> **** -->
+  <xs:complexType name="cm.tolerance-high-value">
+    <xs:sequence>
+      <xs:element ref="cmf.values"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:attributeGroup name="attl.tolerance-high-value">
+    <xs:attributeGroup ref="att.nodeid"/>
+    <xs:attributeGroup ref="att.translate"/>
+  </xs:attributeGroup>
+  <xs:element name="tolerance-high-value">
+    <xs:complexType>
+      <xs:complexContent>
+        <xs:extension base="cm.tolerance-high-value">
+          <xs:attributeGroup ref="attlist.tolerance-high-value"/>
+        </xs:extension>
+      </xs:complexContent>
+    </xs:complexType>
+  </xs:element>
+  <xs:attributeGroup name="attlist.tolerance-high-value">
+    <xs:attributeGroup ref="attl.tolerance-high-value"/>
+  </xs:attributeGroup>
+  <!-- **** Element <tolerance-low-value> **** -->
+  <xs:complexType name="cm.tolerance-low-value">
+    <xs:sequence>
+      <xs:element ref="cmf.values"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:attributeGroup name="attl.tolerance-low-value">
+    <xs:attributeGroup ref="att.nodeid"/>
+    <xs:attributeGroup ref="att.translate"/>
+  </xs:attributeGroup>
+  <xs:element name="tolerance-low-value">
+    <xs:complexType>
+      <xs:complexContent>
+        <xs:extension base="cm.tolerance-low-value">
+          <xs:attributeGroup ref="attlist.tolerance-low-value"/>
+        </xs:extension>
+      </xs:complexContent>
+    </xs:complexType>
+  </xs:element>
+  <xs:attributeGroup name="attlist.tolerance-low-value">
+    <xs:attributeGroup ref="attl.tolerance-low-value"/>
+  </xs:attributeGroup>
+  <!-- **** Element <tolerance-symmetric-value> **** -->
+  <xs:complexType name="cm.tolerance-symmetric-value">
+    <xs:sequence>
+      <xs:element ref="cmf.values"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:attributeGroup name="attl.tolerance-symmetric-value">
+    <xs:attributeGroup ref="att.nodeid"/>
+    <xs:attributeGroup ref="att.translate"/>
+  </xs:attributeGroup>
+  <xs:element name="tolerance-symmetric-value">
+    <xs:complexType>
+      <xs:complexContent>
+        <xs:extension base="cm.tolerance-symmetric-value">
+          <xs:attributeGroup ref="attlist.tolerance-symmetric-value"/>
+        </xs:extension>
+      </xs:complexContent>
+    </xs:complexType>
+  </xs:element>
+  <xs:attributeGroup name="attlist.tolerance-symmetric-value">
+    <xs:attributeGroup ref="attl.tolerance-symmetric-value"/>
+  </xs:attributeGroup>
+  <!-- **** Element <tool> **** -->
+  <xs:complexType name="cm.tool">
+    <xs:sequence>
+      <xs:element minOccurs="0" ref="symbol"/>
+      <xs:element ref="name"/>
+      <xs:element minOccurs="0" ref="identno"/>
+      <xs:element minOccurs="0" ref="spec"/>
+      <xs:element minOccurs="0" ref="description"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:attributeGroup name="attl.tool">
+    <xs:attributeGroup ref="att.nodeid"/>
+    <xs:attributeGroup ref="att.translate"/>
+    <xs:attributeGroup ref="att.valid"/>
+  </xs:attributeGroup>
+  <xs:element name="tool">
+    <xs:complexType>
+      <xs:complexContent>
+        <xs:extension base="cm.tool">
+          <xs:attributeGroup ref="attlist.tool"/>
+        </xs:extension>
+      </xs:complexContent>
+    </xs:complexType>
+  </xs:element>
+  <xs:attributeGroup name="attlist.tool">
+    <xs:attributeGroup ref="attl.tool"/>
+  </xs:attributeGroup>
+  <!-- **** Element <toolinfo> **** -->
+  <xs:complexType name="cm.toolinfo">
+    <xs:sequence maxOccurs="unbounded">
+      <xs:element ref="quantity"/>
+      <xs:choice>
+        <xs:element ref="tool"/>
+        <xs:element ref="part"/>
+      </xs:choice>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:attributeGroup name="attl.toolinfo">
+    <xs:attributeGroup ref="att.nodeid"/>
+    <xs:attributeGroup ref="att.translate"/>
+  </xs:attributeGroup>
+  <xs:element name="toolinfo">
+    <xs:complexType>
+      <xs:complexContent>
+        <xs:extension base="cm.toolinfo">
+          <xs:attributeGroup ref="attlist.toolinfo"/>
+        </xs:extension>
+      </xs:complexContent>
+    </xs:complexType>
+  </xs:element>
+  <xs:attributeGroup name="attlist.toolinfo">
+    <xs:attributeGroup ref="attl.toolinfo"/>
+  </xs:attributeGroup>
+  <!-- **** Element <transno> **** -->
+  <xs:complexType name="cm.transno" mixed="true">
+    <xs:choice minOccurs="0" maxOccurs="unbounded">
+      <xs:element ref="cmf.typography"/>
+      <xs:element ref="cmf.links"/>
+    </xs:choice>
+  </xs:complexType>
+  <xs:attributeGroup name="attl.transno">
+    <xs:attributeGroup ref="att.nodeid"/>
+    <xs:attributeGroup ref="att.translate"/>
+  </xs:attributeGroup>
+  <xs:element name="transno" substitutionGroup="cmf.inlinesemantics">
+    <xs:complexType>
+      <xs:complexContent>
+        <xs:extension base="cm.transno">
+          <xs:attributeGroup ref="attlist.transno"/>
+        </xs:extension>
+      </xs:complexContent>
+    </xs:complexType>
+  </xs:element>
+  <xs:attributeGroup name="attlist.transno">
+    <xs:attributeGroup ref="attl.transno"/>
+  </xs:attributeGroup>
+  <!-- **** Element <troubleshooting> **** -->
+  <xs:complexType name="cm.troubleshooting">
+    <xs:sequence>
+      <xs:element ref="identification"/>
+      <xs:sequence maxOccurs="unbounded">
+        <xs:element minOccurs="0" maxOccurs="unbounded" ref="problemdescription"/>
+        <xs:sequence maxOccurs="unbounded">
+          <xs:element minOccurs="0" ref="mediaobject"/>
+          <xs:element ref="action"/>
+        </xs:sequence>
+      </xs:sequence>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:attributeGroup name="attl.troubleshooting">
+    <xs:attributeGroup ref="att.nodeid"/>
+    <xs:attributeGroup ref="att.valid"/>
+    <xs:attributeGroup ref="att.translate"/>
+  </xs:attributeGroup>
+  <xs:element name="troubleshooting">
+    <xs:complexType>
+      <xs:complexContent>
+        <xs:extension base="cm.troubleshooting">
+          <xs:attributeGroup ref="attlist.troubleshooting"/>
+        </xs:extension>
+      </xs:complexContent>
+    </xs:complexType>
+  </xs:element>
+  <xs:attributeGroup name="attlist.troubleshooting">
+    <xs:attributeGroup ref="attl.troubleshooting"/>
+  </xs:attributeGroup>
+  <!-- **** Element <user-interface> **** -->
+  <xs:complexType name="cm.user-interface" mixed="true">
+    <xs:choice minOccurs="0" maxOccurs="unbounded">
+      <xs:element ref="cmf.inlinemediaobjects"/>
+      <xs:element ref="cmf.links"/>
+      <xs:element ref="subscript"/>
+      <xs:element ref="superscript"/>
+      <xs:element ref="transno"/>
+    </xs:choice>
+  </xs:complexType>
+  <xs:attributeGroup name="attl.user-interface">
+    <xs:attributeGroup ref="att.nodeid"/>
+    <xs:attribute name="type" type="attv.userinterface"/>
+    <xs:attributeGroup ref="att.translate"/>
+  </xs:attributeGroup>
+  <xs:element name="user-interface" substitutionGroup="cmf.inlinesemantics">
+    <xs:complexType>
+      <xs:complexContent>
+        <xs:extension base="cm.user-interface">
+          <xs:attributeGroup ref="attlist.user-interface"/>
+        </xs:extension>
+      </xs:complexContent>
+    </xs:complexType>
+  </xs:element>
+  <xs:attributeGroup name="attlist.user-interface">
+    <xs:attributeGroup ref="attl.user-interface"/>
+  </xs:attributeGroup>
+  <!-- **** Element <variable> **** -->
+  <xs:complexType name="cm.variable" mixed="true">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" ref="cmf.typography"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:attributeGroup name="attl.variable">
+    <xs:attributeGroup ref="att.nodeid"/>
+    <xs:attribute name="name" use="required"/>
+    <xs:attributeGroup ref="att.translate"/>
+  </xs:attributeGroup>
+  <xs:element name="variable" substitutionGroup="cmf.variables"/>
+  <xs:attributeGroup name="attlist.variable">
+    <xs:attributeGroup ref="attl.variable"/>
+  </xs:attributeGroup>
+  <!-- **** Element <unit> **** -->
+  <xs:complexType name="cm.unit" mixed="true">
+    <xs:group minOccurs="0" maxOccurs="unbounded" ref="cmf.numberunit"/>
+  </xs:complexType>
+  <xs:attributeGroup name="attl.unit">
+    <xs:attributeGroup ref="att.print"/>
+    <xs:attributeGroup ref="att.nodeid"/>
+    <xs:attributeGroup ref="att.translate"/>
+  </xs:attributeGroup>
+  <xs:element name="unit">
+    <xs:complexType>
+      <xs:complexContent>
+        <xs:extension base="cm.unit">
+          <xs:attributeGroup ref="attlist.unit"/>
+        </xs:extension>
+      </xs:complexContent>
+    </xs:complexType>
+  </xs:element>
+  <xs:attributeGroup name="attlist.unit">
+    <xs:attributeGroup ref="attl.unit"/>
+  </xs:attributeGroup>
+  <!-- **** Element <upper-value> **** -->
+  <xs:complexType name="cm.upper-value">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" ref="cmf.values"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:attributeGroup name="attl.upper-value">
+    <xs:attributeGroup ref="att.nodeid"/>
+    <xs:attributeGroup ref="att.translate"/>
+  </xs:attributeGroup>
+  <xs:element name="upper-value">
+    <xs:complexType>
+      <xs:complexContent>
+        <xs:extension base="cm.upper-value">
+          <xs:attributeGroup ref="attlist.upper-value"/>
+        </xs:extension>
+      </xs:complexContent>
+    </xs:complexType>
+  </xs:element>
+  <xs:attributeGroup name="attlist.upper-value">
+    <xs:attributeGroup ref="attl.upper-value"/>
+  </xs:attributeGroup>
+  <!-- **** Element <us-value> **** -->
+  <xs:complexType name="cm.us-value">
+    <xs:sequence>
+      <xs:element ref="number"/>
+      <xs:element ref="unit"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:attributeGroup name="attl.us-value">
+    <xs:attributeGroup ref="att.nodeid"/>
+    <xs:attributeGroup ref="att.translate"/>
+  </xs:attributeGroup>
+  <xs:element name="us-value" substitutionGroup="cmf.values">
+    <xs:complexType>
+      <xs:complexContent>
+        <xs:extension base="cm.us-value">
+          <xs:attributeGroup ref="attlist.us-value"/>
+        </xs:extension>
+      </xs:complexContent>
+    </xs:complexType>
+  </xs:element>
+  <xs:attributeGroup name="attlist.us-value">
+    <xs:attributeGroup ref="attl.us-value"/>
+  </xs:attributeGroup>
+</xs:schema>
+<!-- ************** End of DTD module "finestruct-elems.ent" *************** -->

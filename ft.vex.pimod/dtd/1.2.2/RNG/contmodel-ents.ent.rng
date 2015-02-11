@@ -1,0 +1,208 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  ***************************************************************************
+  
+  PI-Mod V1.2.2 - DTD Module "contmodel-ents.ent"
+  
+  ********************************************************************************
+  
+  DTD module declares content model fragments of PI-Mod DTD as parameter entities.
+  
+  Public Identifier:
+  
+      "-//PI-MOD//ENTITIES Content Model Entities V1.2.2//EN"
+  
+  Typical invocation:
+  
+  	<!ENTITY % contmodel-ents
+  		PUBLIC "-//PI-MOD//ENTITIES Content Model Entities V1.2.2//EN"
+  		"contmodel-ents.ent"
+  	>
+  	%contmodel-ents;
+  
+  ********************************************************************************
+  
+  Copyright (C) 2011, The PI-Mod Project
+  
+  Contributors to the The PI-Mod Project (V1.2.2): 
+  	 Wolfgang Ziegler 
+  	 Stephan Steurer 
+  	 Claudia Oberle
+  
+  Permission is hereby granted, free of charge, to any person obtaining a copy
+  of this software and associated documentation files (the "Software"), to deal
+  in the Software without restriction, including without limitation the rights
+  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+  copies of the Software, and to permit persons to whom the Software is
+  furnished to do so, subject to the following conditions:
+  
+  The above copyright notice and this permission notice shall be included in
+  all copies or substantial portions of the Software.
+  
+  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+  THE SOFTWARE.
+  
+  ********************************************************************************
+  
+  Naming conventions for parameter entities:
+  
+  	cmf.ELEMENTGROUP	content model fragment: collects similar 
+  				elements in group ELEMENTGROUP
+  	cm.ELEMENT		content model: complete content model of element
+  				ELEMENT
+  	att.ATTRIBUTE		attribute: declaration of single attribute
+  				ATTRIBUTE (with Name Type Default)
+  	attv.ATTRIBUTE		attribute value enumeration: enumeration of
+  				predefined values for Attribute ATTRIBUTE
+  	atts.ATTRIBUTEGROUP	attribute sublist: collects attributes, which 
+  				belong together, in group ATTRIBUTEGROUP
+  	attl.ELEMENT		attribute list: complete attribute list of
+  				element ELEMENT
+  	attle.ELEMENT		attribute list extension: extension point for
+  				additonial project specific attributes of
+  				element ELEMENT; is always empty string in
+  				PI-Mod Core DTD modules
+  	csp.			conditional section parameter: conditional 
+  				section for ... (see below), which can be
+  				enabled (INCLUDE) or disabled (IGNORE)
+  	csp.el.ELEMENT		... element: element declaration and
+  				corresponding attribute declration of Element
+  				ELEMENT
+  	csp.es.ENTITY-SET	... entity set: declaration and call of 
+  				parameter entity of entity set ENTITY-SET
+  
+  ****************************************************************************
+-->
+<!-- *********************** Content model fragments *********************** -->
+<grammar xmlns="http://relaxng.org/ns/structure/1.0">
+  <define name="cmf.justtext">
+    <text/>
+  </define>
+  <define name="cmf.typography">
+    <choice>
+      <ref name="emphasis"/>
+      <ref name="quoted"/>
+      <ref name="subscript"/>
+      <ref name="superscript"/>
+    </choice>
+  </define>
+  <define name="cmf.links">
+    <ref name="link"/>
+  </define>
+  <define name="cmf.inlinemediaobjects">
+    <ref name="inlinemediaobject"/>
+  </define>
+  <define name="cmf.variables">
+    <ref name="variable"/>
+  </define>
+  <define name="cmf.inlinesemantics">
+    <choice>
+      <ref name="inlinedata"/>
+      <ref name="transno"/>
+      <ref name="user-interface"/>
+    </choice>
+  </define>
+  <define name="cmf.plaintext">
+    <choice>
+      <ref name="cmf.justtext"/>
+      <ref name="cmf.inlinemediaobjects"/>
+      <ref name="cmf.inlinesemantics"/>
+      <ref name="cmf.links"/>
+      <ref name="cmf.typography"/>
+      <ref name="cmf.variables"/>
+    </choice>
+  </define>
+  <define name="cmf.entrycontent">
+    <choice>
+      <ref name="cmf.plaintext"/>
+      <ref name="lower-value"/>
+      <ref name="upper-value"/>
+      <ref name="tolerance-asymmetric-value"/>
+      <ref name="tolerance-symmetric-value"/>
+      <ref name="mediaobject"/>
+    </choice>
+  </define>
+  <define name="cmf.simpleblock">
+    <choice>
+      <ref name="footnote"/>
+      <ref name="keyword"/>
+      <ref name="list"/>
+      <ref name="paragraph"/>
+      <ref name="techdata"/>
+    </choice>
+  </define>
+  <define name="cmf.standardblock">
+    <choice>
+      <ref name="cmf.simpleblock"/>
+      <ref name="mediaobject"/>
+      <ref name="note"/>
+      <ref name="table"/>
+    </choice>
+  </define>
+  <define name="cmf.complexblock">
+    <choice>
+      <ref name="cmf.standardblock"/>
+      <ref name="safetyadvice"/>
+    </choice>
+  </define>
+  <define name="cmf.simpledata">
+    <optional>
+      <ref name="si-value"/>
+    </optional>
+    <optional>
+      <ref name="us-value"/>
+    </optional>
+  </define>
+  <define name="cmf.numberunit">
+    <choice>
+      <ref name="cmf.justtext"/>
+      <ref name="cmf.links"/>
+      <ref name="subscript"/>
+      <ref name="superscript"/>
+    </choice>
+  </define>
+  <define name="cmf.titletext">
+    <choice>
+      <ref name="cmf.justtext"/>
+      <ref name="keyword"/>
+      <ref name="cmf.inlinemediaobjects"/>
+      <ref name="cmf.inlinesemantics"/>
+      <ref name="quoted"/>
+      <ref name="subscript"/>
+      <ref name="superscript"/>
+      <ref name="cmf.links"/>
+    </choice>
+  </define>
+  <define name="cmf.values">
+    <choice>
+      <ref name="si-value"/>
+      <ref name="us-value"/>
+    </choice>
+  </define>
+  <!-- *************************** Content models **************************** -->
+  <define name="cm.table">
+    <zeroOrMore>
+      <ref name="keyword"/>
+    </zeroOrMore>
+    <oneOrMore>
+      <ref name="tgroup"/>
+    </oneOrMore>
+    <optional>
+      <ref name="caption"/>
+    </optional>
+    <zeroOrMore>
+      <ref name="footnote"/>
+    </zeroOrMore>
+  </define>
+  <define name="cm.entry">
+    <zeroOrMore>
+      <ref name="cmf.simpleblock"/>
+    </zeroOrMore>
+  </define>
+</grammar>
+<!-- *************** End of DTD module "contmodel-ents.ent" **************** -->

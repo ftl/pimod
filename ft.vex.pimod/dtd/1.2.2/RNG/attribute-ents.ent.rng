@@ -1,0 +1,299 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  ***************************************************************************
+  
+  PI-Mod V1.2.2 - DTD Module "attribute-ents.ent"
+  
+  ********************************************************************************
+  
+  DTD module declares attributes of PI-Mod DTD as parameter entities.
+  
+  Public Identifier:
+  
+      "-//PI-MOD//ENTITIES Attribute Entities V1.2.2//EN"
+  
+  Typical invocation:
+  
+  	<!ENTITY % attribute-ents
+  		PUBLIC "-//PI-MOD//ENTITIES Attribute Entities V1.2.2//EN"
+  		"attribute-ents.ent"
+  	>
+  	%attribute-ents;
+  
+  ********************************************************************************
+  
+  Copyright (C) 2011, The PI-Mod Project
+  
+  Contributors to the The PI-Mod Project (V1.2.2): 
+  	 Wolfgang Ziegler 
+  	 Stephan Steurer 
+  	 Claudia Oberle
+  
+  Permission is hereby granted, free of charge, to any person obtaining a copy
+  of this software and associated documentation files (the "Software"), to deal
+  in the Software without restriction, including without limitation the rights
+  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+  copies of the Software, and to permit persons to whom the Software is
+  furnished to do so, subject to the following conditions:
+  
+  The above copyright notice and this permission notice shall be included in
+  all copies or substantial portions of the Software.
+  
+  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+  THE SOFTWARE.
+  
+  ********************************************************************************
+  
+  Naming conventions for parameter entities:
+  
+  	cmf.ELEMENTGROUP	content model fragment: collects similar 
+  				elements in group ELEMENTGROUP
+  	cm.ELEMENT		content model: complete content model of element
+  				ELEMENT
+  	att.ATTRIBUTE		attribute: declaration of single attribute
+  				ATTRIBUTE (with Name Type Default)
+  	attv.ATTRIBUTE		attribute value enumeration: enumeration of
+  				predefined values for Attribute ATTRIBUTE
+  	atts.ATTRIBUTEGROUP	attribute sublist: collects attributes, which 
+  				belong together, in group ATTRIBUTEGROUP
+  	attl.ELEMENT		attribute list: complete attribute list of
+  				element ELEMENT
+  	attle.ELEMENT		attribute list extension: extension point for
+  				additonial project specific attributes of
+  				element ELEMENT; is always empty string in
+  				PI-Mod Core DTD modules
+  	csp.			conditional section parameter: conditional 
+  				section for ... (see below), which can be
+  				enabled (INCLUDE) or disabled (IGNORE)
+  	csp.el.ELEMENT		... element: element declaration and
+  				corresponding attribute declration of Element
+  				ELEMENT
+  	csp.es.ENTITY-SET	... entity set: declaration and call of 
+  				parameter entity of entity set ENTITY-SET
+  
+  ****************************************************************************
+-->
+<!-- Copy from OASIS table module (needed for some XML parsers) -->
+<grammar xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0" xmlns="http://relaxng.org/ns/structure/1.0" datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes">
+  <define name="yesorno">
+    <data type="NMTOKEN"/>
+  </define>
+  <!-- ********************* Attribute value enumerations ******************** -->
+  <define name="attv.countries">
+    <data type="string" datatypeLibrary=""/>
+  </define>
+  <define name="attv.customerinterval">
+    <data type="string" datatypeLibrary=""/>
+  </define>
+  <define name="attv.datacustomer">
+    <data type="string" datatypeLibrary=""/>
+  </define>
+  <define name="attv.dataservice">
+    <data type="string" datatypeLibrary=""/>
+  </define>
+  <define name="attv.infoclass-1">
+    <data type="string" datatypeLibrary=""/>
+  </define>
+  <define name="attv.langcode">
+    <data type="string" datatypeLibrary=""/>
+  </define>
+  <define name="attv.prodclass-1">
+    <data type="string" datatypeLibrary=""/>
+  </define>
+  <define name="attv.serviceinterval">
+    <data type="string" datatypeLibrary=""/>
+  </define>
+  <define name="attv.specialintervals">
+    <data type="string" datatypeLibrary=""/>
+  </define>
+  <define name="attv.userinterface">
+    <data type="string" datatypeLibrary=""/>
+  </define>
+  <!-- ******************** Single attribute declarations ******************** -->
+  <define name="att.class">
+    <attribute name="class">
+      <choice>
+        <value>caution</value>
+        <value>danger</value>
+        <value>notice</value>
+        <value>warning</value>
+      </choice>
+    </attribute>
+  </define>
+  <define name="att.infoclass-1">
+    <attribute name="infoclass-1">
+      <ref name="attv.infoclass-1"/>
+    </attribute>
+  </define>
+  <define name="att.nodeid">
+    <optional>
+      <attribute name="nodeid"/>
+    </optional>
+  </define>
+  <define name="att.orient">
+    <optional>
+      <attribute name="orient" a:defaultValue="port">
+        <choice>
+          <value>port</value>
+          <value>land</value>
+        </choice>
+      </attribute>
+    </optional>
+  </define>
+  <define name="att.print">
+    <optional>
+      <attribute name="print" a:defaultValue="yes">
+        <choice>
+          <value>yes</value>
+          <value>no</value>
+        </choice>
+      </attribute>
+    </optional>
+  </define>
+  <define name="att.prodclass-1">
+    <attribute name="prodclass-1">
+      <ref name="attv.prodclass-1"/>
+    </attribute>
+  </define>
+  <define name="att.translate">
+    <optional>
+      <attribute name="translate" a:defaultValue="yes">
+        <choice>
+          <value>yes</value>
+          <value>no</value>
+        </choice>
+      </attribute>
+    </optional>
+  </define>
+  <define name="att.valid">
+    <optional>
+      <attribute name="valid"/>
+    </optional>
+  </define>
+  <!-- ******************** Attribute sublist declarations ******************* -->
+  <define name="atts.data">
+    <optional>
+      <attribute name="customer">
+        <ref name="attv.datacustomer"/>
+      </attribute>
+    </optional>
+    <optional>
+      <attribute name="service">
+        <ref name="attv.dataservice"/>
+      </attribute>
+    </optional>
+  </define>
+  <define name="atts.module">
+    <optional>
+      <attribute name="countrycode">
+        <ref name="attv.countries"/>
+      </attribute>
+    </optional>
+    <optional>
+      <attribute name="langcode">
+        <ref name="attv.langcode"/>
+      </attribute>
+    </optional>
+  </define>
+  <define name="atts.mediaobject">
+    <optional>
+      <attribute name="objectwidth" a:defaultValue="original">
+        <choice>
+          <value>original</value>
+          <value>textsize</value>
+          <value>fullpage</value>
+          <value>marginsize</value>
+        </choice>
+      </attribute>
+    </optional>
+    <ref name="att.orient"/>
+  </define>
+  <define name="atts.link">
+    <optional>
+      <attribute name="linktotargetid"/>
+    </optional>
+  </define>
+  <define name="atts.classification">
+    <ref name="att.infoclass-1"/>
+    <ref name="att.prodclass-1"/>
+  </define>
+  <!-- ********************* Attribute list declarations ********************* -->
+  <define name="attl.table">
+    <ref name="att.orient"/>
+    <optional>
+      <attribute name="pgwide">
+        <ref name="yesorno"/>
+      </attribute>
+    </optional>
+    <optional>
+      <attribute name="tabstyle"/>
+    </optional>
+    <optional>
+      <attribute name="tablewidth" a:defaultValue="textsize">
+        <choice>
+          <value>textsize</value>
+          <value>fullpage</value>
+          <value>original</value>
+        </choice>
+      </attribute>
+    </optional>
+    <ref name="att.nodeid"/>
+    <ref name="att.translate"/>
+    <ref name="att.valid"/>
+  </define>
+  <define name="attl.tgroup">
+    <optional>
+      <attribute name="tgroupstyle"/>
+    </optional>
+    <ref name="att.nodeid"/>
+    <ref name="att.translate"/>
+  </define>
+  <define name="attl.thead">
+    <ref name="att.nodeid"/>
+    <ref name="att.translate"/>
+  </define>
+  <define name="attl.tbody">
+    <ref name="att.nodeid"/>
+    <ref name="att.translate"/>
+  </define>
+  <define name="attl.colspec">
+    <ref name="att.nodeid"/>
+    <ref name="att.translate"/>
+  </define>
+  <define name="attl.row">
+    <ref name="att.nodeid"/>
+    <ref name="att.translate"/>
+  </define>
+  <define name="attl.entry">
+    <ref name="att.nodeid"/>
+    <ref name="att.translate"/>
+  </define>
+  <!-- **** Declaration of attribut list extension point for OASIS table attributes **** -->
+  <define name="attle.table">
+    <empty/>
+  </define>
+  <define name="attle.tgroup">
+    <empty/>
+  </define>
+  <define name="attle.thead">
+    <empty/>
+  </define>
+  <define name="attle.tbody">
+    <empty/>
+  </define>
+  <define name="attle.colspec">
+    <empty/>
+  </define>
+  <define name="attle.row">
+    <empty/>
+  </define>
+  <define name="attle.entry">
+    <empty/>
+  </define>
+</grammar>
+<!-- *************** End of DTD module "attribute-ents.ent" **************** -->

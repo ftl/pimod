@@ -1,0 +1,2228 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  ***************************************************************************
+  
+  PI-Mod V1.2.2 - DTD Module "finestruct-elems.ent"
+  
+  ********************************************************************************
+  
+  DTD module declares element types of the fine structure of PI-Mod.
+  
+  Public Identifier:
+  
+      "-//PI-MOD//ELEMENTS Fine Structure V1.2.2//EN"
+  
+  Typical invocation:
+  
+  	<!ENTITY % finestruct-elems
+  		PUBLIC "-//PI-MOD//ELEMENTS Fine Structure V1.2.2//EN"
+  		"finestruct-elems.ent"
+  	>
+  	%finestruct-elems;
+  
+  ********************************************************************************
+  
+  Copyright (C) 2011, The PI-Mod Project
+  
+  Contributors to the The PI-Mod Project (V1.2.2): 
+  	 Wolfgang Ziegler 
+  	 Stephan Steurer 
+  	 Claudia Oberle
+  
+  Permission is hereby granted, free of charge, to any person obtaining a copy
+  of this software and associated documentation files (the "Software"), to deal
+  in the Software without restriction, including without limitation the rights
+  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+  copies of the Software, and to permit persons to whom the Software is
+  furnished to do so, subject to the following conditions:
+  
+  The above copyright notice and this permission notice shall be included in
+  all copies or substantial portions of the Software.
+  
+  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+  THE SOFTWARE.
+  
+  ********************************************************************************
+  
+  Naming conventions for parameter entities:
+  
+  	cmf.ELEMENTGROUP	content model fragment: collects similar 
+  				elements in group ELEMENTGROUP
+  	cm.ELEMENT		content model: complete content model of element
+  				ELEMENT
+  	att.ATTRIBUTE		attribute: declaration of single attribute
+  				ATTRIBUTE (with Name Type Default)
+  	attv.ATTRIBUTE		attribute value enumeration: enumeration of
+  				predefined values for Attribute ATTRIBUTE
+  	atts.ATTRIBUTEGROUP	attribute sublist: collects attributes, which 
+  				belong together, in group ATTRIBUTEGROUP
+  	attl.ELEMENT		attribute list: complete attribute list of
+  				element ELEMENT
+  	attle.ELEMENT		attribute list extension: extension point for
+  				additonial project specific attributes of
+  				element ELEMENT; is always empty string in
+  				PI-Mod Core DTD modules
+  	csp.			conditional section parameter: conditional 
+  				section for ... (see below), which can be
+  				enabled (INCLUDE) or disabled (IGNORE)
+  	csp.el.ELEMENT		... element: element declaration and
+  				corresponding attribute declration of Element
+  				ELEMENT
+  	csp.es.ENTITY-SET	... entity set: declaration and call of 
+  				parameter entity of entity set ENTITY-SET
+  
+  ****************************************************************************
+-->
+<!-- ************* Overwrite OASIS table parameter entities **************** -->
+<grammar xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0" xmlns="http://relaxng.org/ns/structure/1.0">
+  <define name="tbl.table.mdl">
+    <ref name="cm.table"/>
+  </define>
+  <define name="tbl.entry.mdl">
+    <ref name="cm.entry"/>
+  </define>
+  <define name="tbl.table.att">
+    <ref name="attl.table"/>
+    <ref name="attle.table"/>
+  </define>
+  <define name="tbl.tgroup.att">
+    <ref name="attl.tgroup"/>
+    <ref name="attle.tgroup"/>
+  </define>
+  <define name="tbl.thead.att">
+    <ref name="attl.thead"/>
+    <ref name="attle.thead"/>
+  </define>
+  <define name="tbl.tbody.att">
+    <ref name="attl.tbody"/>
+    <ref name="attle.tbody"/>
+  </define>
+  <define name="tbl.colspec.att">
+    <ref name="attl.colspec"/>
+    <ref name="attle.colspec"/>
+  </define>
+  <define name="tbl.row.att">
+    <ref name="attl.row"/>
+    <ref name="attle.row"/>
+  </define>
+  <define name="tbl.entry.att">
+    <ref name="attl.entry"/>
+    <ref name="attle.entry"/>
+  </define>
+  <!-- **************** Include OASIS Exchange Table Model ****************** -->
+  <include href="soextblx.rng"/>
+  <!-- ************************ Element declarations ************************ -->
+  <!-- **** Element <action> **** -->
+  <define name="cm.action">
+    <optional>
+      <ref name="condition"/>
+    </optional>
+    <ref name="step"/>
+  </define>
+  <define name="attl.action">
+    <ref name="att.nodeid"/>
+    <ref name="att.translate"/>
+    <ref name="att.valid"/>
+  </define>
+  <define name="attle.action">
+    <empty/>
+  </define>
+  <define name="action">
+    <element name="action">
+      <ref name="attlist.action"/>
+      <ref name="cm.action"/>
+    </element>
+  </define>
+  <define name="attlist.action" combine="interleave">
+    <ref name="attl.action"/>
+    <ref name="attle.action"/>
+  </define>
+  <!-- **** Element <actiondescription> **** -->
+  <define name="cm.actiondescription">
+    <oneOrMore>
+      <ref name="cmf.standardblock"/>
+    </oneOrMore>
+  </define>
+  <define name="attl.actiondescription">
+    <ref name="att.nodeid"/>
+    <ref name="att.translate"/>
+    <ref name="att.valid"/>
+  </define>
+  <define name="attle.actiondescription">
+    <empty/>
+  </define>
+  <define name="actiondescription">
+    <element name="actiondescription">
+      <ref name="attlist.actiondescription"/>
+      <ref name="cm.actiondescription"/>
+    </element>
+  </define>
+  <define name="attlist.actiondescription" combine="interleave">
+    <ref name="attl.actiondescription"/>
+    <ref name="attle.actiondescription"/>
+  </define>
+  <!-- **** Element <actionsequenceend> **** -->
+  <define name="cm.actionsequenceend">
+    <optional>
+      <ref name="result"/>
+    </optional>
+    <optional>
+      <ref name="troubleshooting"/>
+    </optional>
+    <zeroOrMore>
+      <ref name="note"/>
+    </zeroOrMore>
+  </define>
+  <define name="attl.actionsequenceend">
+    <ref name="att.nodeid"/>
+    <ref name="att.translate"/>
+    <ref name="att.valid"/>
+  </define>
+  <define name="attle.actionsequenceend">
+    <empty/>
+  </define>
+  <define name="actionsequenceend">
+    <element name="actionsequenceend">
+      <ref name="attlist.actionsequenceend"/>
+      <ref name="cm.actionsequenceend"/>
+    </element>
+  </define>
+  <define name="attlist.actionsequenceend" combine="interleave">
+    <ref name="attl.actionsequenceend"/>
+    <ref name="attle.actionsequenceend"/>
+  </define>
+  <!-- **** Element <caption> **** -->
+  <define name="cm.caption">
+    <zeroOrMore>
+      <ref name="cmf.plaintext"/>
+    </zeroOrMore>
+  </define>
+  <define name="attl.caption">
+    <ref name="att.nodeid"/>
+    <ref name="att.translate"/>
+  </define>
+  <define name="attle.caption">
+    <empty/>
+  </define>
+  <define name="caption">
+    <element name="caption">
+      <ref name="attlist.caption"/>
+      <ref name="cm.caption"/>
+    </element>
+  </define>
+  <define name="attlist.caption" combine="interleave">
+    <ref name="attl.caption"/>
+    <ref name="attle.caption"/>
+  </define>
+  <!-- **** Element <cause> **** -->
+  <define name="cm.cause">
+    <zeroOrMore>
+      <ref name="cmf.plaintext"/>
+    </zeroOrMore>
+  </define>
+  <define name="attl.cause">
+    <ref name="att.nodeid"/>
+    <ref name="att.translate"/>
+    <ref name="att.valid"/>
+  </define>
+  <define name="attle.cause">
+    <empty/>
+  </define>
+  <define name="cause">
+    <element name="cause">
+      <ref name="attlist.cause"/>
+      <ref name="cm.cause"/>
+    </element>
+  </define>
+  <define name="attlist.cause" combine="interleave">
+    <ref name="attl.cause"/>
+    <ref name="attle.cause"/>
+  </define>
+  <!-- **** Element <safetysymbol> **** -->
+  <define name="cm.safetysymbol">
+    <empty/>
+  </define>
+  <define name="attl.safetysymbol">
+    <attribute name="objectname"/>
+    <ref name="att.nodeid"/>
+    <ref name="att.translate"/>
+  </define>
+  <define name="attle.safetysymbol">
+    <empty/>
+  </define>
+  <define name="safetysymbol">
+    <element name="safetysymbol">
+      <ref name="attlist.safetysymbol"/>
+      <ref name="cm.safetysymbol"/>
+    </element>
+  </define>
+  <define name="attlist.safetysymbol" combine="interleave">
+    <ref name="attl.safetysymbol"/>
+    <ref name="attle.safetysymbol"/>
+  </define>
+  <!-- **** Element <condition> **** -->
+  <define name="cm.condition">
+    <zeroOrMore>
+      <ref name="cmf.plaintext"/>
+    </zeroOrMore>
+  </define>
+  <define name="attl.condition">
+    <ref name="att.nodeid"/>
+    <ref name="att.translate"/>
+  </define>
+  <define name="attle.condition">
+    <empty/>
+  </define>
+  <define name="condition">
+    <element name="condition">
+      <ref name="attlist.condition"/>
+      <ref name="cm.condition"/>
+    </element>
+  </define>
+  <define name="attlist.condition" combine="interleave">
+    <ref name="attl.condition"/>
+    <ref name="attle.condition"/>
+  </define>
+  <!-- **** Element <consequences> **** -->
+  <define name="cm.consequences">
+    <zeroOrMore>
+      <ref name="cmf.plaintext"/>
+    </zeroOrMore>
+  </define>
+  <define name="attl.consequences">
+    <ref name="att.nodeid"/>
+    <ref name="att.translate"/>
+  </define>
+  <define name="attle.consequences">
+    <empty/>
+  </define>
+  <define name="consequences">
+    <element name="consequences">
+      <ref name="attlist.consequences"/>
+      <ref name="cm.consequences"/>
+    </element>
+  </define>
+  <define name="attlist.consequences" combine="interleave">
+    <ref name="attl.consequences"/>
+    <ref name="attle.consequences"/>
+  </define>
+  <!-- **** Element <data> **** -->
+  <define name="cm.data">
+    <ref name="datatype"/>
+    <choice>
+      <group>
+        <optional>
+          <ref name="si-value"/>
+        </optional>
+        <optional>
+          <ref name="us-value"/>
+        </optional>
+        <optional>
+          <choice>
+            <ref name="tolerance-asymmetric-value"/>
+            <ref name="tolerance-symmetric-value"/>
+          </choice>
+        </optional>
+      </group>
+      <group>
+        <ref name="lower-value"/>
+        <ref name="upper-value"/>
+      </group>
+      <ref name="textdata"/>
+    </choice>
+  </define>
+  <define name="attl.data">
+    <ref name="atts.data"/>
+    <ref name="att.nodeid"/>
+    <ref name="att.translate"/>
+    <ref name="att.valid"/>
+  </define>
+  <define name="attle.data">
+    <empty/>
+  </define>
+  <define name="data">
+    <element name="data">
+      <ref name="attlist.data"/>
+      <ref name="cm.data"/>
+    </element>
+  </define>
+  <define name="attlist.data" combine="interleave">
+    <ref name="attl.data"/>
+    <ref name="attle.data"/>
+  </define>
+  <!-- **** Element <diagnosisinfo> **** -->
+  <define name="cm.diagnosisinfo">
+    <oneOrMore>
+      <ref name="errordescription"/>
+    </oneOrMore>
+  </define>
+  <define name="attl.diagnosisinfo">
+    <ref name="att.nodeid"/>
+    <ref name="att.translate"/>
+  </define>
+  <define name="attle.diagnosisinfo">
+    <empty/>
+  </define>
+  <define name="diagnosisinfo">
+    <element name="diagnosisinfo">
+      <ref name="attlist.diagnosisinfo"/>
+      <ref name="cm.diagnosisinfo"/>
+    </element>
+  </define>
+  <define name="attlist.diagnosisinfo" combine="interleave">
+    <ref name="attl.diagnosisinfo"/>
+    <ref name="attle.diagnosisinfo"/>
+  </define>
+  <!-- **** Element <inlinedata> **** -->
+  <define name="cm.inlinedata">
+    <ref name="cmf.simpledata"/>
+  </define>
+  <define name="attl.inlinedata">
+    <ref name="atts.data"/>
+    <ref name="att.nodeid"/>
+    <ref name="att.translate"/>
+    <ref name="att.valid"/>
+  </define>
+  <define name="attle.inlinedata">
+    <empty/>
+  </define>
+  <define name="inlinedata">
+    <element name="inlinedata">
+      <ref name="attlist.inlinedata"/>
+      <ref name="cm.inlinedata"/>
+    </element>
+  </define>
+  <define name="attlist.inlinedata" combine="interleave">
+    <ref name="attl.inlinedata"/>
+    <ref name="attle.inlinedata"/>
+  </define>
+  <!-- **** Element <datatype> **** -->
+  <define name="cm.datatype">
+    <zeroOrMore>
+      <choice>
+        <ref name="cmf.justtext"/>
+        <ref name="cmf.values"/>
+        <ref name="cmf.links"/>
+        <ref name="subscript"/>
+        <ref name="superscript"/>
+      </choice>
+    </zeroOrMore>
+  </define>
+  <define name="attl.datatype">
+    <ref name="att.nodeid"/>
+    <ref name="att.translate"/>
+  </define>
+  <define name="attle.datatype">
+    <empty/>
+  </define>
+  <define name="datatype">
+    <element name="datatype">
+      <ref name="attlist.datatype"/>
+      <ref name="cm.datatype"/>
+    </element>
+  </define>
+  <define name="attlist.datatype" combine="interleave">
+    <ref name="attl.datatype"/>
+    <ref name="attle.datatype"/>
+  </define>
+  <!-- **** Element <description> **** -->
+  <define name="cm.description">
+    <zeroOrMore>
+      <ref name="cmf.plaintext"/>
+    </zeroOrMore>
+  </define>
+  <define name="attl.description">
+    <ref name="att.nodeid"/>
+    <ref name="att.translate"/>
+    <ref name="att.valid"/>
+  </define>
+  <define name="attle.description">
+    <empty/>
+  </define>
+  <define name="description">
+    <element name="description">
+      <ref name="attlist.description"/>
+      <ref name="cm.description"/>
+    </element>
+  </define>
+  <define name="attlist.description" combine="interleave">
+    <ref name="attl.description"/>
+    <ref name="attle.description"/>
+  </define>
+  <!-- **** Element <emphasis> **** -->
+  <define name="cm.emphasis">
+    <zeroOrMore>
+      <choice>
+        <ref name="cmf.justtext"/>
+        <ref name="cmf.inlinemediaobjects"/>
+        <ref name="quoted"/>
+        <ref name="cmf.links"/>
+        <ref name="subscript"/>
+        <ref name="superscript"/>
+        <ref name="inlinedata"/>
+      </choice>
+    </zeroOrMore>
+  </define>
+  <define name="attl.emphasis">
+    <ref name="att.nodeid"/>
+    <ref name="att.translate"/>
+  </define>
+  <define name="attle.emphasis">
+    <empty/>
+  </define>
+  <define name="emphasis">
+    <element name="emphasis">
+      <ref name="attlist.emphasis"/>
+      <ref name="cm.emphasis"/>
+    </element>
+  </define>
+  <define name="attlist.emphasis" combine="interleave">
+    <ref name="attl.emphasis"/>
+    <ref name="attle.emphasis"/>
+  </define>
+  <!-- **** Element <key-entry> **** -->
+  <define name="cm.key-entry">
+    <zeroOrMore>
+      <ref name="cmf.justtext"/>
+    </zeroOrMore>
+  </define>
+  <define name="attl.key-entry">
+    <ref name="att.nodeid"/>
+    <ref name="att.translate"/>
+  </define>
+  <define name="attle.key-entry">
+    <empty/>
+  </define>
+  <define name="key-entry">
+    <element name="key-entry">
+      <ref name="attlist.key-entry"/>
+      <ref name="cm.key-entry"/>
+    </element>
+  </define>
+  <define name="attlist.key-entry" combine="interleave">
+    <ref name="attl.key-entry"/>
+    <ref name="attle.key-entry"/>
+  </define>
+  <!-- **** Element <error-code> **** -->
+  <define name="cm.error-code">
+    <zeroOrMore>
+      <ref name="cmf.plaintext"/>
+    </zeroOrMore>
+  </define>
+  <define name="attl.error-code">
+    <ref name="att.nodeid"/>
+    <ref name="att.translate"/>
+  </define>
+  <define name="attle.error-code">
+    <empty/>
+  </define>
+  <define name="error-code">
+    <element name="error-code">
+      <ref name="attlist.error-code"/>
+      <ref name="cm.error-code"/>
+    </element>
+  </define>
+  <define name="attlist.error-code" combine="interleave">
+    <ref name="attl.error-code"/>
+    <ref name="attle.error-code"/>
+  </define>
+  <!-- **** Element <errordescription> **** -->
+  <define name="cm.errordescription">
+    <ref name="symptom"/>
+    <oneOrMore>
+      <ref name="cause"/>
+      <ref name="solution"/>
+    </oneOrMore>
+  </define>
+  <define name="attl.errordescription">
+    <ref name="att.nodeid"/>
+    <ref name="att.translate"/>
+    <ref name="att.valid"/>
+  </define>
+  <define name="attle.errordescription">
+    <empty/>
+  </define>
+  <define name="errordescription">
+    <element name="errordescription">
+      <ref name="attlist.errordescription"/>
+      <ref name="cm.errordescription"/>
+    </element>
+  </define>
+  <define name="attlist.errordescription" combine="interleave">
+    <ref name="attl.errordescription"/>
+    <ref name="attle.errordescription"/>
+  </define>
+  <!-- **** Element <image> **** -->
+  <define name="cm.image">
+    <empty/>
+  </define>
+  <define name="attl.image">
+    <attribute name="objectname"/>
+    <ref name="att.nodeid"/>
+    <ref name="att.translate"/>
+  </define>
+  <define name="attle.image">
+    <empty/>
+  </define>
+  <define name="image">
+    <element name="image">
+      <ref name="attlist.image"/>
+      <ref name="cm.image"/>
+    </element>
+  </define>
+  <define name="attlist.image" combine="interleave">
+    <ref name="attl.image"/>
+    <ref name="attle.image"/>
+  </define>
+  <!-- **** Element <footnote> **** -->
+  <define name="cm.footnote">
+    <zeroOrMore>
+      <choice>
+        <ref name="cmf.justtext"/>
+        <ref name="cmf.typography"/>
+        <ref name="cmf.links"/>
+        <ref name="cmf.inlinesemantics"/>
+      </choice>
+    </zeroOrMore>
+  </define>
+  <define name="attl.footnote">
+    <ref name="att.nodeid"/>
+    <ref name="att.translate"/>
+    <ref name="att.valid"/>
+  </define>
+  <define name="attle.footnote">
+    <empty/>
+  </define>
+  <define name="footnote">
+    <element name="footnote">
+      <ref name="attlist.footnote"/>
+      <ref name="cm.footnote"/>
+    </element>
+  </define>
+  <define name="attlist.footnote" combine="interleave">
+    <ref name="attl.footnote"/>
+    <ref name="attle.footnote"/>
+  </define>
+  <!-- **** Element <glossary-entry> **** -->
+  <define name="cm.glossary-entry">
+    <ref name="glossterm"/>
+    <ref name="glossdef"/>
+  </define>
+  <define name="attl.glossary-entry">
+    <ref name="att.nodeid"/>
+    <ref name="att.translate"/>
+    <ref name="att.valid"/>
+  </define>
+  <define name="attle.glossary-entry">
+    <empty/>
+  </define>
+  <define name="glossary-entry">
+    <element name="glossary-entry">
+      <ref name="attlist.glossary-entry"/>
+      <ref name="cm.glossary-entry"/>
+    </element>
+  </define>
+  <define name="attlist.glossary-entry" combine="interleave">
+    <ref name="attl.glossary-entry"/>
+    <ref name="attle.glossary-entry"/>
+  </define>
+  <!-- **** Element <glossterm> **** -->
+  <define name="cm.glossterm">
+    <zeroOrMore>
+      <ref name="cmf.titletext"/>
+    </zeroOrMore>
+  </define>
+  <define name="attl.glossterm">
+    <ref name="att.nodeid"/>
+    <ref name="att.translate"/>
+  </define>
+  <define name="attle.glossterm">
+    <empty/>
+  </define>
+  <define name="glossterm">
+    <element name="glossterm">
+      <ref name="attlist.glossterm"/>
+      <ref name="cm.glossterm"/>
+    </element>
+  </define>
+  <define name="attlist.glossterm" combine="interleave">
+    <ref name="attl.glossterm"/>
+    <ref name="attle.glossterm"/>
+  </define>
+  <!-- **** Element <glossdef> **** -->
+  <define name="cm.glossdef">
+    <oneOrMore>
+      <ref name="cmf.complexblock"/>
+    </oneOrMore>
+  </define>
+  <define name="attl.glossdef">
+    <ref name="att.nodeid"/>
+    <ref name="att.translate"/>
+  </define>
+  <define name="attle.glossdef">
+    <empty/>
+  </define>
+  <define name="glossdef">
+    <element name="glossdef">
+      <ref name="attlist.glossdef"/>
+      <ref name="cm.glossdef"/>
+    </element>
+  </define>
+  <define name="attlist.glossdef" combine="interleave">
+    <ref name="attl.glossdef"/>
+    <ref name="attle.glossdef"/>
+  </define>
+  <!-- **** Element <mediaobject> **** -->
+  <define name="cm.mediaobject">
+    <ref name="image"/>
+    <optional>
+      <ref name="caption"/>
+    </optional>
+    <optional>
+      <ref name="legend"/>
+    </optional>
+  </define>
+  <define name="attl.mediaobject">
+    <ref name="atts.mediaobject"/>
+    <ref name="att.nodeid"/>
+    <ref name="att.valid"/>
+    <ref name="att.translate"/>
+  </define>
+  <define name="attle.mediaobject">
+    <empty/>
+  </define>
+  <define name="mediaobject">
+    <element name="mediaobject">
+      <ref name="attlist.mediaobject"/>
+      <ref name="cm.mediaobject"/>
+    </element>
+  </define>
+  <define name="attlist.mediaobject" combine="interleave">
+    <ref name="attl.mediaobject"/>
+    <ref name="attle.mediaobject"/>
+  </define>
+  <!-- **** Element <heading> **** -->
+  <define name="cm.heading">
+    <zeroOrMore>
+      <ref name="cmf.titletext"/>
+    </zeroOrMore>
+  </define>
+  <define name="attl.heading">
+    <ref name="att.nodeid"/>
+    <ref name="att.translate"/>
+  </define>
+  <define name="attle.heading">
+    <empty/>
+  </define>
+  <define name="heading">
+    <element name="heading">
+      <ref name="attlist.heading"/>
+      <ref name="cm.heading"/>
+    </element>
+  </define>
+  <define name="attlist.heading" combine="interleave">
+    <ref name="attl.heading"/>
+    <ref name="attle.heading"/>
+  </define>
+  <!-- **** Element <identification> **** -->
+  <define name="cm.identification">
+    <zeroOrMore>
+      <ref name="cmf.plaintext"/>
+    </zeroOrMore>
+  </define>
+  <define name="attl.identification">
+    <ref name="att.nodeid"/>
+    <ref name="att.translate"/>
+  </define>
+  <define name="attle.identification">
+    <empty/>
+  </define>
+  <define name="identification">
+    <element name="identification">
+      <ref name="attlist.identification"/>
+      <ref name="cm.identification"/>
+    </element>
+  </define>
+  <define name="attlist.identification" combine="interleave">
+    <ref name="attl.identification"/>
+    <ref name="attle.identification"/>
+  </define>
+  <!-- **** Element <identno> **** -->
+  <define name="cm.identno">
+    <zeroOrMore>
+      <ref name="cmf.plaintext"/>
+    </zeroOrMore>
+  </define>
+  <define name="attl.identno">
+    <ref name="att.nodeid"/>
+    <ref name="att.translate"/>
+  </define>
+  <define name="attle.identno">
+    <empty/>
+  </define>
+  <define name="identno">
+    <element name="identno">
+      <ref name="attlist.identno"/>
+      <ref name="cm.identno"/>
+    </element>
+  </define>
+  <define name="attlist.identno" combine="interleave">
+    <ref name="attl.identno"/>
+    <ref name="attle.identno"/>
+  </define>
+  <!-- **** Element <inlinemediaobject> **** -->
+  <define name="cm.inlinemediaobject">
+    <empty/>
+  </define>
+  <define name="attl.inlinemediaobject">
+    <attribute name="objectname"/>
+    <ref name="att.nodeid"/>
+    <ref name="att.translate"/>
+  </define>
+  <define name="attle.inlinemediaobject">
+    <empty/>
+  </define>
+  <define name="inlinemediaobject">
+    <element name="inlinemediaobject">
+      <ref name="attlist.inlinemediaobject"/>
+      <ref name="cm.inlinemediaobject"/>
+    </element>
+  </define>
+  <define name="attlist.inlinemediaobject" combine="interleave">
+    <ref name="attl.inlinemediaobject"/>
+    <ref name="attle.inlinemediaobject"/>
+  </define>
+  <!-- **** Element <item> **** -->
+  <define name="cm.item">
+    <oneOrMore>
+      <choice>
+        <ref name="paragraph"/>
+        <ref name="list"/>
+      </choice>
+    </oneOrMore>
+  </define>
+  <define name="attl.item">
+    <ref name="att.nodeid"/>
+    <ref name="att.valid"/>
+    <ref name="att.translate"/>
+  </define>
+  <define name="attle.item">
+    <empty/>
+  </define>
+  <define name="item">
+    <element name="item">
+      <ref name="attlist.item"/>
+      <ref name="cm.item"/>
+    </element>
+  </define>
+  <define name="attlist.item" combine="interleave">
+    <ref name="attl.item"/>
+    <ref name="attle.item"/>
+  </define>
+  <!-- **** Element <itemno> **** -->
+  <define name="cm.itemno">
+    <zeroOrMore>
+      <ref name="cmf.plaintext"/>
+    </zeroOrMore>
+  </define>
+  <define name="attl.itemno">
+    <ref name="att.nodeid"/>
+    <ref name="att.translate"/>
+  </define>
+  <define name="attle.itemno">
+    <empty/>
+  </define>
+  <define name="itemno">
+    <element name="itemno">
+      <ref name="attlist.itemno"/>
+      <ref name="cm.itemno"/>
+    </element>
+  </define>
+  <define name="attlist.itemno" combine="interleave">
+    <ref name="attl.itemno"/>
+    <ref name="attle.itemno"/>
+  </define>
+  <!-- **** Element <itemtext> **** -->
+  <define name="cm.itemtext">
+    <zeroOrMore>
+      <ref name="cmf.plaintext"/>
+    </zeroOrMore>
+  </define>
+  <define name="attl.itemtext">
+    <ref name="att.nodeid"/>
+    <ref name="att.translate"/>
+  </define>
+  <define name="attle.itemtext">
+    <empty/>
+  </define>
+  <define name="itemtext">
+    <element name="itemtext">
+      <ref name="attlist.itemtext"/>
+      <ref name="cm.itemtext"/>
+    </element>
+  </define>
+  <define name="attlist.itemtext" combine="interleave">
+    <ref name="attl.itemtext"/>
+    <ref name="attle.itemtext"/>
+  </define>
+  <!-- **** Element <keyword> **** -->
+  <define name="cm.keyword">
+    <ref name="key-entry"/>
+    <optional>
+      <ref name="key-entry"/>
+    </optional>
+  </define>
+  <define name="attl.keyword">
+    <ref name="att.nodeid"/>
+    <ref name="att.translate"/>
+    <ref name="att.valid"/>
+  </define>
+  <define name="attle.keyword">
+    <empty/>
+  </define>
+  <define name="keyword">
+    <element name="keyword">
+      <ref name="attlist.keyword"/>
+      <ref name="cm.keyword"/>
+    </element>
+  </define>
+  <define name="attlist.keyword" combine="interleave">
+    <ref name="attl.keyword"/>
+    <ref name="attle.keyword"/>
+  </define>
+  <!-- **** Element <legend> **** -->
+  <define name="cm.legend">
+    <optional>
+      <ref name="heading"/>
+    </optional>
+    <oneOrMore>
+      <choice>
+        <ref name="legend"/>
+        <ref name="legenditem"/>
+      </choice>
+    </oneOrMore>
+  </define>
+  <define name="attl.legend">
+    <ref name="att.nodeid"/>
+    <ref name="att.translate"/>
+  </define>
+  <define name="attle.legend">
+    <empty/>
+  </define>
+  <define name="legend">
+    <element name="legend">
+      <ref name="attlist.legend"/>
+      <ref name="cm.legend"/>
+    </element>
+  </define>
+  <define name="attlist.legend" combine="interleave">
+    <ref name="attl.legend"/>
+    <ref name="attle.legend"/>
+  </define>
+  <!-- **** Element <legenditem> **** -->
+  <define name="cm.legenditem">
+    <optional>
+      <ref name="itemno"/>
+    </optional>
+    <oneOrMore>
+      <ref name="itemtext"/>
+    </oneOrMore>
+  </define>
+  <define name="attl.legenditem">
+    <ref name="att.nodeid"/>
+  </define>
+  <define name="attle.legenditem">
+    <empty/>
+  </define>
+  <define name="legenditem">
+    <element name="legenditem">
+      <ref name="attlist.legenditem"/>
+      <ref name="cm.legenditem"/>
+    </element>
+  </define>
+  <define name="attlist.legenditem" combine="interleave">
+    <ref name="attl.legenditem"/>
+    <ref name="attle.legenditem"/>
+  </define>
+  <!-- **** Element <list> **** -->
+  <define name="cm.list">
+    <zeroOrMore>
+      <ref name="keyword"/>
+    </zeroOrMore>
+    <optional>
+      <ref name="listintro"/>
+    </optional>
+    <oneOrMore>
+      <ref name="item"/>
+    </oneOrMore>
+    <zeroOrMore>
+      <ref name="footnote"/>
+    </zeroOrMore>
+  </define>
+  <define name="attl.list">
+    <optional>
+      <attribute name="listtype" a:defaultValue="marked">
+        <choice>
+          <value>numbered</value>
+          <value>marked</value>
+        </choice>
+      </attribute>
+    </optional>
+    <ref name="att.nodeid"/>
+    <ref name="att.valid"/>
+    <ref name="att.translate"/>
+  </define>
+  <define name="attle.list">
+    <empty/>
+  </define>
+  <define name="list">
+    <element name="list">
+      <ref name="attlist.list"/>
+      <ref name="cm.list"/>
+    </element>
+  </define>
+  <define name="attlist.list" combine="interleave">
+    <ref name="attl.list"/>
+    <ref name="attle.list"/>
+  </define>
+  <!-- **** Element <listintro> **** -->
+  <define name="cm.listintro">
+    <zeroOrMore>
+      <ref name="cmf.plaintext"/>
+    </zeroOrMore>
+  </define>
+  <define name="attl.listintro">
+    <ref name="att.nodeid"/>
+    <ref name="att.translate"/>
+  </define>
+  <define name="attle.listintro">
+    <empty/>
+  </define>
+  <define name="listintro">
+    <element name="listintro">
+      <ref name="attlist.listintro"/>
+      <ref name="cm.listintro"/>
+    </element>
+  </define>
+  <define name="attlist.listintro" combine="interleave">
+    <ref name="attl.listintro"/>
+    <ref name="attle.listintro"/>
+  </define>
+  <!-- **** Element <lower-value> **** -->
+  <define name="cm.lower-value">
+    <zeroOrMore>
+      <ref name="cmf.values"/>
+    </zeroOrMore>
+  </define>
+  <define name="attl.lower-value">
+    <ref name="att.nodeid"/>
+    <ref name="att.translate"/>
+  </define>
+  <define name="attle.lower-value">
+    <empty/>
+  </define>
+  <define name="lower-value">
+    <element name="lower-value">
+      <ref name="attlist.lower-value"/>
+      <ref name="cm.lower-value"/>
+    </element>
+  </define>
+  <define name="attlist.lower-value" combine="interleave">
+    <ref name="attl.lower-value"/>
+    <ref name="attle.lower-value"/>
+  </define>
+  <!-- **** Element <lubrclass> **** -->
+  <define name="cm.lubrclass">
+    <zeroOrMore>
+      <ref name="cmf.entrycontent"/>
+    </zeroOrMore>
+  </define>
+  <define name="attl.lubrclass">
+    <ref name="att.nodeid"/>
+    <ref name="att.translate"/>
+  </define>
+  <define name="attle.lubrclass">
+    <empty/>
+  </define>
+  <define name="lubrclass">
+    <element name="lubrclass">
+      <ref name="attlist.lubrclass"/>
+      <ref name="cm.lubrclass"/>
+    </element>
+  </define>
+  <define name="attlist.lubrclass" combine="interleave">
+    <ref name="attl.lubrclass"/>
+    <ref name="attle.lubrclass"/>
+  </define>
+  <!-- **** Element <lubricant> **** -->
+  <define name="cm.lubricant">
+    <optional>
+      <ref name="symbol"/>
+    </optional>
+    <ref name="name"/>
+    <optional>
+      <ref name="identno"/>
+    </optional>
+    <optional>
+      <ref name="medium"/>
+    </optional>
+    <optional>
+      <ref name="spec"/>
+    </optional>
+    <optional>
+      <ref name="lubrclass"/>
+    </optional>
+    <optional>
+      <ref name="description"/>
+    </optional>
+  </define>
+  <define name="attl.lubricant">
+    <ref name="att.nodeid"/>
+    <ref name="att.translate"/>
+    <ref name="att.valid"/>
+  </define>
+  <define name="attle.lubricant">
+    <empty/>
+  </define>
+  <define name="lubricant">
+    <element name="lubricant">
+      <ref name="attlist.lubricant"/>
+      <ref name="cm.lubricant"/>
+    </element>
+  </define>
+  <define name="attlist.lubricant" combine="interleave">
+    <ref name="attl.lubricant"/>
+    <ref name="attle.lubricant"/>
+  </define>
+  <!-- **** Element <lubricantinfo> **** -->
+  <define name="cm.lubricantinfo">
+    <oneOrMore>
+      <ref name="quantity"/>
+      <ref name="lubricant"/>
+    </oneOrMore>
+  </define>
+  <define name="attl.lubricantinfo">
+    <ref name="att.nodeid"/>
+    <ref name="att.translate"/>
+  </define>
+  <define name="attle.lubricantinfo">
+    <empty/>
+  </define>
+  <define name="lubricantinfo">
+    <element name="lubricantinfo">
+      <ref name="attlist.lubricantinfo"/>
+      <ref name="cm.lubricantinfo"/>
+    </element>
+  </define>
+  <define name="attlist.lubricantinfo" combine="interleave">
+    <ref name="attl.lubricantinfo"/>
+    <ref name="attle.lubricantinfo"/>
+  </define>
+  <!-- **** Element <medium> **** -->
+  <define name="cm.medium">
+    <zeroOrMore>
+      <ref name="cmf.plaintext"/>
+    </zeroOrMore>
+  </define>
+  <define name="attl.medium">
+    <ref name="att.nodeid"/>
+    <ref name="att.translate"/>
+  </define>
+  <define name="attle.medium">
+    <empty/>
+  </define>
+  <define name="medium">
+    <element name="medium">
+      <ref name="attlist.medium"/>
+      <ref name="cm.medium"/>
+    </element>
+  </define>
+  <define name="attlist.medium" combine="interleave">
+    <ref name="attl.medium"/>
+    <ref name="attle.medium"/>
+  </define>
+  <!-- **** Element <name> **** -->
+  <define name="cm.name">
+    <zeroOrMore>
+      <ref name="cmf.plaintext"/>
+    </zeroOrMore>
+  </define>
+  <define name="attl.name">
+    <ref name="att.nodeid"/>
+    <ref name="att.translate"/>
+  </define>
+  <define name="attle.name">
+    <empty/>
+  </define>
+  <define name="name">
+    <element name="name">
+      <ref name="attlist.name"/>
+      <ref name="cm.name"/>
+    </element>
+  </define>
+  <define name="attlist.name" combine="interleave">
+    <ref name="attl.name"/>
+    <ref name="attle.name"/>
+  </define>
+  <!-- **** Element <note> **** -->
+  <define name="cm.note">
+    <oneOrMore>
+      <choice>
+        <ref name="paragraph"/>
+        <ref name="list"/>
+      </choice>
+    </oneOrMore>
+  </define>
+  <define name="attl.note">
+    <ref name="att.nodeid"/>
+    <ref name="att.translate"/>
+    <ref name="att.valid"/>
+  </define>
+  <define name="attle.note">
+    <empty/>
+  </define>
+  <define name="note">
+    <element name="note">
+      <ref name="attlist.note"/>
+      <ref name="cm.note"/>
+    </element>
+  </define>
+  <define name="attlist.note" combine="interleave">
+    <ref name="attl.note"/>
+    <ref name="attle.note"/>
+  </define>
+  <!-- **** Element <number> **** -->
+  <define name="cm.number">
+    <zeroOrMore>
+      <ref name="cmf.numberunit"/>
+    </zeroOrMore>
+  </define>
+  <define name="attl.number">
+    <ref name="att.print"/>
+    <ref name="att.nodeid"/>
+    <ref name="att.translate"/>
+  </define>
+  <define name="attle.number">
+    <empty/>
+  </define>
+  <define name="number">
+    <element name="number">
+      <ref name="attlist.number"/>
+      <ref name="cm.number"/>
+    </element>
+  </define>
+  <define name="attlist.number" combine="interleave">
+    <ref name="attl.number"/>
+    <ref name="attle.number"/>
+  </define>
+  <!-- **** Element <or-action> **** -->
+  <define name="cm.or-action">
+    <zeroOrMore>
+      <choice>
+        <ref name="note"/>
+        <ref name="safetyadvice"/>
+        <ref name="mediaobject"/>
+      </choice>
+    </zeroOrMore>
+    <ref name="action"/>
+    <zeroOrMore>
+      <ref name="note"/>
+    </zeroOrMore>
+  </define>
+  <define name="attl.or-action">
+    <ref name="att.nodeid"/>
+    <ref name="att.valid"/>
+    <ref name="att.translate"/>
+  </define>
+  <define name="attle.or-action">
+    <empty/>
+  </define>
+  <define name="or-action">
+    <element name="or-action">
+      <ref name="attlist.or-action"/>
+      <ref name="cm.or-action"/>
+    </element>
+  </define>
+  <define name="attlist.or-action" combine="interleave">
+    <ref name="attl.or-action"/>
+    <ref name="attle.or-action"/>
+  </define>
+  <!-- **** Element <orientation> **** -->
+  <define name="cm.orientation">
+    <oneOrMore>
+      <ref name="cmf.complexblock"/>
+    </oneOrMore>
+  </define>
+  <define name="attl.orientation">
+    <ref name="att.nodeid"/>
+    <ref name="att.translate"/>
+  </define>
+  <define name="attle.orientation">
+    <empty/>
+  </define>
+  <define name="orientation">
+    <element name="orientation">
+      <ref name="attlist.orientation"/>
+      <ref name="cm.orientation"/>
+    </element>
+  </define>
+  <define name="attlist.orientation" combine="interleave">
+    <ref name="attl.orientation"/>
+    <ref name="attle.orientation"/>
+  </define>
+  <!-- **** Element <outlook> **** -->
+  <define name="cm.outlook">
+    <optional>
+      <ref name="heading"/>
+    </optional>
+    <oneOrMore>
+      <ref name="cmf.complexblock"/>
+    </oneOrMore>
+  </define>
+  <define name="attl.outlook">
+    <ref name="att.nodeid"/>
+    <ref name="att.valid"/>
+    <ref name="att.translate"/>
+  </define>
+  <define name="attle.outlook">
+    <empty/>
+  </define>
+  <define name="outlook">
+    <element name="outlook">
+      <ref name="attlist.outlook"/>
+      <ref name="cm.outlook"/>
+    </element>
+  </define>
+  <define name="attlist.outlook" combine="interleave">
+    <ref name="attl.outlook"/>
+    <ref name="attle.outlook"/>
+  </define>
+  <!-- **** Element <paragraph> **** -->
+  <define name="cm.paragraph">
+    <zeroOrMore>
+      <ref name="cmf.plaintext"/>
+    </zeroOrMore>
+  </define>
+  <define name="attl.paragraph">
+    <ref name="att.nodeid"/>
+    <ref name="att.valid"/>
+    <ref name="att.translate"/>
+  </define>
+  <define name="attle.paragraph">
+    <empty/>
+  </define>
+  <define name="paragraph">
+    <element name="paragraph">
+      <ref name="attlist.paragraph"/>
+      <ref name="cm.paragraph"/>
+    </element>
+  </define>
+  <define name="attlist.paragraph" combine="interleave">
+    <ref name="attl.paragraph"/>
+    <ref name="attle.paragraph"/>
+  </define>
+  <!-- **** Element <part> **** -->
+  <define name="cm.part">
+    <optional>
+      <ref name="symbol"/>
+    </optional>
+    <ref name="name"/>
+    <optional>
+      <ref name="identno"/>
+    </optional>
+    <optional>
+      <ref name="spec"/>
+    </optional>
+    <optional>
+      <ref name="description"/>
+    </optional>
+  </define>
+  <define name="attl.part">
+    <ref name="att.nodeid"/>
+    <ref name="att.translate"/>
+    <ref name="att.valid"/>
+  </define>
+  <define name="attle.part">
+    <empty/>
+  </define>
+  <define name="part">
+    <element name="part">
+      <ref name="attlist.part"/>
+      <ref name="cm.part"/>
+    </element>
+  </define>
+  <define name="attlist.part" combine="interleave">
+    <ref name="attl.part"/>
+    <ref name="attle.part"/>
+  </define>
+  <!-- **** Element <prerequisites> **** -->
+  <define name="cm.prerequisites">
+    <oneOrMore>
+      <ref name="cmf.complexblock"/>
+    </oneOrMore>
+  </define>
+  <define name="attl.prerequisites">
+    <ref name="att.nodeid"/>
+    <ref name="att.translate"/>
+  </define>
+  <define name="attle.prerequisites">
+    <empty/>
+  </define>
+  <define name="prerequisites">
+    <element name="prerequisites">
+      <ref name="attlist.prerequisites"/>
+      <ref name="cm.prerequisites"/>
+    </element>
+  </define>
+  <define name="attlist.prerequisites" combine="interleave">
+    <ref name="attl.prerequisites"/>
+    <ref name="attle.prerequisites"/>
+  </define>
+  <!-- **** Element <problemdescription> **** -->
+  <define name="cm.problemdescription">
+    <zeroOrMore>
+      <ref name="cmf.plaintext"/>
+    </zeroOrMore>
+  </define>
+  <define name="attl.problemdescription">
+    <ref name="att.nodeid"/>
+    <ref name="att.valid"/>
+    <ref name="att.translate"/>
+  </define>
+  <define name="attle.problemdescription">
+    <empty/>
+  </define>
+  <define name="problemdescription">
+    <element name="problemdescription">
+      <ref name="attlist.problemdescription"/>
+      <ref name="cm.problemdescription"/>
+    </element>
+  </define>
+  <define name="attlist.problemdescription" combine="interleave">
+    <ref name="attl.problemdescription"/>
+    <ref name="attle.problemdescription"/>
+  </define>
+  <!-- **** Element <quantity> **** -->
+  <define name="cm.quantity">
+    <ref name="cmf.simpledata"/>
+  </define>
+  <define name="attl.quantity">
+    <ref name="atts.data"/>
+    <ref name="att.nodeid"/>
+    <ref name="att.translate"/>
+  </define>
+  <define name="attle.quantity">
+    <empty/>
+  </define>
+  <define name="quantity">
+    <element name="quantity">
+      <ref name="attlist.quantity"/>
+      <ref name="cm.quantity"/>
+    </element>
+  </define>
+  <define name="attlist.quantity" combine="interleave">
+    <ref name="attl.quantity"/>
+    <ref name="attle.quantity"/>
+  </define>
+  <!-- **** Element <quoted> **** -->
+  <define name="cm.quoted">
+    <zeroOrMore>
+      <choice>
+        <ref name="cmf.justtext"/>
+        <ref name="emphasis"/>
+        <ref name="subscript"/>
+        <ref name="superscript"/>
+        <ref name="cmf.inlinemediaobjects"/>
+        <ref name="cmf.links"/>
+        <ref name="inlinedata"/>
+      </choice>
+    </zeroOrMore>
+  </define>
+  <define name="attl.quoted">
+    <ref name="att.nodeid"/>
+    <ref name="att.translate"/>
+  </define>
+  <define name="attle.quoted">
+    <empty/>
+  </define>
+  <define name="quoted">
+    <element name="quoted">
+      <ref name="attlist.quoted"/>
+      <ref name="cm.quoted"/>
+    </element>
+  </define>
+  <define name="attlist.quoted" combine="interleave">
+    <ref name="attl.quoted"/>
+    <ref name="attle.quoted"/>
+  </define>
+  <!-- **** Element <result> **** -->
+  <define name="cm.result">
+    <zeroOrMore>
+      <ref name="cmf.complexblock"/>
+    </zeroOrMore>
+  </define>
+  <define name="attl.result">
+    <ref name="att.nodeid"/>
+    <ref name="att.valid"/>
+    <ref name="att.translate"/>
+  </define>
+  <define name="attle.result">
+    <empty/>
+  </define>
+  <define name="result">
+    <element name="result">
+      <ref name="attlist.result"/>
+      <ref name="cm.result"/>
+    </element>
+  </define>
+  <define name="attlist.result" combine="interleave">
+    <ref name="attl.result"/>
+    <ref name="attle.result"/>
+  </define>
+  <!-- **** Element <safetyadvice> **** -->
+  <define name="cm.safetyadvice">
+    <ref name="cause"/>
+    <optional>
+      <ref name="safetysymbol"/>
+    </optional>
+    <zeroOrMore>
+      <ref name="consequences"/>
+    </zeroOrMore>
+    <oneOrMore>
+      <ref name="action"/>
+    </oneOrMore>
+    <optional>
+      <ref name="mediaobject"/>
+    </optional>
+  </define>
+  <define name="attl.safetyadvice">
+    <ref name="att.nodeid"/>
+    <ref name="att.class"/>
+    <ref name="att.valid"/>
+    <ref name="att.translate"/>
+  </define>
+  <define name="attle.safetyadvice">
+    <empty/>
+  </define>
+  <define name="safetyadvice">
+    <element name="safetyadvice">
+      <ref name="attlist.safetyadvice"/>
+      <ref name="cm.safetyadvice"/>
+    </element>
+  </define>
+  <define name="attlist.safetyadvice" combine="interleave">
+    <ref name="attl.safetyadvice"/>
+    <ref name="attle.safetyadvice"/>
+  </define>
+  <!-- **** Element <shortinfo> **** -->
+  <define name="cm.shortinfo">
+    <oneOrMore>
+      <ref name="cmf.complexblock"/>
+    </oneOrMore>
+  </define>
+  <define name="attl.shortinfo">
+    <ref name="att.nodeid"/>
+    <ref name="att.translate"/>
+  </define>
+  <define name="attle.shortinfo">
+    <empty/>
+  </define>
+  <define name="shortinfo">
+    <element name="shortinfo">
+      <ref name="attlist.shortinfo"/>
+      <ref name="cm.shortinfo"/>
+    </element>
+  </define>
+  <define name="attlist.shortinfo" combine="interleave">
+    <ref name="attl.shortinfo"/>
+    <ref name="attle.shortinfo"/>
+  </define>
+  <!-- **** Element <si-value> **** -->
+  <define name="cm.si-value">
+    <ref name="number"/>
+    <ref name="unit"/>
+  </define>
+  <define name="attl.si-value">
+    <ref name="att.nodeid"/>
+    <ref name="att.translate"/>
+  </define>
+  <define name="attle.si-value">
+    <empty/>
+  </define>
+  <define name="si-value">
+    <element name="si-value">
+      <ref name="attlist.si-value"/>
+      <ref name="cm.si-value"/>
+    </element>
+  </define>
+  <define name="attlist.si-value" combine="interleave">
+    <ref name="attl.si-value"/>
+    <ref name="attle.si-value"/>
+  </define>
+  <!-- **** Element <solution> **** -->
+  <define name="cm.solution">
+    <zeroOrMore>
+      <ref name="cmf.plaintext"/>
+    </zeroOrMore>
+  </define>
+  <define name="attl.solution">
+    <ref name="att.nodeid"/>
+    <ref name="att.valid"/>
+    <ref name="att.translate"/>
+  </define>
+  <define name="attle.solution">
+    <empty/>
+  </define>
+  <define name="solution">
+    <element name="solution">
+      <ref name="attlist.solution"/>
+      <ref name="cm.solution"/>
+    </element>
+  </define>
+  <define name="attlist.solution" combine="interleave">
+    <ref name="attl.solution"/>
+    <ref name="attle.solution"/>
+  </define>
+  <!-- **** Element <spec> **** -->
+  <define name="cm.spec">
+    <zeroOrMore>
+      <ref name="cmf.plaintext"/>
+    </zeroOrMore>
+  </define>
+  <define name="attl.spec">
+    <ref name="att.nodeid"/>
+    <ref name="att.translate"/>
+  </define>
+  <define name="attle.spec">
+    <empty/>
+  </define>
+  <define name="spec">
+    <element name="spec">
+      <ref name="attlist.spec"/>
+      <ref name="cm.spec"/>
+    </element>
+  </define>
+  <define name="attlist.spec" combine="interleave">
+    <ref name="attl.spec"/>
+    <ref name="attle.spec"/>
+  </define>
+  <!-- **** Element <step> **** -->
+  <define name="cm.step">
+    <zeroOrMore>
+      <ref name="cmf.plaintext"/>
+    </zeroOrMore>
+  </define>
+  <define name="attl.step">
+    <ref name="att.nodeid"/>
+    <ref name="att.translate"/>
+  </define>
+  <define name="attle.step">
+    <empty/>
+  </define>
+  <define name="step">
+    <element name="step">
+      <ref name="attlist.step"/>
+      <ref name="cm.step"/>
+    </element>
+  </define>
+  <define name="attlist.step" combine="interleave">
+    <ref name="attl.step"/>
+    <ref name="attle.step"/>
+  </define>
+  <!-- **** Element <subscript> **** -->
+  <define name="cm.subscript">
+    <zeroOrMore>
+      <ref name="cmf.justtext"/>
+    </zeroOrMore>
+  </define>
+  <define name="attl.subscript">
+    <ref name="att.nodeid"/>
+    <ref name="att.translate"/>
+  </define>
+  <define name="attle.subscript">
+    <empty/>
+  </define>
+  <define name="subscript">
+    <element name="subscript">
+      <ref name="attlist.subscript"/>
+      <ref name="cm.subscript"/>
+    </element>
+  </define>
+  <define name="attlist.subscript" combine="interleave">
+    <ref name="attl.subscript"/>
+    <ref name="attle.subscript"/>
+  </define>
+  <!-- **** Element <superscript> **** -->
+  <define name="cm.superscript">
+    <zeroOrMore>
+      <ref name="cmf.justtext"/>
+    </zeroOrMore>
+  </define>
+  <define name="attl.superscript">
+    <ref name="att.nodeid"/>
+    <ref name="att.translate"/>
+  </define>
+  <define name="attle.superscript">
+    <empty/>
+  </define>
+  <define name="superscript">
+    <element name="superscript">
+      <ref name="attlist.superscript"/>
+      <ref name="cm.superscript"/>
+    </element>
+  </define>
+  <define name="attlist.superscript" combine="interleave">
+    <ref name="attl.superscript"/>
+    <ref name="attle.superscript"/>
+  </define>
+  <!-- **** Element <symbol> **** -->
+  <define name="cm.symbol">
+    <ref name="cmf.inlinemediaobjects"/>
+  </define>
+  <define name="attl.symbol">
+    <ref name="att.nodeid"/>
+  </define>
+  <define name="attle.symbol">
+    <empty/>
+  </define>
+  <define name="symbol">
+    <element name="symbol">
+      <ref name="attlist.symbol"/>
+      <ref name="cm.symbol"/>
+    </element>
+  </define>
+  <define name="attlist.symbol" combine="interleave">
+    <ref name="attl.symbol"/>
+    <ref name="attle.symbol"/>
+  </define>
+  <!-- **** Element <symptom> **** -->
+  <define name="cm.symptom">
+    <optional>
+      <ref name="error-code"/>
+    </optional>
+    <optional>
+      <ref name="description"/>
+    </optional>
+  </define>
+  <define name="attl.symptom">
+    <ref name="att.nodeid"/>
+    <ref name="att.translate"/>
+  </define>
+  <define name="attle.symptom">
+    <empty/>
+  </define>
+  <define name="symptom">
+    <element name="symptom">
+      <ref name="attlist.symptom"/>
+      <ref name="cm.symptom"/>
+    </element>
+  </define>
+  <define name="attlist.symptom" combine="interleave">
+    <ref name="attl.symptom"/>
+    <ref name="attle.symptom"/>
+  </define>
+  <!-- **** Element <taskinterval> **** -->
+  <define name="cm.taskinterval">
+    <zeroOrMore>
+      <ref name="cmf.plaintext"/>
+    </zeroOrMore>
+  </define>
+  <define name="attl.taskinterval">
+    <optional>
+      <attribute name="customer-interval">
+        <ref name="attv.customerinterval"/>
+      </attribute>
+    </optional>
+    <optional>
+      <attribute name="service-interval">
+        <ref name="attv.serviceinterval"/>
+      </attribute>
+    </optional>
+    <optional>
+      <attribute name="special-interval">
+        <ref name="attv.specialintervals"/>
+      </attribute>
+    </optional>
+    <ref name="att.nodeid"/>
+    <ref name="att.translate"/>
+    <ref name="att.valid"/>
+  </define>
+  <define name="attle.taskinterval">
+    <empty/>
+  </define>
+  <define name="taskinterval">
+    <element name="taskinterval">
+      <ref name="attlist.taskinterval"/>
+      <ref name="cm.taskinterval"/>
+    </element>
+  </define>
+  <define name="attlist.taskinterval" combine="interleave">
+    <ref name="attl.taskinterval"/>
+    <ref name="attle.taskinterval"/>
+  </define>
+  <!-- **** Element <taskintervalinfo> **** -->
+  <define name="cm.taskintervalinfo">
+    <oneOrMore>
+      <ref name="taskinterval"/>
+    </oneOrMore>
+  </define>
+  <define name="attl.taskintervalinfo">
+    <ref name="att.nodeid"/>
+    <ref name="att.translate"/>
+  </define>
+  <define name="attle.taskintervalinfo">
+    <empty/>
+  </define>
+  <define name="taskintervalinfo">
+    <element name="taskintervalinfo">
+      <ref name="attlist.taskintervalinfo"/>
+      <ref name="cm.taskintervalinfo"/>
+    </element>
+  </define>
+  <define name="attlist.taskintervalinfo" combine="interleave">
+    <ref name="attl.taskintervalinfo"/>
+    <ref name="attle.taskintervalinfo"/>
+  </define>
+  <!-- **** Element <techdata> **** -->
+  <define name="cm.techdata">
+    <optional>
+      <ref name="heading"/>
+    </optional>
+    <oneOrMore>
+      <choice>
+        <ref name="techdata"/>
+        <ref name="data"/>
+      </choice>
+    </oneOrMore>
+  </define>
+  <define name="attl.techdata">
+    <ref name="att.nodeid"/>
+    <ref name="att.translate"/>
+    <ref name="att.valid"/>
+  </define>
+  <define name="attle.techdata">
+    <empty/>
+  </define>
+  <define name="techdata">
+    <element name="techdata">
+      <ref name="attlist.techdata"/>
+      <ref name="cm.techdata"/>
+    </element>
+  </define>
+  <define name="attlist.techdata" combine="interleave">
+    <ref name="attl.techdata"/>
+    <ref name="attle.techdata"/>
+  </define>
+  <!-- **** Element <textdata> **** -->
+  <define name="cm.textdata">
+    <zeroOrMore>
+      <choice>
+        <ref name="cmf.justtext"/>
+        <ref name="inlinedata"/>
+        <ref name="cmf.links"/>
+        <ref name="subscript"/>
+        <ref name="superscript"/>
+      </choice>
+    </zeroOrMore>
+  </define>
+  <define name="attl.textdata">
+    <ref name="att.nodeid"/>
+    <ref name="att.translate"/>
+  </define>
+  <define name="attle.textdata">
+    <empty/>
+  </define>
+  <define name="textdata">
+    <element name="textdata">
+      <ref name="attlist.textdata"/>
+      <ref name="cm.textdata"/>
+    </element>
+  </define>
+  <define name="attlist.textdata" combine="interleave">
+    <ref name="attl.textdata"/>
+    <ref name="attle.textdata"/>
+  </define>
+  <!-- **** Element <link> **** -->
+  <define name="cm.link">
+    <zeroOrMore>
+      <choice>
+        <ref name="cmf.justtext"/>
+        <ref name="cmf.inlinemediaobjects"/>
+        <ref name="transno"/>
+        <ref name="subscript"/>
+        <ref name="superscript"/>
+        <ref name="quoted"/>
+        <ref name="inlinedata"/>
+        <ref name="cmf.variables"/>
+      </choice>
+    </zeroOrMore>
+  </define>
+  <define name="attl.link">
+    <ref name="atts.link"/>
+    <ref name="att.nodeid"/>
+    <ref name="att.translate"/>
+  </define>
+  <define name="attle.link">
+    <empty/>
+  </define>
+  <define name="link">
+    <element name="link">
+      <ref name="attlist.link"/>
+      <ref name="cm.link"/>
+    </element>
+  </define>
+  <define name="attlist.link" combine="interleave">
+    <ref name="attl.link"/>
+    <ref name="attle.link"/>
+  </define>
+  <!-- **** Element <tolerance-asymmetric-value> **** -->
+  <define name="cm.tolerance-asymmetric-value">
+    <choice>
+      <group>
+        <ref name="tolerance-high-value"/>
+        <optional>
+          <ref name="tolerance-low-value"/>
+        </optional>
+      </group>
+      <ref name="tolerance-low-value"/>
+    </choice>
+  </define>
+  <define name="attl.tolerance-asymmetric-value">
+    <ref name="att.nodeid"/>
+    <ref name="att.translate"/>
+  </define>
+  <define name="attle.tolerance-asymmetric-value">
+    <empty/>
+  </define>
+  <define name="tolerance-asymmetric-value">
+    <element name="tolerance-asymmetric-value">
+      <ref name="attlist.tolerance-asymmetric-value"/>
+      <ref name="cm.tolerance-asymmetric-value"/>
+    </element>
+  </define>
+  <define name="attlist.tolerance-asymmetric-value" combine="interleave">
+    <ref name="attl.tolerance-asymmetric-value"/>
+    <ref name="attle.tolerance-asymmetric-value"/>
+  </define>
+  <!-- **** Element <tolerance-high-value> **** -->
+  <define name="cm.tolerance-high-value">
+    <ref name="cmf.values"/>
+  </define>
+  <define name="attl.tolerance-high-value">
+    <ref name="att.nodeid"/>
+    <ref name="att.translate"/>
+  </define>
+  <define name="attle.tolerance-high-value">
+    <empty/>
+  </define>
+  <define name="tolerance-high-value">
+    <element name="tolerance-high-value">
+      <ref name="attlist.tolerance-high-value"/>
+      <ref name="cm.tolerance-high-value"/>
+    </element>
+  </define>
+  <define name="attlist.tolerance-high-value" combine="interleave">
+    <ref name="attl.tolerance-high-value"/>
+    <ref name="attle.tolerance-high-value"/>
+  </define>
+  <!-- **** Element <tolerance-low-value> **** -->
+  <define name="cm.tolerance-low-value">
+    <ref name="cmf.values"/>
+  </define>
+  <define name="attl.tolerance-low-value">
+    <ref name="att.nodeid"/>
+    <ref name="att.translate"/>
+  </define>
+  <define name="attle.tolerance-low-value">
+    <empty/>
+  </define>
+  <define name="tolerance-low-value">
+    <element name="tolerance-low-value">
+      <ref name="attlist.tolerance-low-value"/>
+      <ref name="cm.tolerance-low-value"/>
+    </element>
+  </define>
+  <define name="attlist.tolerance-low-value" combine="interleave">
+    <ref name="attl.tolerance-low-value"/>
+    <ref name="attle.tolerance-low-value"/>
+  </define>
+  <!-- **** Element <tolerance-symmetric-value> **** -->
+  <define name="cm.tolerance-symmetric-value">
+    <ref name="cmf.values"/>
+  </define>
+  <define name="attl.tolerance-symmetric-value">
+    <ref name="att.nodeid"/>
+    <ref name="att.translate"/>
+  </define>
+  <define name="attle.tolerance-symmetric-value">
+    <empty/>
+  </define>
+  <define name="tolerance-symmetric-value">
+    <element name="tolerance-symmetric-value">
+      <ref name="attlist.tolerance-symmetric-value"/>
+      <ref name="cm.tolerance-symmetric-value"/>
+    </element>
+  </define>
+  <define name="attlist.tolerance-symmetric-value" combine="interleave">
+    <ref name="attl.tolerance-symmetric-value"/>
+    <ref name="attle.tolerance-symmetric-value"/>
+  </define>
+  <!-- **** Element <tool> **** -->
+  <define name="cm.tool">
+    <optional>
+      <ref name="symbol"/>
+    </optional>
+    <ref name="name"/>
+    <optional>
+      <ref name="identno"/>
+    </optional>
+    <optional>
+      <ref name="spec"/>
+    </optional>
+    <optional>
+      <ref name="description"/>
+    </optional>
+  </define>
+  <define name="attl.tool">
+    <ref name="att.nodeid"/>
+    <ref name="att.translate"/>
+    <ref name="att.valid"/>
+  </define>
+  <define name="attle.tool">
+    <empty/>
+  </define>
+  <define name="tool">
+    <element name="tool">
+      <ref name="attlist.tool"/>
+      <ref name="cm.tool"/>
+    </element>
+  </define>
+  <define name="attlist.tool" combine="interleave">
+    <ref name="attl.tool"/>
+    <ref name="attle.tool"/>
+  </define>
+  <!-- **** Element <toolinfo> **** -->
+  <define name="cm.toolinfo">
+    <oneOrMore>
+      <ref name="quantity"/>
+      <choice>
+        <ref name="tool"/>
+        <ref name="part"/>
+      </choice>
+    </oneOrMore>
+  </define>
+  <define name="attl.toolinfo">
+    <ref name="att.nodeid"/>
+    <ref name="att.translate"/>
+  </define>
+  <define name="attle.toolinfo">
+    <empty/>
+  </define>
+  <define name="toolinfo">
+    <element name="toolinfo">
+      <ref name="attlist.toolinfo"/>
+      <ref name="cm.toolinfo"/>
+    </element>
+  </define>
+  <define name="attlist.toolinfo" combine="interleave">
+    <ref name="attl.toolinfo"/>
+    <ref name="attle.toolinfo"/>
+  </define>
+  <!-- **** Element <transno> **** -->
+  <define name="cm.transno">
+    <zeroOrMore>
+      <choice>
+        <ref name="cmf.justtext"/>
+        <ref name="cmf.typography"/>
+        <ref name="cmf.links"/>
+      </choice>
+    </zeroOrMore>
+  </define>
+  <define name="attl.transno">
+    <ref name="att.nodeid"/>
+    <ref name="att.translate"/>
+  </define>
+  <define name="attle.transno">
+    <empty/>
+  </define>
+  <define name="transno">
+    <element name="transno">
+      <ref name="attlist.transno"/>
+      <ref name="cm.transno"/>
+    </element>
+  </define>
+  <define name="attlist.transno" combine="interleave">
+    <ref name="attl.transno"/>
+    <ref name="attle.transno"/>
+  </define>
+  <!-- **** Element <troubleshooting> **** -->
+  <define name="cm.troubleshooting">
+    <ref name="identification"/>
+    <oneOrMore>
+      <zeroOrMore>
+        <ref name="problemdescription"/>
+      </zeroOrMore>
+      <oneOrMore>
+        <optional>
+          <ref name="mediaobject"/>
+        </optional>
+        <ref name="action"/>
+      </oneOrMore>
+    </oneOrMore>
+  </define>
+  <define name="attl.troubleshooting">
+    <ref name="att.nodeid"/>
+    <ref name="att.valid"/>
+    <ref name="att.translate"/>
+  </define>
+  <define name="attle.troubleshooting">
+    <empty/>
+  </define>
+  <define name="troubleshooting">
+    <element name="troubleshooting">
+      <ref name="attlist.troubleshooting"/>
+      <ref name="cm.troubleshooting"/>
+    </element>
+  </define>
+  <define name="attlist.troubleshooting" combine="interleave">
+    <ref name="attl.troubleshooting"/>
+    <ref name="attle.troubleshooting"/>
+  </define>
+  <!-- **** Element <user-interface> **** -->
+  <define name="cm.user-interface">
+    <zeroOrMore>
+      <choice>
+        <ref name="cmf.justtext"/>
+        <ref name="cmf.inlinemediaobjects"/>
+        <ref name="cmf.links"/>
+        <ref name="subscript"/>
+        <ref name="superscript"/>
+        <ref name="transno"/>
+      </choice>
+    </zeroOrMore>
+  </define>
+  <define name="attl.user-interface">
+    <ref name="att.nodeid"/>
+    <optional>
+      <attribute name="type">
+        <ref name="attv.userinterface"/>
+      </attribute>
+    </optional>
+    <ref name="att.translate"/>
+  </define>
+  <define name="attle.user-interface">
+    <empty/>
+  </define>
+  <define name="user-interface">
+    <element name="user-interface">
+      <ref name="attlist.user-interface"/>
+      <ref name="cm.user-interface"/>
+    </element>
+  </define>
+  <define name="attlist.user-interface" combine="interleave">
+    <ref name="attl.user-interface"/>
+    <ref name="attle.user-interface"/>
+  </define>
+  <!-- **** Element <variable> **** -->
+  <define name="cm.variable">
+    <zeroOrMore>
+      <choice>
+        <ref name="cmf.justtext"/>
+        <ref name="cmf.typography"/>
+      </choice>
+    </zeroOrMore>
+  </define>
+  <define name="attl.variable">
+    <ref name="att.nodeid"/>
+    <attribute name="name"/>
+    <ref name="att.translate"/>
+  </define>
+  <define name="attle.variable">
+    <empty/>
+  </define>
+  <define name="variable">
+    <element name="variable">
+      <ref name="attlist.variable"/>
+      <ref name="cm.variable"/>
+    </element>
+  </define>
+  <define name="attlist.variable" combine="interleave">
+    <ref name="attl.variable"/>
+    <ref name="attle.variable"/>
+  </define>
+  <!-- **** Element <unit> **** -->
+  <define name="cm.unit">
+    <zeroOrMore>
+      <ref name="cmf.numberunit"/>
+    </zeroOrMore>
+  </define>
+  <define name="attl.unit">
+    <ref name="att.print"/>
+    <ref name="att.nodeid"/>
+    <ref name="att.translate"/>
+  </define>
+  <define name="attle.unit">
+    <empty/>
+  </define>
+  <define name="unit">
+    <element name="unit">
+      <ref name="attlist.unit"/>
+      <ref name="cm.unit"/>
+    </element>
+  </define>
+  <define name="attlist.unit" combine="interleave">
+    <ref name="attl.unit"/>
+    <ref name="attle.unit"/>
+  </define>
+  <!-- **** Element <upper-value> **** -->
+  <define name="cm.upper-value">
+    <zeroOrMore>
+      <ref name="cmf.values"/>
+    </zeroOrMore>
+  </define>
+  <define name="attl.upper-value">
+    <ref name="att.nodeid"/>
+    <ref name="att.translate"/>
+  </define>
+  <define name="attle.upper-value">
+    <empty/>
+  </define>
+  <define name="upper-value">
+    <element name="upper-value">
+      <ref name="attlist.upper-value"/>
+      <ref name="cm.upper-value"/>
+    </element>
+  </define>
+  <define name="attlist.upper-value" combine="interleave">
+    <ref name="attl.upper-value"/>
+    <ref name="attle.upper-value"/>
+  </define>
+  <!-- **** Element <us-value> **** -->
+  <define name="cm.us-value">
+    <ref name="number"/>
+    <ref name="unit"/>
+  </define>
+  <define name="attl.us-value">
+    <ref name="att.nodeid"/>
+    <ref name="att.translate"/>
+  </define>
+  <define name="attle.us-value">
+    <empty/>
+  </define>
+  <define name="us-value">
+    <element name="us-value">
+      <ref name="attlist.us-value"/>
+      <ref name="cm.us-value"/>
+    </element>
+  </define>
+  <define name="attlist.us-value" combine="interleave">
+    <ref name="attl.us-value"/>
+    <ref name="attle.us-value"/>
+  </define>
+</grammar>
+<!-- ************** End of DTD module "finestruct-elems.ent" *************** -->
