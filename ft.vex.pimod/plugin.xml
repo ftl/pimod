@@ -24,7 +24,7 @@
        </public>
        <public
              publicId="-//PI-MOD//DTD PI-Mod V1.2.2//EN"
-             uri="dtd/1.2.2/pi-mod.dtd">
+             uri="dtd/1.2.2/DTD/pi-mod.dtd">
        </public>
     </catalogContribution>
  </extension>
